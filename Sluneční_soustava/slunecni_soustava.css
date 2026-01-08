@@ -1,0 +1,82 @@
+body {
+  background-color: #121215;
+  overflow: hidden;
+}
+
+.sun {
+  width: 120px;
+  height: 120px;
+  background-color: yellow;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 3cm rgb(228, 178, 85);
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+}
+
+.planet {
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+}
+
+.mercury {
+  background-color: rgb(219, 104, 4);
+  width: 20px;
+  height: 20px;
+  left: 100px;
+}
+
+.venus {
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  left: 220px;
+}
+
+.earth {
+  background-color: blue;
+  width: 30px;
+  height: 30px;
+  left: 330px;
+}
+
+.mars {
+  background-color: rgb(197, 69, 0);
+  width: 40px;
+  height: 40px;
+  left: 440px;
+}
+
+.mercury-orbit {
+  animation: spin 8.8s linear infinite;
+}
+
+.venus-orbit {
+  animation: spin 22s linear infinite;
+}
+
+.earth-orbit {
+  animation: spin 36s linear infinite;
+}
+
+.mars-orbit {
+  animation: spin 68s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

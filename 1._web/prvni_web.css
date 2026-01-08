@@ -1,0 +1,195 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-size: 500% 500%;
+  background-color: #000000;
+  font-family: "Poppins", sans-serif;
+}
+
+#nadpis {
+  position: absolute;
+  top: 37%;
+  left: 43%;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 2;
+  color: rgb(255, 0, 0);
+  scale: 3;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.prvek {
+  background: lightblue;
+  padding: 20px 100px;
+  border: solid;
+  border-radius: 100px;
+  background-color: rgb(77, 197, 244);
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+#obrazek1 {
+  filter: blur(1px);
+  z-index: 1;
+  border-radius: 100px;
+}
+
+#obrazek2 {
+  position: absolute;
+  border-radius: 100px;
+}
+
+#O_Mně {
+  position: absolute;
+  top: 85%;
+  left: 41%;
+  scale: 2;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 2;
+  color: white;
+}
+
+#O_Mně2 {
+  position: absolute;
+  top: 95%;
+  left: 40.5%;
+  scale: 1.1;
+  font-size: 20px;
+  z-index: 2;
+  color: white;
+}
+
+#O_Mně3 {
+  position: absolute;
+  top: 100%;
+  left: 39.7%;
+  scale: 1.1;
+  font-size: 20px;
+  z-index: 2;
+  color: white;
+}
+
+#Socky {
+  position: absolute;
+  top: 150%;
+  left: 45%;
+  scale: 2;
+  font-size: 25px;
+  font-weight: bold;
+  z-index: 2;
+  color: white;
+}
+
+.icons {
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 185%;
+  left: 30%;
+  scale: 2;
+  z-index: 10;
+}
+
+.icons a {
+  text-decoration: none;
+}
+
+.fa-brands.fa-github.fa-10x {
+  color: white
+}
+
+.fa-brands.fa-instagram.fa-10x {
+  color: white;
+}
+
+.fa-brands.fa-youtube.fa-10x {
+  color: white;
+}
+
+
+.fa-brands.fa-github.fa-10x:hover {
+  color: rgb(180, 148, 148);
+}
+
+.fa-brands.fa-instagram.fa-10x:hover {
+  color: purple
+}
+
+.fa-brands.fa-youtube.fa-10x:hover {
+  color: red
+}
+
+#Projekty {
+  position: absolute;
+  top: 230%;
+  left: 46.5%;
+  scale: 2;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 2;
+  color: white;
+}
+
+#Projekty2 {
+  position: absolute;
+  top: 240%;
+  left: 30%;
+  scale: 1.1;
+  font-size: 20px;
+  z-index: 2;
+  color: white;
+}
+
+#Ceník {
+  position: absolute;
+  top: 270%;
+  left: 46.5%;
+  scale: 2;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 2;
+  color: white;
+}
+
+#Ceník2 {
+  position: absolute;
+  text-align: center;
+  top: 280%;
+  scale: 1;
+  font-size: 20px;
+  z-index: 2;
+  color: white;
+  left: 0;
+  right: 0;
+
+}
+
+.box2 {
+  color: white;
+  width: 50vw;
+  height: 50vh;
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  margin: 20px;
+  z-index: 3;
+
+}
+
+.box3 {
+  color: red;
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  z-index: 3;
+
+}
