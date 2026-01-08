@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matyáš Rada - Web Development</title>
+    <style>
+        body { font-family: sans-serif; background-color: #121212; color: white; text-align: center; padding: 50px; }
+        h1 { color: #f0db4f; }
+        .projects { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .card { background: #1e1e1e; border: 1px solid #333; padding: 20px; border-radius: 10px; width: 250px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #f0db4f; }
+        a { color: #58a6ff; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+        p { color: #8b949e; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>Moje Webové Projekty</h1>
+    <p>Vítejte v mém portfoliu. Vyberte si projekt:</p>
 
+    <div class="projects">
+        <div class="card">
+            <a href="prvni_web/">První Web</a>
+            <p>Můj úplně první interaktivní projekt.</p>
+        </div>
+        <div class="card">
+            <a href="vizitka/">Vizitka</a>
+            <p>Osobní vizitka v HTML a CSS.</p>
+        </div>
+        <div class="card">
+            <a href="slunecni_soustava/">Sluneční soustava</a>
+            <p>Animovaný model planet.</p>
+        </div>
+        <div class="card">
+            <a href="obrazkyWeb/">Anime Galerie</a>
+            <p>Web s interaktivním zobrazením obrázků.</p>
+        </div>
+        <div class="card">
+            <a href="web2/">Web 2</a>
+            <p>Můj propracovanější černobílý web.</p>
+        </div>
+    </div>
+</body>
+</html>
