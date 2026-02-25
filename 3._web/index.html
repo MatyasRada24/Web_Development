@@ -19,113 +19,140 @@
     </script>
 </head>
 
-<body>
-    <header class="header">
-        <nav class="navigation_bar">
-            <a href="#about">About</a>
-            <a href="#projects">Work</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-    <div class="profile-container">
-        <img class="profile-image" src="Images/dr house.png">
-    </div>
-    <h3 class="profile-text" id="Hi">Hi, I'm Matyas 👋</h3>
-    <h1 class="profile-text" id="Front">FRONT-END WEB DEVELOPER.</h1>
-    <h3 class="profile-text" id="Passionate">I'm someone who loves to build FRONT-END websites. I'm also learning Python
-        and SQL. </h3>
-    <button class="reach-out" onclick="window.location.href='#contact'">Reach Out</button>
-    <h2 class="about" id="about">About</h2>
-    <div class="about-container">
-        <h3>Hello there! I'm Ramzi, a Frontend / Fullstack-Jamstack web developer based near Montreal. I wake up in the
-            morning, grab a cup of timmies coffee, open up my laptop and build things that live on the web all day,
-            everyday.
-            <br><br>
-            People who know me say I'm obsessed, that's fair, I am very driven and love learning new things.
-            <br><br>
-            I recently created a YouTube channel called Slaying The Dragon where I upload videos on front-end web
-            development topics.
-            <br><br>
-            Technologies
-            <br><br>
-            👍 HTML
-            <br><br>
-            👍CSS
-            <br><br>
-            👍JavaScript
-        </h3>
-        <img class="about-image" src="C:\Users\Krysák\Desktop\Web\3._web\Images/foto1.png">
-    </div>
+<header class="header">
+    <nav class="navigation_bar">
+        <a href="#about">About</a>
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+<main>
+    <section class="hero-section">
+        <div class="profile-container">
+            <img class="profile-image" src="Images/dr house.png" alt="Profile of Matyas">
+        </div>
+        <h3 class="profile-text" id="Hi">Hi, I'm Matyas 👋</h3>
+        <h1 class="profile-text" id="Front">FRONT-END WEB DEVELOPER.</h1>
+        <h3 class="profile-text" id="Passionate">I'm someone who loves to build FRONT-END websites. I'm also learning
+            Python and SQL.</h3>
+        <button class="reach-out" onclick="window.location.href='#contact'">Reach Out</button>
+    </section>
 
+    <section class="about-section" id="about">
+        <h2 class="about-title">About</h2>
+        <div class="about-container">
+            <h3 class="about-text">Hello there! I'm Ramzi, a Frontend / Fullstack-Jamstack web developer based near
+                Montreal. I wake up in the
+                morning, grab a cup of timmies coffee, open up my laptop and build things that live on the web all day,
+                everyday.
+                <br><br>
+                People who know me say I'm obsessed, that's fair, I am very driven and love learning new things.
+                <br><br>
+                I recently created a YouTube channel called Slaying The Dragon where I upload videos on front-end web
+                development topics.
+                <br><br>
+                Technologies
+                <br><br>
+                👍 HTML
+                <br><br>
+                👍 CSS
+                <br><br>
+                👍 JavaScript
+            </h3>
+            <img class="about-image" src="Images/foto1.png" alt="About Image">
+        </div>
+    </section>
 
-    <h1 class="slaying">SLAYING THE DRAGON</h1>
-    <h3 class="slaying" id="slaying-text">Cillum voluptate tempor cillum culpa cupidatat labore voluptate ullamco
-        voluptate
-        culpa sunt
-        nulla non. Ad
-        cupidatat dolore quis amet pariatur consectetur ullamco. Officia quis id velit duis cupidatat sunt deserunt do
-        aliquip nulla laboris.</h3>
+    <section class="slaying-section">
+        <h1 class="slaying-title">SLAYING THE DRAGON</h1>
+        <h3 class="slaying-subtitle" id="slaying-text">Cillum voluptate tempor cillum culpa cupidatat labore voluptate
+            ullamco
+            voluptate culpa sunt nulla non. Ad
+            cupidatat dolore quis amet pariatur consectetur ullamco. Officia quis id velit duis cupidatat sunt deserunt
+            do
+            aliquip nulla laboris.</h3>
+        <div class="photoes">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+            <img src="Images/prace.png" alt="Work Example">
+        </div>
+    </section>
 
-    <div class="photoes">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/prace.png">
-    </div>
-    <h2 class="projects" id="projects">Projects</h2>
-    <h3 class="projects-text">Mollit pariatur tempor nisi dolor non consequat magna cupidatat reprehenderit. Aliquip
-        excepteur ullamco aliquip magna est et commodo deserunt ipsum.</h3>
-    <div class="project-item1">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/web1.png">
-        <h3>Wax Motif
-            Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad exercitation.
+    <section class="projects-section" id="projects">
+        <h2 class="projects-title">Projects</h2>
+        <h3 class="projects-subtitle">Mollit pariatur tempor nisi dolor non consequat magna cupidatat reprehenderit.
+            Aliquip
+            excepteur ullamco aliquip magna est et commodo deserunt ipsum.</h3>
+        <div class="project-list">
+            <div class="project-item">
+                <img src="Images/web1.png" alt="Project 1">
+                <div class="project-info">
+                    <h3>Wax Motif</h3>
+                    <p>Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad
+                        exercitation.
+                        Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur
+                        cillum deserunt
+                        duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris
+                        adipisicing
+                        cupidatat sint.</p>
+                </div>
+            </div>
+            <div class="project-item reverse">
+                <div class="project-info">
+                    <h3>Wax Motif</h3>
+                    <p>Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad
+                        exercitation.
+                        Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur
+                        cillum deserunt
+                        duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris
+                        adipisicing
+                        cupidatat sint.</p>
+                </div>
+                <img src="Images/web2.png" alt="Project 2">
+            </div>
+            <div class="project-item">
+                <img src="Images/web3.png" alt="Project 3">
+                <div class="project-info">
+                    <h3>Wax Motif</h3>
+                    <p>Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad
+                        exercitation.
+                        Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur
+                        cillum deserunt
+                        duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris
+                        adipisicing
+                        cupidatat sint.</p>
+                </div>
+            </div>
+            <div class="project-item reverse">
+                <div class="project-info">
+                    <h3>Wax Motif</h3>
+                    <p>Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad
+                        exercitation.
+                        Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur
+                        cillum deserunt
+                        duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris
+                        adipisicing
+                        cupidatat sint.</p>
+                </div>
+                <img src="Images/obrazkyWeb.png" alt="Project 4">
+            </div>
+        </div>
+    </section>
 
-            Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur cillum deserunt
-            duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris adipisicing
-            cupidatat sint.
-        </h3>
-    </div>
-    <div class="project-item2">
-        <h3>Wax Motif
-            Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad exercitation.
-
-            Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur cillum deserunt
-            duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris adipisicing
-            cupidatat sint.
-        </h3>
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/web2.png">
-    </div>
-    <div class="project-item3">
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/web3.png">
-        <h3>Wax Motif
-            Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad exercitation.
-
-            Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur cillum deserunt
-            duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris adipisicing
-            cupidatat sint.
-        </h3>
-    </div>
-    <div class="project-item4">
-        <h3>Wax Motif
-            Labore magna ut non labore Lorem nisi culpa sint et quis sint. Enim pariatur deserunt do ad exercitation.
-
-            Ea ut non cupidatat consequat sint elit ipsum culpa dolor cillum commodo. Do esse excepteur cillum deserunt
-            duis incididunt. Eu tempor ullamco aliqua consectetur incididunt anim dolor sunt laboris adipisicing
-            cupidatat sint.
-        </h3>
-        <img src="C:\Users\Krysák\Desktop\Web\3._web\Images/obrazkyWeb.png">
-    </div>
-    <h1 class="contact" id="contact">Get In Contact</h1>
-    <h3 class="contact" id="contact-text">Whether you are starting a project, have business inquiries or just want to
-        say hi, my inbox is
-        always open so
-        feel free to reach out and I will get back to you as soon as possible.</h3>
-    <button class="reach-me">Reach Me</button>
-    <footer class="footer"></footer>
+    <section class="contact-section" id="contact">
+        <h1 class="contact-title">Get In Contact</h1>
+        <h3 class="contact-text">Whether you are starting a project, have business inquiries or just want to
+            say hi, my inbox is always open so
+            feel free to reach out and I will get back to you as soon as possible.</h3>
+        <button class="reach-me">Reach Me</button>
+    </section>
+</main>
+<footer class="footer"></footer>
 </body>
 
 </html>
