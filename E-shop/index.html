@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <span class="header-text" data-category="pc">Stolní PC</span>
+        <span class="header-text" data-category="notebook">Notebooky</span>
+        <span class="header-text" data-category="all-in-one">ALL in one</span>
+    </header>
+    <div class="logo">
+        <img src="Images/logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="section">
+        <span class="section-text" data-sort="price-asc">Nejlevnější</span>
+        <span class="section-text" data-sort="price-desc">Nejdražší</span>
+        <span class="section-text" data-sort="newest">Novinky</span>
+    </div>
+
+    <div class="products-container">
+        <div class="product-card" data-price="29999" data-category="pc">
+            <a href="Ryzen 7 9700X, RTX 3060Ti 16GB, 4TB SSD, 16GB RAM.html">
+                <img src="Images/stolní-pracovní-pc.webp" alt="Images">
+                <h3>Pracovní PC</h3>
+                <h5 class="specs">Ryzen 7 9700X, RTX 3060Ti 16GB, 4TB SSD, 16GB RAM</h5>
+                <h2 class="price">29999 Kč</h2>
+            </a>
+        </div>
+        <div class="product-card" data-price="39999" data-category="pc">
+            <a href="AMD Ryzen 7 7800X3D, RTX 5070 12GB, 1TB SSD, 32GB RAM.html">
+                <img src="Images/stolní-herní-pc.webp" alt="Images">
+                <h3>Herní PC</h3>
+                <h5 class="specs">AMD Ryzen 7 7800X3D, RTX 5070 12GB, 1TB SSD, 32GB RAM</h5>
+                <h2 class="price">39999 Kč</h2>
+            </a>
+        </div>
+        <div class="product-card" data-price="19500" data-category="notebook">
+            <a href="i5 - 10300H, RTX 2060, 500GB SSD, 16GB RAM.html">
+                <img src="Images/pracovní-notebook.webp" alt="Images">
+                <h3>Herní Notebook</h3>
+                <h5 class="specs">i5 - 10300H, RTX 2060, 500GB SSD, 16GB RAM</h5>
+                <h2 class="price">19500 Kč</h2>
+            </a>
+        </div>
+        <div class="product-card" data-price="25499" data-category="all-in-one">
+            <a href="Intel Core Ultra 9 285, Intel Arc, 500GB SSD, 16GB RAM.html">
+                <img src="Images/all-in-one-pracovní-pc.webp" alt="Images">
+                <h3>All in One</h3>
+                <h5 class="specs">Intel Core Ultra 9 285, Intel Arc, 500GB SSD, 16GB RAM</h5>
+                <h2 class="price"> 25499 Kč</h2>
+            </a>
+        </div>
+        <div class="product-card" data-price="24999" data-category="notebook">
+            <a href="2v1-notebook.html">
+                <img src="Images/2v1-notebook.webp" alt="Images">
+                <h3>2v1 Notebook</h3>
+                <h5 class="specs">Intel Core Ultra 7 258V, Intel Arc Graphics 140V, 1TB SSD, 32GB RAM</h5>
+                <h2 class="price"> 24999 Kč</h2>
+            </a>
+        </div>
+        <div class="product-card" data-price="49999" data-category="notebook">
+            <a href="i9 - 13900HX, RTX 4090, 2TB SSD, 64GB RAM.html">
+                <img src="Images/herní-notebook.webp" alt="Images">
+                <h3>Herní Notebook</h3>
+                <h5 class="specs">i9 - 13900HX, RTX 4090, 2TB SSD, 64GB RAM</h5>
+                <h2 class="price"> 49999 Kč</h2>
+            </a>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

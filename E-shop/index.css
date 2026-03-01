@@ -1,0 +1,90 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header-text {
+    display: inline-block;
+    transition: scale 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.header-text:hover {
+    scale: 1.2;
+    color: rgb(255, 68, 35);
+    text-decoration: underline;
+    text-shadow: #000000 7px 7px 10px;
+}
+
+.section {
+    width: 60%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #b6b6b6;
+}
+
+.section-text {
+    cursor: pointer;
+    margin-left: 50px;
+    margin-right: 50px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.section-text:hover {
+    scale: 1.2;
+    transition: transform 0.2s;
+    text-decoration: underline;
+}
+
+.products-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin: 50px auto;
+    gap: 20px;
+}
+
+.product-card:hover {
+    scale: 1.2;
+}
+
+.product-card {
+    flex: 1;
+    border: 2px solid #000;
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 4%;
+    width: 100px;
+    height: 100px;
+}
