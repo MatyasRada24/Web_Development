@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-text {
+    display: inline-block;
+    transition: scale 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.header-text:hover {
+    scale: 1.2;
+    color: rgb(255, 68, 35);
+    text-decoration: underline;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 90%;
+    height: 700px;
+    font-size: 25px;
+}
+
+.img-text {
+    text-align: center;
+    margin: 0;
+    font-size: 50px;
+}
+
+.text-box {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.img {
+    width: 400px;
+    height: 400px;
+}
+
+.procesor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px auto;
+    width: 70%;
+    border: 1px solid #000;
+    padding: 20px 50px;
+    gap: 20px;
+}
+
+.procesor-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: pre-line;
+}
+
+.procesor-image {
+    width: 600px;
+    height: 600px;
+}
+
+.procesor-info {
+    font-size: 35px;
+    margin: 10px;
+}
+
+.grafika {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px auto;
+    width: 70%;
+    border: 1px solid #000;
+    padding: 20px 50px;
+    gap: 20px;
+}
+
+.grafika-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: pre-line;
+}
+
+.grafika-image {
+    width: 500px;
+    height: 500px;
+}
+
+.grafika-info {
+    font-size: 35px;
+    margin: 10px;
+}
+
+.disk {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px auto;
+    width: 70%;
+    border: 1px solid #000;
+    padding: 20px 50px;
+    gap: 20px;
+}
+
+.disk-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: pre-line;
+}
+
+.disk-image {
+    width: 600px;
+    height: 200px;
+}
+
+.disk-info {
+    font-size: 35px;
+    margin: 10px;
+}
+
+.ram {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px auto;
+    width: 70%;
+    border: 1px solid #000;
+    padding: 20px 50px;
+    gap: 20px;
+}
+
+.ram-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: pre-line;
+}
+
+.ram-image {
+    width: 600px;
+    height: 350px;
+}
+
+.ram-info {
+    font-size: 35px;
+    margin: 10px;
+}
