@@ -7,16 +7,20 @@ body {
 }
 
 #nadpis {
-  position: absolute;
-  top: 37%;
-  left: 43%;
-  text-align: center;
-  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150px;
   font-weight: bold;
-  z-index: 2;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  height: 600px;
+  z-index: 3;
   color: rgb(255, 0, 0);
-  scale: 3;
+  margin: 0;
 }
+
 
 .box {
   display: flex;
@@ -37,18 +41,25 @@ body {
 }
 
 #obrazek1 {
-  max-width: 100%;
-  height: auto;
+  position: absolute;
+  top: 15%;
+  left: 0%;
+  width: 100%;
+  height: 600px;
   filter: blur(1px);
-  z-index: 1;
   border-radius: 100px;
+  z-index: 2;
 }
 
 #obrazek2 {
   position: absolute;
-  max-width: 90%;
   height: auto;
   border-radius: 100px;
+  z-index: 0;
+  top: 80%;
+  left: 0%;
+  width: 35%;
+  height: 400px;
 }
 
 #O_Mně {
@@ -84,7 +95,7 @@ body {
 
 #Socky {
   position: absolute;
-  top: 150%;
+  top: 130%;
   left: 45%;
   scale: 2;
   font-size: 25px;
@@ -97,8 +108,8 @@ body {
   text-align: center;
   color: white;
   position: absolute;
-  top: 185%;
-  left: 30%;
+  top: 155%;
+  left: 35%;
   scale: 2;
   z-index: 10;
 }
@@ -134,8 +145,8 @@ body {
 
 #Projekty {
   position: absolute;
-  top: 230%;
-  left: 46.5%;
+  top: 200%;
+  left: 50%;
   scale: 2;
   font-size: 30px;
   font-weight: bold;
@@ -145,8 +156,8 @@ body {
 
 #Projekty2 {
   position: absolute;
-  top: 240%;
-  left: 30%;
+  top: 210%;
+  left: 37%;
   scale: 1.1;
   font-size: 20px;
   z-index: 2;
@@ -155,8 +166,8 @@ body {
 
 #Ceník {
   position: absolute;
-  top: 270%;
-  left: 46.5%;
+  top: 240%;
+  left: 50%;
   scale: 2;
   font-size: 30px;
   font-weight: bold;
@@ -167,13 +178,12 @@ body {
 #Ceník2 {
   position: absolute;
   text-align: center;
-  top: 280%;
+  top: 250%;
   scale: 1;
   font-size: 20px;
   z-index: 2;
   color: white;
-  left: 0;
-  right: 0;
+  left: 32%;
 
 }
 
@@ -195,161 +205,4 @@ body {
   width: 1000px;
   height: 1000px;
   z-index: 3;
-}
-
-/* Media Queries for Responsiveness */
-
-/* Tablets and smaller screens (max-width: 1024px) */
-@media screen and (max-width: 1024px) {
-  #nadpis {
-    left: 50%;
-    transform: translateX(-50%);
-    scale: 2;
-    top: 30%;
-    width: 100%;
-  }
-
-  .box {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .prvek {
-    padding: 15px 50px;
-    font-size: 20px;
-  }
-
-  #O_Mně {
-    left: 35%;
-  }
-
-  #O_Mně2 {
-    left: 20%;
-    right: 20%;
-    text-align: center;
-  }
-
-  #O_Mně3 {
-    left: 20%;
-    right: 20%;
-    text-align: center;
-    top: 110%;
-  }
-}
-
-/* Mobile phones (max-width: 600px) */
-@media screen and (max-width: 600px) {
-  .box {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .prvek {
-    width: 80%;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 18px;
-  }
-
-  #nadpis {
-    top: 25%;
-    scale: 1.5;
-    font-size: 30px;
-  }
-
-  #obrazek1 {
-    height: 200px;
-    object-fit: cover;
-  }
-
-  #obrazek2 {
-    width: 300px;
-    height: auto;
-    top: 50% !important;
-    /* Adjust if needed */
-  }
-
-  #O_Mně {
-    left: 50%;
-    transform: translateX(-50%);
-    scale: 1.5;
-    top: 80%;
-    width: 100%;
-    text-align: center;
-  }
-
-  #O_Mně2,
-  #O_Mně3 {
-    left: 5%;
-    right: 5%;
-    width: 90%;
-    text-align: center;
-    font-size: 16px;
-    scale: 1;
-  }
-
-  #O_Mně2 {
-    top: 90%;
-  }
-
-  #O_Mně3 {
-    top: 105%;
-  }
-
-  #Socky {
-    left: 50%;
-    transform: translateX(-50%);
-    scale: 1.5;
-    top: 140%;
-    width: 100%;
-    text-align: center;
-  }
-
-  .icons {
-    left: 0;
-    right: 0;
-    width: 100%;
-    scale: 1;
-    /* Reducing scale to fit screens */
-    top: 160%;
-  }
-
-  .icons i {
-    font-size: 50px !important;
-    /* Override fa-10x */
-  }
-
-  #Projekty {
-    left: 50%;
-    transform: translateX(-50%);
-    scale: 1.5;
-    top: 200%;
-    width: 100%;
-    text-align: center;
-  }
-
-  #Projekty2 {
-    left: 5%;
-    right: 5%;
-    width: 90%;
-    text-align: center;
-    top: 215%;
-    scale: 1;
-  }
-
-  #Ceník {
-    left: 50%;
-    transform: translateX(-50%);
-    scale: 1.5;
-    top: 240%;
-    width: 100%;
-    text-align: center;
-  }
-
-  #Ceník2 {
-    top: 255%;
-    padding: 0 20px;
-    font-size: 18px;
-  }
 }
