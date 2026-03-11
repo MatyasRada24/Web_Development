@@ -29,14 +29,15 @@ body {
 }
 
 .section {
-    width: 60%;
+    width: fit-content;
     height: 50px;
     display: flex;
     justify-content: center;
-    margin: auto;
+    align-items: center;
     font-size: 40px;
     font-weight: bold;
     background-color: #b6b6b6;
+    margin: auto;
 }
 
 .section-text {
@@ -44,6 +45,11 @@ body {
     margin-left: 50px;
     margin-right: 50px;
     transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.section-box {
+    display: inline-flex;
+    justify-content: center;
 }
 
 .section-text:hover {
@@ -87,4 +93,46 @@ body {
     left: 4%;
     width: 100px;
     height: 100px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 0px;
+        height: 0px;
+    }
+
+    .section {
+        width: fit-content;
+    }
+
+    .section-text {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 5px;
+        gap: 5px;
+        font-size: 25px;
+    }
+
+    .section {
+        font-size: 25px;
+        width: auto;
+        justify-content: right;
+        text-align: right;
+
+    }
+
+    .products-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
