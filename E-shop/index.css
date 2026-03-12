@@ -83,6 +83,13 @@ body {
     height: 100px;
 }
 
+@media (max-width: 1320px) {
+    .logo {
+        width: 0px;
+        height: 0px;
+    }
+}
+
 @media (max-width: 768px) {
     .logo {
         width: 0px;
