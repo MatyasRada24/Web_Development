@@ -38,22 +38,10 @@ body {
     font-weight: bold;
     background-color: #b6b6b6;
     margin: auto;
+    gap: 30px;
 }
 
-.section-text {
-    cursor: pointer;
-    margin-left: 50px;
-    margin-right: 50px;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.section-box {
-    display: inline-flex;
-    justify-content: center;
-}
-
-.section-text:hover {
-    scale: 1.2;
+#section-text:hover {
     transition: transform 0.2s;
     text-decoration: underline;
 }
@@ -121,18 +109,25 @@ body {
         box-sizing: border-box;
         padding: 0 5px;
         gap: 5px;
-        font-size: 25px;
+        font-size: 20px;
+        scale: 0.9;
     }
 
     .section {
-        font-size: 25px;
+        font-size: 23px;
         width: auto;
         justify-content: right;
         text-align: right;
+        scale: 0.9;
+    }
 
+    .section-text {
+        scale: 0.9;
+        width: auto;
     }
 
     .products-container {
         grid-template-columns: repeat(2, 1fr);
+        scale: 0.78;
     }
 }
