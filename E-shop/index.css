@@ -83,6 +83,10 @@ body {
     height: 100px;
 }
 
+.logo-container {
+    object-fit: cover;
+}
+
 @media (max-width: 1320px) {
     .logo {
         width: 0px;
