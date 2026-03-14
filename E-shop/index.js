@@ -60,3 +60,60 @@ categoryElements.forEach(element => {
         }
     });
 });
+
+// 1. Funkce pro načtení košíku z paměti
+function getCart() {
+    const cart = localStorage.getItem('electrowave_cart');
+    return cart ? JSON.parse(cart) : [];
+}
+
+// 2. Funkce pro uložení košíku do paměti
+function saveCart(cart) {
+    localStorage.setItem('electrowave_cart', JSON.stringify(cart));
+    updateCartBadge(); // Hned aktualizujeme číslo na ikoně
+}
+
+// 3. Funkce pro přidání produktu
+function addToCart(event) {
+    const btn = event.target;
+    const product = {
+        id: btn.dataset.id,
+        name: btn.dataset.name,
+        price: parseInt(btn.dataset.price),
+        image: btn.dataset.image,
+        quantity: 1
+    };
+
+    let cart = getCart();
+
+    // Koukneme, jestli už tam produkt je
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Pokud ano, jen přičteme skus
+    } else {
+        cart.push(product); // Pokud ne, přidáme ho jako nový
+    }
+
+    saveCart(cart);
+    alert('Produkt byl přidán do košíku!'); // Zatím jen jednoduchá hláška
+}
+
+// 4. Navěšení funkce na všechna tlačítka
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', addToCart);
+});
+function updateCartBadge() {
+    const cart = getCart();
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    const badge = document.getElementById('cart-count');
+    
+    if (badge) {
+        badge.innerText = count;
+        // Pokud je košík prázdný, můžeme bublinu schovat
+        badge.style.display = count > 0 ? 'block' : 'none';
+    }
+}
+
+// Zavoláme hned při načtení stránky
+updateCartBadge();
