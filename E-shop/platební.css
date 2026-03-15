@@ -1,14 +1,22 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+    background-color: #eae7e7;
+}
+
 .checking {
     display: flex;
     justify-content: center;
     text-align: center;
     gap: 20px;
     font-size: 30px;
-    border: 1px solid black;
     width: 40%;
     margin: auto;
     border-radius: 50px;
     font-weight: bold;
+    background-color: white;
+    box-shadow: 1px 1px 10px rgb(187, 187, 187);
 }
 
 .checking-text {
@@ -27,9 +35,13 @@
 
 .personal-information {
     display: flex;
-    border: 1px solid black;
     width: 500px;
     padding: 20px;
+    border-radius: 50px;
+    height: 820px;
+    background-color: white;
+    box-shadow: 1px 1px 10px rgb(187, 187, 187);
+
 }
 
 .personal-information-info {
@@ -38,12 +50,17 @@
     width: 100%;
 }
 
+.personal-information-info-text {
+    border-radius: 10px;
+}
+
 .order-summary {
-    border: 1px solid black;
     border-radius: 24px;
     padding: 30px;
     width: 350px;
     height: fit-content;
+    background-color: white;
+    box-shadow: 1px 1px 10px rgb(187, 187, 187);
 }
 
 .summary-row {
@@ -61,10 +78,28 @@
     width: 100%;
     border-radius: 15px;
     padding: 15px;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.empty-cart-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#personal-information-h2 {
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+#input {
+    border-radius: 5px;
 }
