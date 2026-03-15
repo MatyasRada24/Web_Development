@@ -1,0 +1,129 @@
+.cart-page-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #333;
+}
+
+.cart-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.item-info {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.item-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #222;
+}
+
+.item-info p {
+    margin: 0;
+    font-weight: bold;
+    color: rgb(255, 68, 35);
+    font-size: 16px;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-controls button {
+    padding: 8px 12px;
+    cursor: pointer;
+    background: #eee;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.item-controls button:hover {
+    background: #ddd;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: #ffe0e0;
+    color: #d10000;
+}
+
+.delete-btn:hover {
+    background: #ffcccc;
+}
+
+.item-controls span {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 40px;
+    text-align: center;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 30px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.cart-summary h3 {
+    margin: 0 0 10px 0;
+    color: #555;
+}
+
+.cart-total {
+    font-size: 28px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    padding: 15px 30px;
+    background: rgb(255, 68, 35);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.checkout-btn:hover {
+    background: rgb(230, 48, 15);
+    transform: scale(1.05);
+}
