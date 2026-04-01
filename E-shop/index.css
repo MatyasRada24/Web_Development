@@ -89,7 +89,7 @@ body {
     align-items: center;
     transition: scale 0.2s, border-color 0.2s;
     box-shadow: 1px -1px 5px rgb(0, 0, 0);
-    border-radius: 100px;
+    border-radius: 50px;
 }
 
 .product-card a {
@@ -199,6 +199,10 @@ body {
         font-size: 10px;
     }
 
+    .header-text {
+        font-size: 25px;
+    }
+
     .logo-link {
         padding-left: 0;
         display: none;
@@ -222,6 +226,7 @@ body {
     .section-text {
         scale: 0.9;
         width: auto;
+        font-size: 19px;
     }
 
     .products-container {
