@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="platební.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="checking">
+        <a href="kosik.html" class="checking-text">Košík</a>
+        <a href="#" class="checking-text">Doprava</a>
+        <a href="platební.html" class="checking-text">Platba</a>
+    </div>
+    <div class="checkout-container">
+        <div class="personal-information">
+            <div class="personal-information-info">
+                <h2 id="personal-information-h2">Osobní údaje</h2>
+                <div class="personal-information-info-text">
+                    <p>Jméno</p>
+                    <input id="input" type="text">
+                    <p>Příjmení</p>
+                    <input id="input" type="text">
+                    <p>E-mail</p>
+                    <input id="input" type="text">
+                    <p>Telefon</p>
+                    <input id="input" type="text">
+                    <p>Fakturační adresa</p>
+                    <input id="input" type=" text">
+                    <p>Město</p>
+                    <input id="input" type="text">
+                    <p>PSČ</p>
+                    <input id="input" type="text">
+                    <p>Číslo karty</p>
+                    <input id="input" type="text">
+                    <p>Datum expirace</p>
+                    <input id="input" type="text">
+                    <p>CVC</p>
+                    <input id="input" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="order-summary">
+            <h2>Shrnutí objednávky</h2>
+
+            <div class="summary-content">
+                <div id="cart-items"></div>
+
+                <div class="summary-row">
+                    <span>Mezisoučet</span>
+                    <span class="price" id="subtotal-price">0 Kč</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Doprava (PPL)</span>
+                    <span class="price">Zdarma</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Celkem</span>
+                    <span class="price" id="total-price">0 Kč</span>
+                </div>
+
+                <button class="pay-button">
+                    Zaplatit
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

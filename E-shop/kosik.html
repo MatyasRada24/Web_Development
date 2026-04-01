@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrowave</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="kosik.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <meta name="description" content="Internetový obchod s počítači, notebooky a herními sestavami za výhodné ceny.">
+    <link rel="icon" type="image/webp" href="Images/logo.webp">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-link">
+            <img class="logo" src="Images/Logo.webp" alt="Logo">
+        </a>
+        <div class="header-nav">
+            <a class="header-text" href="index.html">Zpět na hlavní stránku</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="container-text">Váš košík</h1>
+
+        <div id="cart-items">
+        </div>
+
+        <div class="container-in-container">
+            <p class="container-text-2">Celkem k platbě</p>
+            <p class="price-zero" id="total-price">0 Kč</p>
+            <button class="container-button">
+                <a href="platební.html" style="color:white;text-decoration:none;">Přejít k pokladně</a>
+            </button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
