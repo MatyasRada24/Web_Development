@@ -88,6 +88,8 @@ body {
     flex-direction: column;
     align-items: center;
     transition: scale 0.2s, border-color 0.2s;
+    box-shadow: 1px -1px 5px rgb(0, 0, 0);
+    border-radius: 100px;
 }
 
 .product-card a {
@@ -194,6 +196,7 @@ body {
         width: 100%;
         scale: 0.9;
         gap: 5px;
+        font-size: 10px;
     }
 
     .logo-link {
@@ -209,7 +212,7 @@ body {
         right: 20px;
     }
 
-    .section {
+    .section-container {
         font-size: 25px;
         width: fit-content;
         justify-content: center;
