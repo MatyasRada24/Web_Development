@@ -178,62 +178,66 @@ body {
 }
 
 @media (max-width: 480px) {
-    .header {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 10px 0;
-        gap: 10px;
-        position: relative;
-    }
 
-    .header-nav {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .header-text {
-        font-size: 18px;
-        white-space: nowrap;
-    }
-
-    .logo-link {
-        display: none;
-    }
-
-    .cart-icon-container {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        padding: 0;
-    }
-
-    .section {
-        width: 100%;
-        font-size: 16px;
-        gap: 10px;
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .section-text {
-        font-size: 14px;
-        margin: 0 5px;
-    }
-
+    /* Kontejner pro produkty - přepnutí na 2 sloupce */
     .products-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        /* Menší mezera mezi kartami, aby zbyl prostor pro obsah */
         width: 95%;
+        /* Využití šířky displeje */
         margin: 20px auto;
+        scale: 1;
+        /* Scale už nebude potřeba */
     }
 
-    .kosik {
-        width: 25px;
-        height: 25px;
+    /* Úprava produktové karty */
+    .product-card {
+        padding: 10px;
+        /* Méně vnitřního místa */
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
+    /* Zmenšení obrázků, aby neroztahovaly kartu */
+    .product-card img {
+        width: 100%;
+        height: auto;
+        max-height: 120px;
+        /* Omezíme výšku, aby karty byly podobně vysoké */
+        object-fit: contain;
+    }
+
+    /* Zmenšení textů uvnitř karty */
+    .product-card h2,
+    .product-card .header-text {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .product-card p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .product-card b {
+        /* Cena */
+        font-size: 16px;
+    }
+
+    /* Úprava tlačítka, aby nebylo širší než karta */
+    .add-to-cart-btn {
+        width: 100%;
+        /* Tlačítko se roztáhne na celou šířku karty */
+        height: 35px;
+        /* Nižší tlačítko */
+        font-size: 12px;
+        /* Menší text v tlačítku */
+        border-radius: 10px;
+    }
+
+    /* Zakázání zvětšování při najetí na mobilu (zabraňuje skákání obrazu při dotyku) */
+    .product-card:hover {
+        scale: 1;
+    }
 }
