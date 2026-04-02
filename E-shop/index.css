@@ -181,57 +181,59 @@ body {
     .header {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         width: 100%;
-        box-sizing: border-box;
-        padding: 10px 5px;
-        gap: 15px;
+        padding: 10px 0;
+        gap: 10px;
+        position: relative;
     }
 
     .header-nav {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        max-width: 480px;
-        scale: 0.9;
-        gap: 5px;
-        font-size: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
     }
 
     .header-text {
-        font-size: 25px;
-        justify-content: space-evenly;
+        font-size: 18px;
+        white-space: nowrap;
     }
 
     .logo-link {
-        padding-left: 0;
         display: none;
     }
 
     .cart-icon-container {
-        padding-right: 0;
-        margin-left: 0;
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 10px;
+        right: 15px;
+        padding: 0;
     }
 
-    .section-container {
-        font-size: 25px;
-        width: fit-content;
-        justify-content: center;
-        text-align: center;
+    .section {
+        width: 100%;
+        font-size: 16px;
+        gap: 10px;
+        height: auto;
+        padding: 10px 0;
     }
 
     .section-text {
-        scale: 0.9;
-        width: auto;
-        font-size: 19px;
+        font-size: 14px;
+        margin: 0 5px;
     }
 
     .products-container {
-        grid-template-columns: repeat(2, 1fr);
-        scale: 0.78;
+        grid-template-columns: 1fr;
+        width: 95%;
+        margin: 20px auto;
     }
+
+    .kosik {
+        width: 25px;
+        height: 25px;
+    }
+
 }
