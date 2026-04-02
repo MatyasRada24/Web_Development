@@ -235,7 +235,7 @@ body {
         min-height: 320px;
     }
 
-    .product-card:hover {
+    .products-container:hover {
         scale: 1 !important;
         transform: none !important;
         box-shadow: 1px -1px 5px rgb(0, 0, 0) !important;
