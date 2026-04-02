@@ -232,6 +232,11 @@ body {
         min-height: 320px;
     }
 
+    .product-card:hover {
+        scale: 1;
+        transform: none;
+    }
+
     .product-card img {
         width: 100%;
         max-height: 100px;
