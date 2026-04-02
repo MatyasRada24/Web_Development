@@ -193,7 +193,7 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
+        max-width: 480px;
         scale: 0.9;
         gap: 5px;
         font-size: 10px;
@@ -201,6 +201,7 @@ body {
 
     .header-text {
         font-size: 25px;
+        justify-content: space-evenly;
     }
 
     .logo-link {
