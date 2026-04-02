@@ -236,8 +236,10 @@ body {
     }
 
     .product-card:hover {
-        scale: 1;
-        transform: none;
+        scale: 1 !important;
+        transform: none !important;
+        box-shadow: 1px -1px 5px rgb(0, 0, 0) !important;
+        border-color: #000 !important;
     }
 
     .product-card img {
