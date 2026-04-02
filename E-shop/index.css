@@ -179,7 +179,6 @@ body {
 
 @media (max-width: 480px) {
 
-    /* 1. HLAVIČKA - Srovnání do řady */
     .header {
         display: flex;
         flex-direction: row;
@@ -224,6 +223,10 @@ body {
         gap: 10px;
         width: 95%;
         margin: 20px auto;
+    }
+
+    .product-card:hover {
+        scale: 1;
     }
 
     .product-card {
