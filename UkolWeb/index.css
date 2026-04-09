@@ -1,0 +1,115 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Ubuntu", sans-serif;
+    color: white;
+}
+
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.header {
+    width: auto;
+    height: 70px;
+    border-bottom: solid 1px black;
+    margin: auto;
+    text-align: center;
+}
+
+.header-text {
+    flex-direction: column;
+    font-size: 60px;
+    margin: 50px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px black;
+}
+
+.img-Kunes {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 1000px;
+    object-fit: cover;
+    background-image:url("Images/Kunes.webp");
+    background-size: cover;     
+}
+
+.img-Kunes-text {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    width: 800px;
+    height: 150px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 1px 1px 4px black;
+}
+
+.img-Erik {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 1000px;
+    width: 300px;
+    height: 300px;
+    border-radius: 1000px;
+    object-fit: cover;
+    background-image:url("Images/Erik.webp");
+    background-size: cover;     
+}
+
+.img-Erik-text {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+    width: 800px;
+    height: 150px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 1px 1px 4px black;
+}
+
+.img-Bohuta {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 1000px;
+    object-fit: fill;
+    background-image:url("Images/Bohuta.web");  
+}
+
+.img-Bohuta-text {
+    position: absolute;
+    top: 130%;
+    left: 40%;
+    width: 800px;
+    height: 150px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 1px 1px 4px black;
+}
