@@ -1,6 +1,6 @@
 const i18n = {
     cs: {
-        searchPlaceholder: "Zadejte error kód, např. 'Code 43'...",
+        searchPlaceholder: "Zadejte error kód",
         tabAll: "Vše",
         tabHW: "Hardware",
         tabSW: "Software",
@@ -2715,6 +2715,266 @@ const errorCodes = [
             cs: "Secure Boot je UEFI bezpečnostní funkce zabraňující spuštění nepodepsaného nebo nezjávněného bootloaderu. Funguje přes digitální podpisový řetězec: UEFI db (databáze povolených klíčů) → shim (podepsaný Microsoft) → GRUB/bootmgr (podepsaný distribucí). Databáze klíčů: PK (Platform Key – master klíč, výrobce desky), KEK (Key Exchange Key), db (allowed), dbx (forbidden – blacklist). Příčiny selhání: (1) Linux distribuce bez shim (Arch Linux, Gentoo, custom) – bootloader není podepsán Microsoftem. (2) UEFI dbx update (Microsoft vydal blacklist aktualizaci) zablokoval starší GRUB/shim. (3) Dual boot s Windows a Linux: Windows nainstaloval UEFI update konfigurující SVN (Secure Version Number), zablokující starší GRUB. (4) Reinstalace Windows přepsala EFI partition a odstranil Linux záznamy. Řešení pro Linux: distributions s shim (Ubuntu, Fedora, openSUSE) jsou Secure Boot kompatibilní. Arch/Gentoo: generujte vlastní klíče, podepište kernel, enrollujte přes 'sbctl'. MokManager: Machine Owner Key Manager – jednorázová boot GUI pro enrollování certifikátů. Diagnostika: efibootmgr -v (Linux) zobrazí UEFI boot záznamy; Windows: msinfo32 → BIOS Mode = UEFI + Secure Boot State.",
             en: "Secure Boot is a UEFI security feature preventing the execution of unsigned or unrecognized bootloaders. It works via a digital signature chain: UEFI db (allowed keys database) → shim (Microsoft-signed) → GRUB/bootmgr (distro-signed). Key databases: PK (Platform Key – master, board manufacturer), KEK (Key Exchange Key), db (allowed), dbx (forbidden – blacklist). Failure causes: (1) Linux distros without shim (Arch, Gentoo, custom) – bootloader not Microsoft-signed. (2) UEFI dbx update (Microsoft blacklist update) blocked older GRUB/shim. (3) Windows UEFI update configured SVN (Secure Version Number), blocking older GRUB. (4) Windows reinstall overwrote EFI partition, removing Linux entries. Solutions for Linux: distros with shim (Ubuntu, Fedora, openSUSE) are Secure Boot compatible. Arch/Gentoo: generate own keys, sign kernel, enroll via 'sbctl'. MokManager: Machine Owner Key Manager – one-time boot GUI for enrolling certificates. Diagnostics: 'efibootmgr -v' (Linux) shows UEFI boot entries; Windows: msinfo32 → BIOS Mode = UEFI + Secure Boot State.",
             zh: "安全启动是 UEFI 安全功能，防止执行未签名或未识别的引导加载程序，通过数字签名链运作：UEFI db → shim（微软签名）→ GRUB/bootmgr（发行版签名）。密钥数据库：PK（平台密钥）、KEK、db（允许）、dbx（禁止黑名单）。失败原因：(1) 没有 shim 的 Linux 发行版（Arch、Gentoo）；(2) UEFI dbx 更新阻止了旧 GRUB/shim；(3) Windows UEFI 更新配置了 SVN 阻止旧 GRUB；(4) Windows 重装覆盖 EFI 分区删除 Linux 条目。Linux 解决方案：使用带 shim 的发行版（Ubuntu、Fedora）；Arch/Gentoo 使用 sbctl 注册自定义密钥。"
+        }
+    },
+    {
+        id: "gpu-coil-whine", type: "hardware", subcategory: "gpu",
+        code: "GPU Coil Whine / High Pitch Buzzing",
+        category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
+        description: {
+            cs: "Grafická karta vydává vysoký pískavý nebo bzučivý zvuk, který se mění podle FPS.",
+            en: "GPU emits a high-pitched squealing or buzzing sound that changes with frame rate.",
+            zh: "显卡发出高频尖叫或嗡嗡声，并随帧率变化。"
+        },
+        solution: {
+            cs: "Omezte FPS (V-Sync/Frame Cap). Proveďte 'undervolt' GPU. Vyměňte PSU za kvalitnější model.",
+            en: "Limit FPS (V-Sync/Frame Cap). Undervolt the GPU core. Upgrade to a higher-quality PSU.",
+            zh: "开启垂直同步或帧率限制，对 GPU 降压，更换更高质量的电源。"
+        },
+        details: {
+            cs: "Coil Whine (pískání cívek) je fyzikální jev známý jako elektromagnetická interference. Dochází k němu v cívkách VRM (Voltage Regulator Module) grafické karty. Když proud prochází cívkou, vzniká magnetické pole, které způsobuje mikroskopické vibrace měděného vinutí. Pokud frekvence těchto vibrací odpovídá slyšitelnému spektru, slyšíme pískání. Intenzita roste s protékajícím proudem (vysoké FPS = více spínání MOSFETů). Nejedná se o závadu, ale o vlastnost komponenty. Pokročilé řešení: (1) Undervolting – snížením napětí (Vcore) snížíte protékající proud a tím i intenzitu vibrací. (2) Zahoření (Burn-in) – nechte kartu běžet pod vysokou zátěží (FurMark) několik hodin, někdy se vinutí 'usadí'. (3) Výměna zdroje – interference se mohou přenášet z PSU.",
+            en: "Coil whine is a physical phenomenon caused by electromagnetically induced acoustic noise. It occurs within the inductors (coils) of the GPU's VRM. As current passes through the copper windings, it creates a magnetic field that causes the coil to vibrate microscopically. If the switching frequency matches the audible spectrum, high-pitched noise is produced. It scales with current draw (high FPS = higher switching frequency). It is not a hardware failure but a characteristic of high-power electronics. Mitigation: (1) Undervolting – lowering Vcore reduces the amperage flowing through the VRM, dampening vibration. (2) Burn-in – running a stress test (FurMark) for several hours can sometimes settle the windings. (3) PSU Swap – Ripple/noise from a low-quality PSU can exacerbate coil vibration.",
+            zh: "电感啸叫是一种由电磁感应引起的声学噪声现象。发生在 GPU VRM 的电感器（线圈）中。当电流通过铜线圈时，产生的磁场导致线圈发生微观振动。如果开关频率落在人耳可听范围内，就会产生高频噪音。高帧率意味着更高频率的开关动作。这并非硬件故障。缓解方法：(1) 降压：降低 Vcore 可减少通过 VRM 的电流，从而减弱振动；(2) 烤机：运行压力测试（FurMark）数小时有时能让线圈沉降；(3) 更换电源：低质量电源的纹波/噪声会加剧电感振动。"
+        }
+    },
+    {
+        id: "cpu-fpu-error", type: "hardware", subcategory: "cpu",
+        code: "CPU FPU / Math Execution Error",
+        category: { cs: "Procesor", en: "Processor", zh: "处理器" },
+        description: {
+            cs: "Procesor generuje matematicky nesprávné výsledky. Aplikace crashují při vědeckých výpočtech.",
+            en: "The processor generates mathematically incorrect results. Apps crash during floating-point calculations.",
+            zh: "处理器产生错误的数学运算结果。应用程序在进行浮点运算时崩溃。"
+        },
+        solution: {
+            cs: "Vypněte AVX/AVX-512 offset v BIOSu. Snižte takt procesoru. Zvyšte napětí Vcore.",
+            en: "Disable AVX/AVX-512 offset in BIOS. Lower CPU clock frequency. Increase Vcore voltage.",
+            zh: "在 BIOS 中关闭 AVX 偏置，降低 CPU 频率，增加 Vcore 电压。"
+        },
+        details: {
+            cs: "FPU (Floating Point Unit) je část CPU dedikovaná pro operace s pohyblivou řádovou čárkou. Moderní instrukční sady jako AVX-512 jsou extrémně náročné na spotřebu a generování tepla v specifických částech čipu. Pokud je CPU nestabilní (vlivem degradace nebo undervoltu), může FPU jednotka vrátit chybný výsledek (např. 1+1=2.00000004), což vede k okamžitému pádu aplikace nebo korupci dat. Diagnostika: (1) Prime95 (Small FFTs) s aktivním AVX – teto test prověří integritu datových registrů. (2) Intel Processor Diagnostic Tool (IPDT) – spustí specifický Floating Point test. (3) OCCT CPU test s instrukční sadou AVX2. Oprava: V BIOSu nastavte 'AVX Offset' na hodnotu 2 nebo 3 – to sníží frekvenci CPU pouze při detekci AVX instrukcí, čímž zajistí stabilitu bez ztráty výkonu v běžných úlohách.",
+            en: "The FPU (Floating Point Unit) is a dedicated CPU sub-component for floating-point arithmetic. Modern instruction sets like AVX-512 place extreme electrical and thermal stress on specific silicon areas. If a CPU is unstable (due to degradation or undervolting), the FPU might return incorrect values (e.g., bit-flips in mantissa), leading to immediate application crashes or silent data corruption. Diagnostics: (1) Prime95 (Small FFTs) with AVX enabled – verifies data register integrity. (2) Intel Processor Diagnostic Tool (IPDT) – runs a dedicated Floating Point pass. (3) OCCT CPU test using AVX2 instructions. Fix: Apply an 'AVX Offset' (e.g., -2 or -3) in BIOS – this reduces the multiplier only when AVX instructions are active, maintaining stability while preserving high clocks for gaming/standard apps.",
+            zh: "FPU（浮点运算单元）是专门用于浮点运算的 CPU 子组件。AVX-512 等现代指令集会对特定硅片区域造成极大的电力和热量压力。如果 CPU 不稳定，FPU 可能会返回错误值，导致应用崩溃或静默数据损坏。诊断：(1) 开启 AVX 的 Prime95；(2) Intel 处理器诊断工具（IPDT）中的浮点测试；(3) 使用 AVX2 指令的 OCCT 测试。修复：在 BIOS 中设置 'AVX Offset'（例如 -2 或 -3），这仅在 AVX 指令活动时降低倍频，保障稳定性的同时不影响普通应用的频率。"
+        }
+    },
+    {
+        id: "ram-ecc-unreliable", type: "hardware", subcategory: "ram",
+        code: "Uncorrectable ECC Error / Memory Parity",
+        category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
+        description: {
+            cs: "Detekována nekorigovatelná chyba v RAM (ECC). Systém se zastavil, aby zabránil poškození dat.",
+            en: "Uncorrectable ECC error detected. System halted to prevent data corruption (NMI).",
+            zh: "检测到不可纠正的 ECC 错误。系统已停止以防止数据损坏。"
+        },
+        solution: {
+            cs: "Identifikujte vadný modul v BIOS logu. Vyjměte a očistěte kontakty modulu. Vyměňte DRAM.",
+            en: "Identify the faulty DIMM via BIOS/IPMI log. Reseat and clean contacts. Replace the DRAM module.",
+            zh: "通过 BIOS/IPMI 日志识别故障内存，重新插拔并清理金手指，更换内存模块。"
+        },
+        details: {
+            cs: "ECC (Error Correction Code) paměti používají Hammingův kód k detekci a opravě bit-flipů. Single-bit erro r (SBE) je opraven automaticky a zaznamenán v logu. Multi-bit error (MBE) je nekorigovatelný – Windows spustí BSOD nebo NMI (Non-Maskable Interrupt), protože data v RAM jsou považována za nevalidní. Příčiny: (1) Fyzická degradace paměťové buňky v DRAM čipu. (2) Kosmické záření způsobující náhodné bit-flipy (u serverů v datacentrech). (3) Přehřívání RAM modulů (nad 85°C). (4) Nestabilní napájení VDDQ. Diagnostika: (1) Windows Event Viewer → Source: 'WHEA-Logger' hledejte 'Memory Error'. (2) IPMI / iDRAC / iLO logy u serverů – přesně určí slot (např. DIMM_A1). (3) MemTest86+ s aktivovaným ECC injection testem. Pokud se chyby opakují na stejném modulu, je nutná výměna.",
+            en: "ECC (Error Correction Code) memory uses Hamming codes to detect and fix bit-flips. A single-bit error (SBE) is auto-corrected and logged. A multi-bit error (MBE) is uncorrectable – the system triggers a BSOD or NMI (Non-Maskable Interrupt) as the data is deemed invalid and dangerous to use. Causes: (1) Physical DRAM cell degradation. (2) Cosmic rays causing random bit-flips (especially in data centers). (3) High operating temperatures (above 85°C). (4) Unstable VDDQ/VPP voltages. Diagnostics: (1) Windows Event Viewer → Source: 'WHEA-Logger', search for Memory errors. (2) IPMI/iDRAC/iLO logs on servers – these pin-point the specific slot (e.g., DIMM_B2). (3) MemTest86+ with ECC support. Persistent errors in the same address range mandate module replacement.",
+            zh: "ECC（纠错码）内存使用汉明码检测并修复位翻转。单位错误（SBE）会自动纠正并记录。多位错误（MBE）不可纠正，系统将触发蓝屏或 NMI 停止运行。原因：(1) 物理 DRAM 单元退化；(2) 宇宙射线引起的随机位翻转；(3) 运行温度过高（超过 85°C）；(4) 供电电压不稳定。诊断：(1) Windows 事件查看器中搜索 'WHEA-Logger' 内存错误；(2) 服务器上的 IPMI/iDRAC 日志可精确定位插槽；(3) 启用 ECC 支持的 MemTest86+。相同地址范围的持续错误提示必须更换模块。"
+        }
+    },
+    {
+        id: "disk-partition-lost", type: "hardware", subcategory: "disk",
+        code: "RAW Partition / Missing File System",
+        category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
+        description: {
+            cs: "Oddíl disku se zobrazuje jako 'RAW'. Windows nemůže přistoupit k souborům a navrhuje formátování.",
+            en: "Disk partition appears as 'RAW'. Windows cannot access files and suggests formatting.",
+            zh: "磁盘分区显示为 'RAW'。Windows 无法访问文件并建议格式化。"
+        },
+        solution: {
+            cs: "NEFORMÁTUJTE! Použijte nástroj TestDisk k obnově partition table nebo 'chkdsk /f'.",
+            en: "DO NOT FORMAT! Use TestDisk to recover the partition table or run 'chkdsk /f'.",
+            zh: "切勿格式化！使用 TestDisk 恢复分区表或运行 'chkdsk /f'。"
+        },
+        details: {
+            cs: "Stav 'RAW' znamená, že Windows vidí fyzický oddíl, ale nedokáže identifikovat souborový systém (NTFS/FAT32/exFAT). Důvodem je poškození Boot Sectoru nebo Partition Table (MBR/GPT). Příčiny: (1) Odpojení USB disku během zápisu (poškození $MFT - Master File Table). (2) Selhání řadiče disku generující nevalidní IO požadavky. (3) Malware modifikující boot sektory. (4) Fyzické vadné sektory na začátku partition. Diagnostika: Správa disků (diskmgmt.msc) – pokud je v sloupci 'Systém souborů' uvedeno RAW, je tabulka poškozená. Postup obnovy: (1) Příkaz 'chkdsk X: /f' (kde X je písmeno disku) – Windows se pokusí opravit indexy. (2) TestDisk – utilita pro hloubkové skenování a znovuzapsání partition tabulky. (3) Recuva – pokud selže oprava tabulky, Recuva dokáže extrahovat soubory i z RAW oddílu.",
+            en: "A 'RAW' state means Windows recognizes the partition but cannot identify the file system (NTFS/FAT32/exFAT). This is caused by a corrupted Boot Sector or Partition Table (MBR/GPT). Root causes: (1) Unplugging a USB drive during a write operation (damaging $MFT). (2) Disk controller failure sending invalid I/O requests. (3) Malware modifying boot sectors. (4) Physical bad sectors at the start of the partition. Diagnosis: Disk Management (diskmgmt.msc) – filesystem column says RAW. Recovery: (1) 'chkdsk X: /f' (replace X with drive letter) – Windows attempts to repair indices. (2) TestDisk – a deep-scan utility to rewrite partition structures. (3) Recuva/R-Studio – if table repair is impossible, these tools extract files by scanning raw data directly.",
+            zh: "RAW 状态意味着 Windows 识别出分区但无法识别其文件系统（NTFS/FAT32/exFAT）。由引导扇区或分区表（MBR/GPT）损坏引起。根本原因：(1) 在写入时拔掉 U 盘；(2) 磁盘控制器故障发送无效 I/O 请求；(3) 恶意软件修改引导扇区；(4) 分区起始位置存在物理坏道。诊断：磁盘管理中显示文件系统为 RAW。恢复方法：(1) 运行 'chkdsk X: /f' 尝试修复索引；(2) 使用 TestDisk 工具深度扫描并重写分区表；(3) 使用 Recuva 或 R-Studio 直接扫描原始数据以提取文件。"
+        }
+    },
+    {
+        id: "mb-usb-overcurrent", type: "hardware", subcategory: "mb",
+        code: "USB Device Over Current Status Detected",
+        category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
+        description: {
+            cs: "Počítač se nespustí a hlásí 'USB Device Over Current Status'! Systém se vypne za 15 sekund.",
+            en: "PC fails to boot and reports 'USB Device Over Current Status'! System shuts down in 15s.",
+            zh: "PC 无法启动并报告 'USB Device Over Current Status'！系统将在 15 秒内关机。"
+        },
+        solution: {
+            cs: "Odpojte všechna USB zařízení. Zkontrolujte poškozené USB porty na čelním panelu skříně.",
+            en: "Unplug all USB devices. Inspect front panel USB ports for physical damage and shorts.",
+            zh: "拔掉所有 USB 设备，检查机箱前置 USB 接口是否有物理损坏或短路。"
+        },
+        details: {
+            cs: "Tato chybová hláška je hardwarová pojistka základní desky. Super I/O čip detekoval zkrat na 5V napájecí větvi USB portů. Pokud by se systém nevypnul, hrozilo by shoření cest na PCB nebo zničení jižního můstku (PCH). Příčiny: (1) Fyzicky ohnuté piny uvnitř USB portu (často na čelním panelu skříně), které se dotýkají kovového šasi. (2) Vadné USB zařízení (myš, flash disk) s vnitřním zkratem. (3) Chybějící jumper na 'USB Power' hlavičce základní desky. (4) Prasklý keramický kondenzátor poblíž USB portů na desce. Diagnostika: (1) Odpojte vnitřní USB header skříně (kabel vedoucí k čelním portům) – pokud chyba zmizí, je chyba ve skříni. (2) Vizuálně prohlédněte všechny porty (zadní i přední) – piny nesmí být ohnuté. (3) Pokud chyba trvá i bez připojených zařízení a panelů, je poškozený USB controller na desce.",
+            en: "This error is a hardware protection trigger. The Super I/O chip detected a short circuit on the 5V USB power rail. Shuting down prevents permanent PCB trace damage or burning out the Southbridge (PCH). Root causes: (1) Physically bent pins inside a USB port (often front panel) touching the metal shield. (2) A faulty USB peripheral with an internal short. (3) A missing jumper on the 'USB Power' motherboard header. (4) A cracked MLCC capacitor near the USB hub on the motherboard. Diagnostics: (1) Unplug the front panel USB headers from the motherboard – if the error clears, the case ports are damaged. (2) Inspect all ports with a flashlight for bent pins. (3) If the error persists with no devices or headers connected, the motherboard's internal USB controller is likely dead.",
+            zh: "该错误是硬件保护触发机制。Super I/O 芯片检测到 USB 5V 供电轨短路。关机是为了防止 PCB 走线烧毁或南桥（PCH）损坏。根本原因：(1) USB 接口（通常是机箱前置）内部引脚弯曲触碰到金属外壳；(2) USB 外设内部短路；(3) 主板 'USB Power' 跳线丢失；(4) 主板 USB 枢纽附近的贴片电容开裂。诊断：(1)拔掉主板上的前置 USB 线缆，如果错误消失则是机箱接口损坏；(2) 用手电筒检查所有接口是否有弯曲引脚；(3) 如果拔掉所有外设和排线后错误依旧，则主板内部控制器已损坏。"
+        }
+    },
+    {
+        id: "win-defender-service", type: "software", subcategory: "windows",
+        code: "Defender Service Stop / 0x80070422",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "Microsoft Defender Antivirus se nespustil. Služba je zakázána nebo blokována malwarem.",
+            en: "Microsoft Defender Antivirus failed to start. Service is disabled or blocked by malware.",
+            zh: "Microsoft Defender 无法启动。服务已被禁用或被恶意软件拦截。"
+        },
+        solution: {
+            cs: "Povolte službu v 'services.msc'. Použijte 'Malwarebytes' pro kontrolu systému. Resetujte Windows Security.",
+            en: "Enable the service in 'services.msc'. Run 'Malwarebytes' to check for infections. Reset Windows Security.",
+            zh: "在 'services.msc' 中启用服务，运行 'Malwarebytes' 检查病毒，重置 Windows 安全中心。"
+        },
+        details: {
+            cs: "Chyba 0x80070422 (The service cannot be started) u Windows Defenderu často značí, že služba 'WinDefend' byla v registrech natvrdo zakázána. Toto je typické chování pokročilého malwaru, který chce vyřadit ochranu. Příčiny: (1) Malware (Ransomware/Trojan) změnil Start typ služby na 'Disabled'. (2) Konflikt s jiným antivirem – Windows automaticky vypne Defender, pokud detekuje jiný aktivní AV. (3) Poškozená databáze 'Security Center' (WMI repository). Oprava: (1) Regedit → HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend → set 'Start' to 2. (2) PowerShell (Admin): 'Start-Service WinDefend'. (3) Pokud se služba okamžitě zase vypne, použijte offline skener (např. ESET SysRescue Live) k odstranění rootkitu. (4) Resetování aplikace: Nastavení → Aplikace → Zabezpečení Windows → Upřesnit možnosti → Opravit / Obnovit.",
+            en: "Error 0x80070422 (The service cannot be started) with Windows Defender often indicates the 'WinDefend' service was forcefully disabled in the registry. This is common behavior for advanced malware seeking to evade detection. Root causes: (1) Malware (Ransomware/Trojan) set service Startup type to 'Disabled'. (2) Conflict with third-party AV – Windows auto-disables Defender when another AV is active. (3) Corrupted Security Center WMI repository. Fixes: (1) Registry Editor → Path: HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend → Change 'Start' DWORD to 2. (2) PowerShell (Admin): 'Start-Service WinDefend'. (3) If it insta-stops, use an offline scanner (ESET SysRescue Live) to remove rootkits. (4) App Reset: Settings → Apps → Windows Security → Advanced Options → Terminate/Repair/Reset.",
+            zh: "Defender 报告错误 0x80070422（无法启动服务）通常意味着 'WinDefend' 服务在注册表中被强制禁用。这是高级恶意软件规避检测的常见手段。根本原因：(1) 病毒（勒索软件/木马）将服务启动类型设为 '禁用'；(2) 与第三方杀毒软件冲突；(3) 安全中心 WMI 存储库损坏。修复方法：(1) 在注册表中将 WinDefend 服务的 'Start' 值改为 2；(2) 以管理员身份在 PowerShell 中启动服务；(3) 如果服务启动后立即停止，请使用离线扫描工具清除内核级木马；(4) 在设置中重置 'Windows 安全中心' 应用。"
+        }
+    },
+    {
+        id: "net-ipv6-conflict", type: "software", subcategory: "network",
+        code: "IPv6 Duplicate Address Detected (DAD)",
+        category: { cs: "Síť", en: "Network", zh: "网络" },
+        description: {
+            cs: "Detekována duplicitní IPv6 adresa v síti. Síťové připojení může být nestabilní.",
+            en: "Duplicate IPv6 address detected in the network. Connectivity may be unstable.",
+            zh: "检测到网络中存在重复的 IPv6 地址。连接可能不稳定。"
+        },
+        solution: {
+            cs: "Zakažte a povolte síťový adaptér. Restartujte router. Zkontrolujte manuální nastavení IP.",
+            en: "Disable and re-enable the network adapter. Restart the router. Check for manual IP assignments.",
+            zh: "禁用并重新启用网卡，重启路由器，检查手动 IP 设置。"
+        },
+        details: {
+            cs: "DAD (Duplicate Address Detection) je mechanismus ICMPv6 (Neighbor Discovery Protocol), který ověřuje unikátnost adresy před jejím použitím. PC pošle 'Neighbor Solicitation' zprávu pro svou vlastní adresu; pokud někdo odpoví 'Neighbor Advertisement', adresa je duplicitní a Windows ji označí jako 'Duplicate' v ipconfig. Příčiny: (1) Slaac (Stateless Address Autoconfiguration) vygeneroval stejné Interface ID (extrémně vzácné, ale možné u klonovaných VM). (2) MAC Address spoofing – dvě zařízení mají stejnou MAC adresu. (3) Bug ve firmware routeru poskytující stejný prefix více zařízením. Diagnostika: 'netsh interface ipv6 show address' – hledejte stav 'Duplicate'. Řešení: příkaz 'netsh interface ipv6 set global randomizeidentifiers=enabled' vynutí generování náhodného ID, což vyřeší konflikt vyvolaný z MAC adresy.",
+            en: "DAD (Duplicate Address Detection) is an ICMPv6 mechanism (part of Neighbor Discovery Protocol) that verifies address uniqueness before use. A host sends a 'Neighbor Solicitation' for its own address; if a 'Neighbor Advertisement' is received in response, the address is marked as 'Duplicate'. Root causes: (1) SLAAC generated the same Interface ID (extremely rare, but possible with cloned VMs). (2) MAC Address spoofing – two devices share the same hardware address. (3) Router firmware bug in prefix delegation. Diagnostics: 'netsh interface ipv6 show address' – look for 'Duplicate' status. Fix: Run 'netsh interface ipv6 set global randomizeidentifiers=enabled' to force random privacy IDs, resolving conflicts derived from EUI-64/MAC logic.",
+            zh: "DAD（重复地址检测）是 ICMPv6 的一种机制，用于在使用前验证地址唯一性。主机为其自身地址发送 '邻居请求'，如果收到 '邻居公告'，则该地址被标记为 '重复'。根本原因：(1) SLAAC 生成了相同的接口 ID（克隆虚拟机时可能发生）；(2) MAC 地址欺骗导致硬件地址冲突；(3) 路由器固件在协议分配上存在漏洞。诊断：运行 'netsh interface ipv6 show address' 查找重复状态。修复：运行命令开启随机标识符生成，强制生成随机隐私 ID 以解决冲突。"
+        }
+    },
+    {
+        id: "drv-verifier", type: "software", subcategory: "drivers",
+        code: "DRIVER_VERIFIER_DETECTED_VIOLATION",
+        category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
+        description: {
+            cs: "BSOD 0xC4 – Driver Verifier odhalil ovladač, který porušuje integritu systému.",
+            en: "BSOD 0xC4 – Driver Verifier detected a driver violating system integrity.",
+            zh: "蓝屏 0xC4——驱动程序验证程序检测到驱动程序违反系统完整性。"
+        },
+        solution: {
+            cs: "Zakažte verifikátor: příkaz 'verifier /reset'. Identifikujte a aktualizujte vadný ovladač.",
+            en: "Disable Verifier: run 'verifier /reset'. Identify and update the offending driver.",
+            zh: "禁用验证程序：运行 'verifier /reset'。识别并更新有问题的驱动程序。"
+        },
+        details: {
+            cs: "Chyba DRIVER_VERIFIER_DETECTED_VIOLATION (0x000000C4) je 'přátelský' crash vyvolaný diagnostickým nástrojem Windows Driver Verifier. Tento nástroj úmyslně vystavuje ovladače extrémním podmínkám (neplatné alokace paměti, IRQL stres), aby odhalil chyby dříve, než způsobí náhodné pády. Pokud uvidíte tento BSOD, znamená to, že verifikátor je aktivní. Diagnostika: (1) První parametr BSOD (Arg1) určuje typ porušení (viz dokumentace Microsoft). (2) 'verifier /query' zobrazí běžící testy. (3) Minidump obsahuje jméno ovladače, který testem neprošel. Oprava: dočasně vypněte verifikátor v nouzovém režimu ('verifier /reset') pro boot do systému, poté aktualizujte daný hardware ovladač nebo hledejte WHQL podepsanou verzi. Driver Verifier by neměl být spuštěn trvale, protože výrazně snižuje výkon systému.",
+            en: "The DRIVER_VERIFIER_DETECTED_VIOLATION (0xC4) is a 'forced' crash triggered by the Windows Driver Verifier diagnostic tool. This tool subjects drivers to extreme conditions (invalid memory allocation, IRQL stress, pool tracking) to expose bugs before they cause random instability. If you see this BSOD, it means Verifier is currently active. Diagnostics: (1) The first BSOD parameter (Arg1) defines the violation type. (2) 'verifier /query' in CMD shows active tests. (3) The minidump identifies the failed driver. Fix: In Safe Mode, run 'verifier /reset' to disable the tool and allow a normal boot. Then, update or replace the specific driver identified in the crash. Driver Verifier should not be left running permanently as it causes significant performance overhead.",
+            zh: "DRIVER_VERIFIER_DETECTED_VIOLATION（0xC4）是由 Windows 驱动程序验证程序触发的'强制'崩溃。该工具使驱动程序处于极端条件下以在导致随机不稳定前暴露 Bug。如果看到此蓝屏，说明验证程序正处于活动状态。诊断：(1) 蓝屏第一参数定义违规类型；(2) 运行 'verifier /query' 查看活跃测试；(3) 内存转储文件会标明失败的驱动。修复：在安全模式下运行 'verifier /reset' 禁用该工具以正常启动，然后更新或更换故障驱动。不应永久运行验证程序，因为它会造成巨大的系统开销。"
+        }
+    },
+    {
+        id: "mb-bent-pins", type: "hardware", subcategory: "mb",
+        code: "Bent CPU Socket Pins",
+        category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
+        description: {
+            cs: "Základní deska nefunguje správně nebo nespustí PC kvůli ohnutým pinům v socketu.",
+            en: "Motherboard malfunctions or fails to POST due to bent pins in the CPU socket.",
+            zh: "由于 CPU 插槽引脚弯曲，主板无法正常工作或无法通过 POST。"
+        },
+        solution: {
+            cs: "Opatrně narovnejte piny jehlou nebo mechanickou tužkou pod silným světlem. Vyměňte desku.",
+            en: "Carefully straighten the pins using a needle or mechanical pencil under bright light. Replace motherboard.",
+            zh: "在强光下使用针或自动铅笔小心拉直引脚，或者更换主板。"
+        },
+        details: {
+            cs: "Základní desky Intel (LGA) a novější AMD (LGA17xx/AM5) mají křehké piny přímo v CPU patici. Při nesprávné instalaci nebo neopatrné manipulaci s procesorem se piny mohou ohnout. Ohnutý pin může způsobit ztrátu kontaktu s CPU podložkami, což vyvolá různé potíže: chybějící paměťové kanály (RAM sloty nefungují), nefunkční PCIe linky nebo úplné selhání startu (kód 00 / CPU LED svítí). Diagnostika: Vyjměte CPU a pod různými úhly svítilnou zkontrolujte pravidelnost odrazu světla od pinů. Oprava vyžaduje lupu, mikroskop nebo pevnou ruku s mechanickou tužkou, do jejíž špičky lze nasadit poškozený pin a jemně jej narovnat.",
+            en: "Intel (LGA) and newer AMD (AM5) motherboards feature fragile pins inside the CPU socket. Incorrect installation or mishandling can bend these pins. A bent pin loses contact with the CPU pads, causing issues ranging from missing memory channels (RAM slots failing), broken PCIe lanes, to total POST failure (Code 00 / CPU LED on). Diagnostics: Remove the CPU and inspect the socket pad reflectivity under a bright flashlight from various angles to spot anomalies. Repairing bent pins requires a magnifying glass or microscope, a steady hand, and a needle or a mechanical pencil tip to gently bend the pin back into alignment.",
+            zh: "Intel (LGA) 和较新的 AMD (AM5) 主板在 CPU 插槽内具有脆弱的引脚。不正确的安装或处理不当可能会弯曲这些引脚。弯曲的引脚失去与 CPU 触点的连接，导致各种问题：内存通道丢失（RAM 插槽故障）、PCIe 通道损坏，甚至完全无法启动（代码 00 / CPU LED 常亮）。诊断：取出 CPU 并用强光手电筒从不同角度检查插槽引脚的反光是否均匀。修复引脚需要放大镜或显微镜，稳定的人手，以及一根针或自动铅笔尖端，以便轻轻将引脚校正。"
+        }
+    },
+    {
+        id: "app-0xc000007b", type: "software", subcategory: "apps",
+        code: "Application Error 0xc000007b",
+        category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
+        description: {
+            cs: "Hra nebo program se nedá spustit a zobrazí chybový kód 0xc000007b.",
+            en: "Game or program fails to start and displays the error code 0xc000007b.",
+            zh: "游戏或程序无法启动，并显示错误代码 0xc000007b。"
+        },
+        solution: {
+            cs: "Přeinstalujte .NET Framework, DirectX a Visual C++ v obou verzích (x86 a x64). Spusťte jako správce.",
+            en: "Reinstall .NET Framework, DirectX, and Visual C++ (both x86 and x64 versions). Run as Administrator.",
+            zh: "重新安装 .NET Framework、DirectX 和 Visual C++ 的 x86 及 x64 版本，以管理员身份运行。"
+        },
+        details: {
+            cs: "Chyba 0xc000007b (STATUS_INVALID_IMAGE_FORMAT) je velmi běžná při spouštění náročných aplikací v OS Windows. Nastává typicky při konfliktu bitové architektury – např. 64-bitová aplikace se pokouší načíst 32-bitovou sdílenou knihovnu (DLL), nebo naopak. Nejčastěji se jedná o chybné nebo smazané součásti DirectX, Visual C++ Redistributable a .NET Framework. Příčinami může být také ruční stažení a nakopírování DLL přímo do System32/SysWOW64 od nezkušeného uživatele. Řešením je kompletní přeinstalování VC++ distributables, využití nástroje 'Dependency Walker' (umožní odhalit, která knihovna nerespektuje architekturu), a aktualizace DX přes webový instalátor Microsoftu.",
+            en: "Error 0xc000007b (STATUS_INVALID_IMAGE_FORMAT) is a very common issue when launching complex applications in Windows. It typically occurs during an architecture conflict—e.g., a 64-bit application attempting to load a 32-bit shared library (DLL), or vice versa. The most frequent culprits are mismatched or missing DirectX, Visual C++ Redistributables, and .NET Framework components. Other causes include inexperienced users manually pasting downloaded DLLs into System32/SysWOW64 directories. The solution involves a complete clean wipe and reinstall of VC++ distributables, diagnosing with 'Dependency Walker' to pinpoint the mismatched library, and updating DirectX via the Microsoft web installer.",
+            zh: "错误 0xc000007b (STATUS_INVALID_IMAGE_FORMAT) 是在 Windows 系统中启动大型程序时非常常见的问题。它通常发生在架构冲突时——例如，一个 64 位应用程序试图加载一个 32 位共享库 (DLL)，反之亦然。最常见的原因是 DirectX、Visual C++ 运行库和 .NET Framework 组件不匹配或丢失。导致该错误的其他原因包括新手手动将下载的 DLL 粘贴到 System32 或 SysWOW64 目录中。解决方案包括卸载并重新安装所有的 VC++ 运行库，使用 'Dependency Walker' 工具诊断哪一个库存在架构不匹配，并通过微软在线安装程序更新 DirectX。"
+        }
+    },
+    {
+        id: "win-inaccessible-boot", type: "software", subcategory: "windows",
+        code: "INACCESSIBLE_BOOT_DEVICE",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "BSOD při startu systému. Windows ztratil přístup k systémovému oddílu disku.",
+            en: "BSOD at system startup. Windows lost access to the system disk partition.",
+            zh: "系统启动时蓝屏。Windows 失去了对系统磁盘分区的访问权限。"
+        },
+        solution: {
+            cs: "Přepněte režim SATA (AHCI/RAID/IDE) v BIOSu. Odinstalujte problémové aktualizace přes WinRE.",
+            en: "Switch SATA mode (AHCI/RAID/IDE) in BIOS. Uninstall problematic updates via WinRE.",
+            zh: "在 BIOS 中切换 SATA 模式（AHCI/RAID/IDE），通过 WinRE 卸载有问题的系统更新。"
+        },
+        details: {
+            cs: "Tento kód na modré obrazovce (0x0000007B) nastává, když init proces načte jádro operačního systému do paměti, ale následně jádro nemá nezbytné ovladače úložiště k pokračování ve čtení z bootovacího disku. Nejčastější příčiny tvoří: (1) Změna SATA Configuration z AHCI na RAID/IDE v BIOS/UEFI. (2) Chybný storage driver (např. Intel RST) aktualizovaný z Windows Update, který na daný řadič nepasuje. (3) Migrace OS na jiný disk nebo výměna základní desky bez instalace klíčových ovladačů. Řešení: Opětovné navrácení nastavení řadiče do původního stavu v BIOSu, vstup do Nouzového režimu a ruční reinstalace odinstalovaných storage driverů.",
+            en: "This Blue Screen error code (0x0000007B) happens when the boot process successfully loads the OS kernel into memory, but the kernel lacks the necessary storage device drivers to continue reading from the boot drive. The most common triggers are: (1) Changing the SATA Configuration mode (AHCI to RAID/IDE or vice versa) in BIOS/UEFI. (2) A faulty or incompatible mass storage driver (like Intel RST) installed via Windows Update. (3) Migrating the OS to a different drive or drastically changing the motherboard hardware without injecting key drivers beforehand. Fixes involve reverting the controller mode to its original state in BIOS, or booting to Safe Mode / Windows Recovery Environment to uninstall recent suspect driver updates.",
+            zh: "该蓝屏错误代码 (0x0000007B) 发生于启动过程成功将操作系统内核加载到内存中，但内核随后缺乏必要的存储设备驱动程序以继续读取启动磁盘的情况。最常见的原因是：(1) 在 BIOS/UEFI 中变更了 SATA 配置模式 (AHCI、RAID、IDE 之间切换)；(2) Windows Update 更新了不兼容的存储驱动程序（如 Intel RST）；(3) 迁移系统到另一个磁盘或更换主板硬件但没有提前注入关键驱动程序。修复方法包括在 BIOS 中将控制器模式恢复到原始状态，或进入安全模式/恢复环境卸载最近出现问题的驱动及系统更新。"
+        }
+    },
+    {
+        id: "win-system-thread", type: "software", subcategory: "windows",
+        code: "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "BSOD způsobený neošetřenou výjimkou v systémovém vlákně, velmi často ovladačem GPU.",
+            en: "BSOD caused by an unhandled exception in a system thread, very often by a GPU driver.",
+            zh: "由系统线程中未处理的异常引起的蓝屏，极常见原因为显卡驱动。"
+        },
+        solution: {
+            cs: "Zkontrolujte log minidump. Aktualizujte vadný ovladač (soubor .sys viz BSOD). Použijte DDU pro VGA ovladače.",
+            en: "Check the minidump log. Update the faulty driver (noted .sys file on BSOD). Use DDU for VGA drivers.",
+            zh: "检查 minidump 崩溃日志。更新出错的驱动程序（由 .sys 文件标明），如果是显卡驱动可使用 DDU。"
+        },
+        details: {
+            cs: "Chyba 0x0000007E indikuje, že systémové vlákno vygenerovalo výjimku, kterou error handler jádra nezvládl zachytit. Jedním z nejprofláklejších viníků je zastaralý nebo chybný grafický ovladač (atikmdag.sys, nvlddmkm.sys) či ovladač zvukové karty. Často tuto obrazovku přímo doprovází označení postižené knihovny `.sys`. Diagnostika vyžaduje procházení složky 'C:\\Windows\\Minidump' a vytažení konkrétního souboru k analýze např. z BlueScreenView nebo moderního rozboru WinDbg na odhalení původce výjimky.",
+            en: "Error code 0x0000007E indicates that a system thread generated an exception which the kernel's error handler failed to catch. One of the most notorious culprits behind this crash is an outdated or faulty graphics driver (such as atikmdag.sys or nvlddmkm.sys) or audio driver. Oftentimes, this BSOD will explicitly list the `.sys` file that triggered the crash. Diagnostics require examining the 'C:\\Windows\\Minidump' folder and parsing the dmp file using BlueScreenView or WinDbg to pinpoint the offending driver and upgrade or roll back the relevant software.",
+            zh: "错误代码 0x0000007E 表明系统线程生成了一个异常，而内核的错误处理程序未能捕获。这一崩溃背后最出名的罪魁祸首是过时或故障的显卡驱动（如 atikmdag.sys 或 nvlddmkm.sys）或音频驱动。通常情况下，蓝屏界面会明确列出引发崩溃的 `.sys` 文件。诊断过程需要检查 'C:\\Windows\\Minidump' 文件夹并使用 BlueScreenView 或 WinDbg 分析 dmp 文件，查明出错的驱动程序并将其升级或降级回滚。"
+        }
+    },
+    {
+        id: "disk-100-usage", type: "hardware", subcategory: "disk",
+        code: "100% Disk Usage in Task Manager",
+        category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
+        description: {
+            cs: "Disk ve Správci úloh indikuje neustálé 100% využití. Systém extrémně zamrzá a nelze jej ovládat.",
+            en: "Task Manager shows constant 100% disk usage. The system freezes heavily and is unresponsive.",
+            zh: "任务管理器显示磁盘利用率持续 100%。系统严重卡顿且无法响应。"
+        },
+        solution: {
+            cs: "Vyměňte HDD za SSD. Zakažte služby Windows Search (SysMain / Superfetch). Zastavte Windows Update.",
+            en: "Upgrade HDD to an SSD. Disable Windows Search service (SysMain / Superfetch). Stop Windows Update.",
+            zh: "将机械硬盘 (HDD) 升级为固态硬盘 (SSD)。禁用 Windows 搜索服务和 SysMain (Superfetch)，停止系统更新。"
+        },
+        details: {
+            cs: "Fenomén '100% disku' je extrémně častý u systémů vybavených klasickým plotnovým harddiskem (HDD), na kterém běží Windows 10/11. Moderní OS spoléhají na vysoký počet souběžných IOPS (vstupy a výstupy za sekundu), ať už jde o telemetrii, Windows Defender skener na pozadí, indexování souborů a Superfetch. HDD disk disponuje běžně rychlostmi pod 150 IOPS, zatímco moderní systémy v peaku vyžadují tisíce IOPS – proto se disk zahltí a čekací fronty systémových procesů způsobí, že UI vytuhne. Opravdovým a konečným lékem je vždy čistá migrace OS na NVMe nebo SATA SSD. Dočasně lze pomoci zákazem služeb connected user experiences / sysmain.",
+            en: "The '100% active disk time' phenomenon is incredibly common on computers running Windows 10/11 on a traditional mechanical Hard Disk Drive (HDD). Modern operating systems rely on a very high level of concurrent IOPS (Input/Output Operations Per Second) for telemetry, background Windows Defender scans, search indexing, and Superfetch loading. While older HDDs offer fewer than 150 IOPS, these modern background tasks frequently demand thousands—saturating the drive completely and freezing the user interface by stalling I/O requests. The only permanent and true remedy is cloning or clean-installing the OS onto a SATA or NVMe SSD. Temporary mitigations include disabling the 'SysMain' service.",
+            zh: "'100% 磁盘占用' 现象在使用传统机械硬盘 (HDD) 运行 Windows 10/11 的计算机上非常普遍。现代操作系统在处理遥测、Windows Defender 后台扫描、文件索引和 Superfetch 预读时极为依赖同时进行的 IOPS（每秒输入输出操作）。机械硬盘通常只能提供低于 150 的 IOPS，而这些后台任务需要数千的并发读取——致使硬盘完全饱和，I/O 请求陷入等待引起界面严重冻结。唯一真正且永久的解决方案是将系统迁移到 SATA 或 NVMe 固态硬盘上。通过禁用系统内的 'SysMain' 和相关服务只可作为临时的临时缓解措施。"
         }
     }
 ];
