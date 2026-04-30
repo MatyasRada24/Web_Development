@@ -3456,6 +3456,7 @@ const filtersCollapsible = document.getElementById('filtersCollapsible');
 const dashboard = document.getElementById('dashboard');
 const dashboardGrid = document.getElementById('dashboardGrid');
 const reportModal = document.getElementById('reportModal');
+const reportModalContent = reportModal.querySelector('.modal-content');
 const reportMissingBtn = document.getElementById('reportMissingBtn');
 const reportSubmitBtn = document.getElementById('reportSubmitBtn');
 const copyCodeBtn = document.getElementById('copyCodeBtn');
@@ -3463,6 +3464,7 @@ const modalExternalLink = document.getElementById('modalExternalLink');
 const modalExternalText = document.getElementById('modalExternalText');
 
 const detailModal = document.getElementById('detailModal');
+const modalContent = detailModal.querySelector('.modal-content');
 const modalBadge = document.getElementById('modalBadge');
 const modalCategory = document.getElementById('modalCategory');
 const modalTitle = document.getElementById('modalTitle');
@@ -3691,6 +3693,7 @@ function openModal(err) {
     modalExternalLink.href = searchUrl;
 
     detailModal.classList.remove('hidden');
+    modalContent.scrollTop = 0;
 }
 
 function copyToClipboard() {
@@ -3706,6 +3709,7 @@ function copyToClipboard() {
 
 function openReportModal() {
     reportModal.classList.remove('hidden');
+    reportModalContent.scrollTop = 0;
     document.getElementById('reportCode').value = searchInput.value;
 }
 
