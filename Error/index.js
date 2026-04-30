@@ -4,13 +4,13 @@ const i18n = {
         tabAll: "Vše",
         tabHW: "Hardware",
         tabSW: "Software",
-        hwAll: "Všechny HW",
+        hwAll: "Všechny",
         hwGpu: "Grafická karta",
         hwCpu: "Procesor",
         hwMb: "Základní deska",
         hwRam: "RAM",
         hwDisk: "Disk",
-        swAll: "Vše SW",
+        swAll: "Vše",
         swWindows: "Windows",
         swBios: "BIOS / UEFI",
         swNetwork: "Síť",
@@ -21,20 +21,21 @@ const i18n = {
         modalDescTitle: "Obecný Popis",
         modalSolTitle: "Řešení",
         modalAdvTitle: "Technické Detaily (Deep Dive)",
-        solutionCardTitle: "Možné řešení:"
+        solutionCardTitle: "Možné řešení:",
+        vendorAll: "Vše"
     },
     en: {
         searchPlaceholder: "Enter error code, e.g., 'Code 43'...",
         tabAll: "All",
         tabHW: "Hardware",
         tabSW: "Software",
-        hwAll: "All HW",
+        hwAll: "All",
         hwGpu: "Graphics Card",
         hwCpu: "Processor",
         hwMb: "Motherboard",
         hwRam: "RAM",
         hwDisk: "Disk",
-        swAll: "All SW",
+        swAll: "All",
         swWindows: "Windows",
         swBios: "BIOS / UEFI",
         swNetwork: "Network",
@@ -45,20 +46,21 @@ const i18n = {
         modalDescTitle: "General Description",
         modalSolTitle: "Solution",
         modalAdvTitle: "Technical Details (Deep Dive)",
-        solutionCardTitle: "Possible solution:"
+        solutionCardTitle: "Possible solution:",
+        vendorAll: "All"
     },
     zh: {
         searchPlaceholder: "输入错误代码，例如 'Code 43'...",
         tabAll: "全部",
         tabHW: "硬件",
         tabSW: "软件",
-        hwAll: "所有硬件",
+        hwAll: "所有",
         hwGpu: "显卡",
         hwCpu: "处理器",
         hwMb: "主板",
         hwRam: "内存",
         hwDisk: "硬盘",
-        swAll: "所有软件",
+        swAll: "所有",
         swWindows: "Windows",
         swBios: "BIOS / UEFI",
         swNetwork: "网络",
@@ -69,7 +71,8 @@ const i18n = {
         modalDescTitle: "一般描述",
         modalSolTitle: "解决方案",
         modalAdvTitle: "技术细节 (深度解析)",
-        solutionCardTitle: "可能的解决方案："
+        solutionCardTitle: "可能的解决方案：",
+        vendorAll: "全部"
     }
 };
 
@@ -79,6 +82,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "gpu-43", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd", "intel"],
         code: "Code 43",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -99,6 +103,7 @@ const errorCodes = [
     },
     {
         id: "gpu-artifacts", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "Artifacts / Glitches",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: { cs: "Artefakty, čtverečky nebo problikávání barev na obrazovce.", en: "Artifacts, squares, or flickering colors across the screen.", zh: "屏幕上出现伪影、方块或彩色闪烁。" },
@@ -111,6 +116,7 @@ const errorCodes = [
     },
     {
         id: "gpu-d3d", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd", "intel"],
         code: "D3D Device Removed / Lost",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: { cs: "Grafická karta byla během hraní náhle odpojena (DXGI_ERROR_DEVICE_REMOVED).", en: "GPU suddenly disconnected during operation (DXGI_ERROR_DEVICE_REMOVED).", zh: "游戏时显卡突然断开连接（DXGI_ERROR_DEVICE_REMOVED）。" },
@@ -123,6 +129,7 @@ const errorCodes = [
     },
     {
         id: "gpu-tdr", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "nvlddmkm.sys / TDR Crash",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: { cs: "Obrazovka zčerná a systém hlásí 'Display driver stopped responding'.", en: "Screen goes black and system reports 'Display driver stopped responding and has recovered'.", zh: "屏幕变黑，系统提示'显示驱动程序停止响应并已恢复'。" },
@@ -135,6 +142,7 @@ const errorCodes = [
     },
     {
         id: "gpu-no-signal", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd", "intel"],
         code: "No Signal / Black Screen on Boot",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: { cs: "Monitor nezobrazuje žádný signál při startu PC, přestože systém běží.", en: "Monitor shows no signal at PC startup, even though the system appears to run.", zh: "PC 启动时显示器无信号，但系统似乎在运行。" },
@@ -151,6 +159,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "cpu-00", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "00 / FF Q-Code",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: { cs: "Základní deska nedetekuje procesor. Systém se nespustí do POST.", en: "The motherboard cannot detect the CPU. System fails to reach POST.", zh: "主板无法检测到处理器，系统无法进入 POST。" },
@@ -163,6 +172,7 @@ const errorCodes = [
     },
     {
         id: "cpu-whea", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "WHEA_UNCORRECTABLE_ERROR",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: { cs: "Kritická hardwarová chyba – BSOD 0x0000124, nejčastěji nestabilita CPU.", en: "Critical hardware BSOD 0x0000124, most often CPU instability.", zh: "严重硬件蓝屏 0x0000124，通常为 CPU 不稳定。" },
@@ -175,6 +185,7 @@ const errorCodes = [
     },
     {
         id: "cpu-throttle", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "CPU Thermal Throttling",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: { cs: "Procesor snižuje frekvenci kvůli přehřátí – drastický pokles výkonu.", en: "CPU reduces frequency due to overheating – severe performance drop.", zh: "CPU 因过热降低频率，性能大幅下降。" },
@@ -191,6 +202,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "ram-55", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "Q-Code 53 / 55",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: { cs: "Memory not installed – BIOS nerozpoznal paměťové moduly.", en: "Memory not installed – BIOS could not initialize memory modules.", zh: "未安装内存——BIOS 无法初始化内存模块。" },
@@ -203,6 +215,7 @@ const errorCodes = [
     },
     {
         id: "ram-irql", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "IRQL_NOT_LESS_OR_EQUAL",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: { cs: "BSOD 0x0000000A – kernel přistoupil k paměti na nesprávné IRQ úrovni.", en: "BSOD 0x0000000A – kernel accessed memory at an improper IRQ level.", zh: "蓝屏 0x0000000A——内核以不正确的中断请求级别访问内存。" },
@@ -215,6 +228,7 @@ const errorCodes = [
     },
     {
         id: "ram-xmp", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "XMP / EXPO Profile Instability",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: { cs: "Systém je nestabilní nebo se nespustí po aktivaci XMP/EXPO profilu v BIOSu.", en: "System is unstable or fails to boot after enabling XMP/EXPO profile in BIOS.", zh: "在 BIOS 中启用 XMP/EXPO 配置文件后系统不稳定或无法启动。" },
@@ -231,6 +245,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "disk-smart", type: "hardware", subcategory: "disk",
+        vendors: ["hdd", "ssd", "nvme"],
         code: "S.M.A.R.T. Status Bad",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: { cs: "Firmware disku detekoval kritický stav – hrozí ztráta dat.", en: "Drive firmware detected an imminent failure – data loss is probable.", zh: "硬盘固件检测到临近故障状态，数据丢失风险极高。" },
@@ -243,6 +258,7 @@ const errorCodes = [
     },
     {
         id: "disk-nvme-reset", type: "hardware", subcategory: "disk",
+        vendors: ["nvme"],
         code: "NVMe Controller Reset / 0xc0000185",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: { cs: "Windows hlásí chybu přístupu k NVMe disku nebo BSOD 0xc0000185.", en: "Windows reports NVMe access error or BSOD 0xc0000185 (STATUS_IO_DEVICE_ERROR).", zh: "Windows 报告 NVMe 访问错误或蓝屏 0xc0000185。" },
@@ -259,6 +275,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "mb-ez-debug", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte"],
         code: "EZ Debug LED (VGA/BOOT/DRAM/CPU)",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: { cs: "Jedna ze čtyř debug LED svítí po zapnutí – PC se nespustí.", en: "One of four debug LEDs is lit after power-on – PC fails to boot.", zh: "开机后四个调试 LED 之一亮起，PC 无法启动。" },
@@ -271,6 +288,7 @@ const errorCodes = [
     },
     {
         id: "mb-vrm-overtemp", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "VRM Overheat / MOS Thermal Throttle",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: { cs: "CPU snižuje výkon kvůli přehřátí VRM MOSFETů na základní desce.", en: "CPU throttles performance due to overheating VRM MOSFETs on the motherboard.", zh: "由于主板 VRM MOSFET 过热，CPU 降低性能。" },
@@ -283,6 +301,7 @@ const errorCodes = [
     },
     {
         id: "mb-beep", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "POST Beep Codes (No Display)",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: { cs: "PC vydává série pípnutí při startu a nic nezobrazuje.", en: "PC emits a series of beeps at startup and displays nothing.", zh: "PC 在启动时发出一系列蜂鸣声，且无显示。" },
@@ -299,6 +318,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "win-registry", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "REGISTRY_ERROR (0x00000051)",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: { cs: "Poškozený registr Windows způsobuje BSOD nebo nespuštění systému.", en: "Corrupted Windows registry causes BSOD or prevents system startup.", zh: "Windows 注册表损坏导致蓝屏或系统无法启动。" },
@@ -311,6 +331,7 @@ const errorCodes = [
     },
     {
         id: "win-bsod-critical", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "CRITICAL_PROCESS_DIED (0x000000EF)",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: { cs: "Kritický systémový proces byl ukončen – Windows nemůže bez něj pokračovat.", en: "A critical system process was terminated – Windows cannot continue without it.", zh: "关键系统进程被终止，Windows 无法在没有它的情况下继续运行。" },
@@ -323,6 +344,7 @@ const errorCodes = [
     },
     {
         id: "win-bootmgr", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "BOOTMGR is missing",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: { cs: "Windows Bootloader chybí nebo je poškozený – systém nelze spustit.", en: "Windows boot loader is missing or corrupt – system cannot start.", zh: "Windows 引导程序丢失或损坏，系统无法启动。" },
@@ -339,6 +361,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "bios-flash", type: "software", subcategory: "bios",
+        vendors: ["uefi", "legacy"],
         code: "BIOS Update Failed (Bricked)",
         category: { cs: "BIOS / UEFI", en: "BIOS / UEFI", zh: "BIOS 相关" },
         description: { cs: "PC nelze zapnout po neúspěšné aktualizaci BIOSu – deska je 'bricknutá'.", en: "PC won't power on after a failed BIOS update – board is 'bricked'.", zh: "BIOS 更新失败后无法开机，主板变成'砖头'。" },
@@ -351,6 +374,7 @@ const errorCodes = [
     },
     {
         id: "bios-secure-boot", type: "software", subcategory: "bios",
+        vendors: ["uefi"],
         code: "Secure Boot Violation / 0xc0000428",
         category: { cs: "BIOS / UEFI", en: "BIOS / UEFI", zh: "BIOS 相关" },
         description: { cs: "Windows odmítne spustit soubor – digitální podpis je neplatný nebo chybí.", en: "Windows refuses to load a file – digital signature is invalid or missing.", zh: "Windows 拒绝加载文件，数字签名无效或缺失。" },
@@ -363,6 +387,7 @@ const errorCodes = [
     },
     {
         id: "sw-bios-checksum", type: "software", subcategory: "bios",
+        vendors: ["uefi", "legacy"],
         code: "CMOS Checksum Error",
         category: { cs: "BIOS / UEFI", en: "BIOS / UEFI", zh: "BIOS / UEFI" },
         description: {
@@ -387,6 +412,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "net-dns", type: "software", subcategory: "network",
+        vendors: ["wifi", "ethernet"],
         code: "DNS_PROBE_FINISHED_NXDOMAIN",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: { cs: "Prohlížeč nemůže přeložit doménové jméno na IP adresu.", en: "Browser cannot resolve a domain name to an IP address – DNS server unresponsive.", zh: "浏览器无法将域名解析为 IP 地址，DNS 服务器无响应。" },
@@ -399,6 +425,7 @@ const errorCodes = [
     },
     {
         id: "net-tcpip", type: "software", subcategory: "network",
+        vendors: ["wifi", "ethernet"],
         code: "0x80070035 / Network Path Not Found",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: { cs: "Síťová cesta nebyla nalezena – nelze přistoupit ke sdíleným složkám v LAN.", en: "Network path not found – cannot access shared folders on the local network.", zh: "网络路径未找到，无法访问局域网共享文件夹。" },
@@ -411,6 +438,7 @@ const errorCodes = [
     },
     {
         id: "net-wifi", type: "software", subcategory: "network",
+        vendors: ["wifi"],
         code: "Wi-Fi Disconnects / Limited Connectivity",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: { cs: "Wi-Fi se opakovaně odpojuje nebo zobrazuje 'Omezené připojení'.", en: "Wi-Fi repeatedly disconnects or shows 'Limited Connectivity'.", zh: "Wi-Fi 反复断线或显示'受限连接'。" },
@@ -427,6 +455,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "drv-pnp", type: "software", subcategory: "drivers",
+        vendors: ["gpu-drv", "chipset-drv"],
         code: "PNP_DETECTED_FATAL_ERROR (0x000000CA)",
         category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
         description: { cs: "Plug-and-Play správce detekoval fatální chybu při inicializaci zařízení.", en: "Plug-and-Play manager detected a fatal error initializing a device.", zh: "即插即用管理器在初始化设备时检测到致命错误。" },
@@ -439,6 +468,7 @@ const errorCodes = [
     },
     {
         id: "drv-dpc", type: "software", subcategory: "drivers",
+        vendors: ["gpu-drv", "chipset-drv"],
         code: "DPC_WATCHDOG_VIOLATION (0x00000133)",
         category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
         description: { cs: "DPC Watchdog odhalil driver, který blokoval systém déle než 100 μs.", en: "DPC Watchdog detected a driver that blocked the system for more than 100μs.", zh: "DPC 看门狗检测到某个驱动程序阻塞系统超过 100 微秒。" },
@@ -455,6 +485,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "app-vcredist", type: "software", subcategory: "apps",
+        vendors: ["runtime"],
         code: "VCRUNTIME140.dll Not Found",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: { cs: "Aplikace nebo hra se nespustí – chybí Visual C++ Runtime knihovna.", en: "App or game won't launch – Visual C++ Runtime library is missing.", zh: "应用程序或游戏无法启动，缺少 Visual C++ 运行库。" },
@@ -467,6 +498,7 @@ const errorCodes = [
     },
     {
         id: "app-directx", type: "software", subcategory: "apps",
+        vendors: ["games", "runtime"],
         code: "DirectX Error / DXGI_ERROR_DEVICE_HUNG",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: { cs: "Hra crashuje s chybou DirectX – GPU přestala reagovat na DX příkazy.", en: "Game crashes with DirectX error – GPU stopped responding to DX commands.", zh: "游戏崩溃并出现 DirectX 错误——GPU 停止响应 DX 命令。" },
@@ -482,6 +514,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "gpu-overcurrent", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "GPU Over-Current / Power Limit Error",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -502,6 +535,7 @@ const errorCodes = [
     },
     {
         id: "gpu-fan-stop", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "GPU Fan Not Spinning (0RPM Mode)",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -526,6 +560,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "cpu-allcore-crash", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "CPU Crash Under All-Core Load (Cinebench/Blender)",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -546,6 +581,7 @@ const errorCodes = [
     },
     {
         id: "cpu-imc", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "IMC Failure / Memory Controller Error",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -570,6 +606,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "ram-ddr5-pmic", type: "hardware", subcategory: "ram",
+        vendors: ["ddr5"],
         code: "DDR5 PMIC Error / No POST with DDR5",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -594,6 +631,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "disk-hdd-click", type: "hardware", subcategory: "disk",
+        vendors: ["hdd"],
         code: "HDD Clicking / Click of Death",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -614,6 +652,7 @@ const errorCodes = [
     },
     {
         id: "disk-trim", type: "hardware", subcategory: "disk",
+        vendors: ["ssd"],
         code: "SSD Performance Degradation (TRIM Issue)",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -638,6 +677,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "win-update-error", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "Windows Update Error 0x80080005 / 0x80070005",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: {
@@ -658,6 +698,7 @@ const errorCodes = [
     },
     {
         id: "win-page-fault", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "PAGE_FAULT_IN_NONPAGED_AREA (0x00000050)",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: {
@@ -682,6 +723,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "bios-fan-control", type: "software", subcategory: "bios",
+        vendors: ["uefi"],
         code: "BIOS Fan Speed Control Failure",
         category: { cs: "BIOS / UEFI", en: "BIOS / UEFI", zh: "BIOS / UEFI" },
         description: {
@@ -706,6 +748,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "net-apipa", type: "software", subcategory: "network",
+        vendors: ["wifi", "ethernet"],
         code: "APIPA Address (169.254.x.x) / No DHCP Lease",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: {
@@ -730,6 +773,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "drv-audio", type: "software", subcategory: "drivers",
+        vendors: ["audio-drv"],
         code: "Audio Service Not Running / No Sound",
         category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
         description: {
@@ -754,6 +798,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "app-easyanticheat", type: "software", subcategory: "apps",
+        vendors: ["games"],
         code: "Easy Anti-Cheat / BattlEye Launch Error",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: {
@@ -774,6 +819,7 @@ const errorCodes = [
     },
     {
         id: "app-net-framework", type: "software", subcategory: "apps",
+        vendors: ["runtime"],
         code: ".NET Framework Error / CLR Crash",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: {
@@ -798,6 +844,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "app-steam", type: "software", subcategory: "apps",
+        vendors: ["games"],
         code: "Steam Disk Write Error",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: { cs: "Steam nemůže zapisovat soubory hry na disk – instalace nebo aktualizace selhala.", en: "Steam cannot write game files to disk – installation or update failed.", zh: "Steam 无法向磁盘写入游戏文件，安装或更新失败。" },
@@ -814,6 +861,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "gpu-pcie-x4", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd", "intel"],
         code: "PCIe x16 Running at x4 / Bandwidth Degraded",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -834,6 +882,7 @@ const errorCodes = [
     },
     {
         id: "gpu-nvenc", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "NVENC / AMF Hardware Encoding Error",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -858,6 +907,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "cpu-c-state", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "CPU C-State Freeze / System Hang After Idle",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -878,6 +928,7 @@ const errorCodes = [
     },
     {
         id: "cpu-pbo", type: "hardware", subcategory: "cpu",
+        vendors: ["amd"],
         code: "AMD Precision Boost Overdrive (PBO) Not Boosting",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -898,6 +949,7 @@ const errorCodes = [
     },
     {
         id: "cpu-pin-bend", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "Bent CPU/Socket Pin – No POST",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -918,6 +970,7 @@ const errorCodes = [
     },
     {
         id: "cpu-fivr", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "Vcore Instability / FIVR / VID Mismatch",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -942,6 +995,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "ram-single-channel", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "RAM Running in Single Channel Mode",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -962,6 +1016,7 @@ const errorCodes = [
     },
     {
         id: "ram-ecc", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "ECC Memory Error / Uncorrectable Bit Error",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -982,6 +1037,7 @@ const errorCodes = [
     },
     {
         id: "ram-speed-fluctuation", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "RAM Speed Revert to 2133MHz After Every Boot",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -1002,6 +1058,7 @@ const errorCodes = [
     },
     {
         id: "ram-stability-test", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "MemTest86 Errors Found – RAM Instability",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -1026,6 +1083,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "disk-bad-sectors", type: "hardware", subcategory: "disk",
+        vendors: ["hdd", "ssd"],
         code: "Bad Sectors / chkdsk Errors",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -1046,6 +1104,7 @@ const errorCodes = [
     },
     {
         id: "disk-ssd-wear", type: "hardware", subcategory: "disk",
+        vendors: ["ssd"],
         code: "SSD Endurance Warning (TBW Exceeded)",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -1066,6 +1125,7 @@ const errorCodes = [
     },
     {
         id: "disk-raid-degraded", type: "hardware", subcategory: "disk",
+        vendors: ["hdd", "ssd", "nvme"],
         code: "RAID Array Degraded / Drive Missing",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -1086,6 +1146,7 @@ const errorCodes = [
     },
     {
         id: "disk-gpt-corrupt", type: "hardware", subcategory: "disk",
+        vendors: ["hdd", "ssd", "nvme"],
         code: "Corrupted GPT / Partition Table Error",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -1110,6 +1171,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "mb-usb-controller", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "USB Controller Error / USB Device Not Recognized",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -1130,6 +1192,7 @@ const errorCodes = [
     },
     {
         id: "mb-power-24pin", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "ATX 24-Pin Power Failure / No Power",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -1150,6 +1213,7 @@ const errorCodes = [
     },
     {
         id: "mb-pcie-config", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "PCIe Slot Configuration Error / M.2 Conflict",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -1170,6 +1234,7 @@ const errorCodes = [
     },
     {
         id: "mb-onboard-audio", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "Onboard Audio Chip Not Detected",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -1190,6 +1255,7 @@ const errorCodes = [
     },
     {
         id: "mb-short-circuit", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "Motherboard Short Circuit / Standoff Issue",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -1970,6 +2036,7 @@ const errorCodes = [
     },
     {
         id: "net-ipv6-conflict", type: "software", subcategory: "network",
+        vendors: ["wifi", "ethernet"],
         code: "IPv6 Connectivity Issue / Teredo Tunnel Error",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: {
@@ -2699,6 +2766,7 @@ const errorCodes = [
     // =========================================================
     {
         id: "bios-secure-boot-fail", type: "software", subcategory: "bios",
+        vendors: ["uefi"],
         code: "Secure Boot Violation / OS Won't Boot",
         category: { cs: "BIOS / UEFI", en: "BIOS / UEFI", zh: "BIOS / UEFI" },
         description: {
@@ -2719,6 +2787,7 @@ const errorCodes = [
     },
     {
         id: "gpu-coil-whine", type: "hardware", subcategory: "gpu",
+        vendors: ["nvidia", "amd"],
         code: "GPU Coil Whine / High Pitch Buzzing",
         category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
         description: {
@@ -2739,6 +2808,7 @@ const errorCodes = [
     },
     {
         id: "cpu-fpu-error", type: "hardware", subcategory: "cpu",
+        vendors: ["intel", "amd"],
         code: "CPU FPU / Math Execution Error",
         category: { cs: "Procesor", en: "Processor", zh: "处理器" },
         description: {
@@ -2759,6 +2829,7 @@ const errorCodes = [
     },
     {
         id: "ram-ecc-unreliable", type: "hardware", subcategory: "ram",
+        vendors: ["ddr4", "ddr5"],
         code: "Uncorrectable ECC Error / Memory Parity",
         category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
         description: {
@@ -2779,6 +2850,7 @@ const errorCodes = [
     },
     {
         id: "disk-partition-lost", type: "hardware", subcategory: "disk",
+        vendors: ["hdd", "ssd"],
         code: "RAW Partition / Missing File System",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -2799,6 +2871,7 @@ const errorCodes = [
     },
     {
         id: "mb-usb-overcurrent", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "USB Device Over Current Status Detected",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -2819,6 +2892,7 @@ const errorCodes = [
     },
     {
         id: "win-defender-service", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "Defender Service Stop / 0x80070422",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: {
@@ -2839,6 +2913,7 @@ const errorCodes = [
     },
     {
         id: "net-ipv6-conflict", type: "software", subcategory: "network",
+        vendors: ["wifi", "ethernet"],
         code: "IPv6 Duplicate Address Detected (DAD)",
         category: { cs: "Síť", en: "Network", zh: "网络" },
         description: {
@@ -2859,6 +2934,7 @@ const errorCodes = [
     },
     {
         id: "drv-verifier", type: "software", subcategory: "drivers",
+        vendors: ["gpu-drv", "audio-drv", "net-drv", "chipset-drv"],
         code: "DRIVER_VERIFIER_DETECTED_VIOLATION",
         category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
         description: {
@@ -2879,6 +2955,7 @@ const errorCodes = [
     },
     {
         id: "mb-bent-pins", type: "hardware", subcategory: "mb",
+        vendors: ["asus", "msi", "gigabyte", "asrock"],
         code: "Bent CPU Socket Pins",
         category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
         description: {
@@ -2899,6 +2976,7 @@ const errorCodes = [
     },
     {
         id: "app-0xc000007b", type: "software", subcategory: "apps",
+        vendors: ["runtime", "games"],
         code: "Application Error 0xc000007b",
         category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
         description: {
@@ -2919,6 +2997,7 @@ const errorCodes = [
     },
     {
         id: "win-inaccessible-boot", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "INACCESSIBLE_BOOT_DEVICE",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: {
@@ -2939,6 +3018,7 @@ const errorCodes = [
     },
     {
         id: "win-system-thread", type: "software", subcategory: "windows",
+        vendors: ["win10", "win11"],
         code: "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
         category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
         description: {
@@ -2959,6 +3039,7 @@ const errorCodes = [
     },
     {
         id: "disk-100-usage", type: "hardware", subcategory: "disk",
+        vendors: ["hdd"],
         code: "100% Disk Usage in Task Manager",
         category: { cs: "Disk (SSD/HDD)", en: "Disk (SSD/HDD)", zh: "硬盘" },
         description: {
@@ -2976,176 +3057,587 @@ const errorCodes = [
             en: "The '100% active disk time' phenomenon is incredibly common on computers running Windows 10/11 on a traditional mechanical Hard Disk Drive (HDD). Modern operating systems rely on a very high level of concurrent IOPS (Input/Output Operations Per Second) for telemetry, background Windows Defender scans, search indexing, and Superfetch loading. While older HDDs offer fewer than 150 IOPS, these modern background tasks frequently demand thousands—saturating the drive completely and freezing the user interface by stalling I/O requests. The only permanent and true remedy is cloning or clean-installing the OS onto a SATA or NVMe SSD. Temporary mitigations include disabling the 'SysMain' service.",
             zh: "'100% 磁盘占用' 现象在使用传统机械硬盘 (HDD) 运行 Windows 10/11 的计算机上非常普遍。现代操作系统在处理遥测、Windows Defender 后台扫描、文件索引和 Superfetch 预读时极为依赖同时进行的 IOPS（每秒输入输出操作）。机械硬盘通常只能提供低于 150 的 IOPS，而这些后台任务需要数千的并发读取——致使硬盘完全饱和，I/O 请求陷入等待引起界面严重冻结。唯一真正且永久的解决方案是将系统迁移到 SATA 或 NVMe 固态硬盘上。通过禁用系统内的 'SysMain' 和相关服务只可作为临时的临时缓解措施。"
         }
+    },
+    { "id": "gpu-artifacts-vram", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "VRAM Artifacts / Checkerboarding", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Vizuální artefakty (šachovnice, náhodné barevné tečky) se objevují na obrazovce.", "en": "Visual artifacts (checkerboard patterns, random colored dots) appear on screen.", "zh": "Visual artifacts (checkerboard patterns, random colored dots) appear on screen. (ZH)" }, "solution": { "cs": "Snižte frekvenci pamětí, zvyšte napětí, nebo kartu reklamujte.", "en": "Reduce memory clock, increase voltage, or RMA the card.", "zh": "Reduce memory clock, increase voltage, or RMA the card. (ZH)" }, "details": { "cs": "Artefakty jsou typicky způsobeny přehříváním nebo degradací VRAM. Paměťové čipy GDDR, které neudrží svůj stav, způsobí poškození snímku ve frame bufferu.", "en": "Artifacts are typically caused by VRAM overheating or degradation. GDDR memory chips failing to hold state will result in corruption of the frame buffer.", "zh": "Artifacts are typically caused by VRAM overheating or degradation. GDDR memory chips failing to hold state will result in corruption of the frame buffer. (ZH)" } },
+    { "id": "gpu-power-limit", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "Power Limit Throttling (PerfCap: Pwr)", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Takt GPU výrazně klesá pod velkou zátěží i přes nízké teploty.", "en": "GPU clocks drop significantly under heavy load despite low temperatures.", "zh": "GPU clocks drop significantly under heavy load despite low temperatures. (ZH)" }, "solution": { "cs": "Zvyšte limit napájení v MSI Afterburner, zkontrolujte PCIe kabely, nebo upgradujte zdroj (PSU).", "en": "Increase power limit in MSI Afterburner, check PCIe cables, or upgrade PSU.", "zh": "Increase power limit in MSI Afterburner, check PCIe cables, or upgrade PSU. (ZH)" }, "details": { "cs": "BIOS grafické karty monitoruje spotřebu pomocí bočníků (shunt resistors). Pokud spotřeba překročí programovaný limit, dojde ke snížení taktu jádra (PerfCap Reason: Pwr).", "en": "The GPU BIOS monitors power draw via shunt resistors. If the draw exceeds the programmed limit, it throttles the core clock (PerfCap Reason: Pwr).", "zh": "The GPU BIOS monitors power draw via shunt resistors. If the draw exceeds the programmed limit, it throttles the core clock (PerfCap Reason: Pwr). (ZH)" } },
+    { "id": "gpu-fan-rattle", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "GPU Fan Rattling / Bearing Failure", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Jeden z ventilátorů GPU vydává hlasité chrčivé nebo drhnoucí zvuky.", "en": "One of the GPU fans makes a loud rattling or grinding noise.", "zh": "One of the GPU fans makes a loud rattling or grinding noise. (ZH)" }, "solution": { "cs": "Vyměňte poškozený ventilátor nebo připevněte standardní ventilátory k pasivu (deshroud).", "en": "Replace the affected fan or zip-tie standard case fans to the heatsink (deshroud).", "zh": "Replace the affected fan or zip-tie standard case fans to the heatsink (deshroud). (ZH)" }, "details": { "cs": "Kluzná ložiska u levnějších ventilátorů GPU časem vysychají, což způsobuje viklání rotoru. Kuličková ložiska (Ball bearings) nebo fluidní ložiska (FDB) vydrží déle.", "en": "Sleeve bearings in cheaper GPU fans dry out over time, causing the impeller to wobble. Ball bearings or fluid dynamic bearings (FDB) last longer.", "zh": "Sleeve bearings in cheaper GPU fans dry out over time, causing the impeller to wobble. Ball bearings or fluid dynamic bearings (FDB) last longer. (ZH)" } },
+    { "id": "gpu-pcie-lane", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "PCIe running at x8 instead of x16", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "GPU-Z hlásí pod zátěží PCIe x8 3.0/4.0 namísto plných x16.", "en": "GPU-Z reports PCIe x8 3.0/4.0 under load instead of x16.", "zh": "GPU-Z reports PCIe x8 3.0/4.0 under load instead of x16. (ZH)" }, "solution": { "cs": "Znovu osaďte GPU, zkontrolujte, zda nejsou ohnuté piny CPU, nebo se ujistěte, že M.2 disky nesdílejí linky s GPU.", "en": "Reseat the GPU, check for bent CPU pins, or ensure M.2 drives aren't sharing lanes.", "zh": "Reseat the GPU, check for bent CPU pins, or ensure M.2 drives aren't sharing lanes. (ZH)" }, "details": { "cs": "Běžné platformy mají omezený počet PCIe linek. Obsazení určitých M.2 slotů nebo prach v PCIe slotu může způsobit, že GPU dojedná nižší počet linek.", "en": "Consumer platforms have limited PCIe lanes. Populating certain M.2 slots or having dust in the PCIe slot can force the GPU to negotiate a lower lane count.", "zh": "Consumer platforms have limited PCIe lanes. Populating certain M.2 slots or having dust in the PCIe slot can force the GPU to negotiate a lower lane count. (ZH)" } },
+    { "id": "gpu-hotspot", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "Extreme GPU Hotspot Delta", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Teplota jádra GPU je 70°C, ale hotspot je nad 105°C, což způsobuje náhlé zvýšení otáček ventilátorů.", "en": "GPU core is 70°C but hotspot is 105°C+ causing fan spikes.", "zh": "GPU core is 70°C but hotspot is 105°C+ causing fan spikes. (ZH)" }, "solution": { "cs": "Přepastujte jádro GPU, zkontrolujte přítlak chladiče, nebo vyměňte teplovodivé podložky.", "en": "Repaste the GPU die, check mounting pressure, or replace thermal pads.", "zh": "Repaste the GPU die, check mounting pressure, or replace thermal pads. (ZH)" }, "details": { "cs": "Hotspot je nejteplejší senzor na čipu. Rozdíl (delta) nad 25°C mezi průměrem a hotspotem značí nerovnoměrné nanesení teplovodivé pasty nebo špatný přítlak chladiče.", "en": "The hotspot is the hottest sensor on the die. A delta >25°C between average and hotspot indicates uneven thermal paste application or cooler mounting.", "zh": "The hotspot is the hottest sensor on the die. A delta >25°C between average and hotspot indicates uneven thermal paste application or cooler mounting. (ZH)" } },
+    { "id": "gpu-black-screen-100", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "Black Screen & 100% Fans", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Monitor ztratí signál a ventilátory GPU se okamžitě roztočí na 100 %.", "en": "Monitor loses signal and GPU fans instantly ramp to 100%.", "zh": "Monitor loses signal and GPU fans instantly ramp to 100%. (ZH)" }, "solution": { "cs": "Zkontrolujte zapojení 12VHPWR konektoru, snižte limit napájení nebo vyměňte napájecí zdroj (PSU).", "en": "Check 12VHPWR connector seating, lower power limit, or replace PSU.", "zh": "Check 12VHPWR connector seating, lower power limit, or replace PSU. (ZH)" }, "details": { "cs": "Jedná se o klasické sepnutí OCP (Over Current Protection) nebo ztrátu snímání 12V napájení. Často souvisí s přechodovými špičkami nebo tavením 12VHPWR kabelů.", "en": "This is a classic OCP (Over Current Protection) trip or loss of 12V power sensing. Often related to transient spikes or melting 12VHPWR cables.", "zh": "This is a classic OCP (Over Current Protection) trip or loss of 12V power sensing. Often related to transient spikes or melting 12VHPWR cables. (ZH)" } },
+    { "id": "gpu-dxgi-error", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "DXGI_ERROR_DEVICE_HUNG", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Hry padají na plochu s chybou DXGI device hung.", "en": "Games crash to desktop with a DXGI device hung error.", "zh": "Games crash to desktop with a DXGI device hung error. (ZH)" }, "solution": { "cs": "Podtaktujte jádro GPU o 50 MHz, pro účely testování vypněte XMP, nebo aktualizujte ovladače.", "en": "Underclock GPU core by 50MHz, disable XMP to test, or update drivers.", "zh": "Underclock GPU core by 50MHz, disable XMP to test, or update drivers. (ZH)" }, "details": { "cs": "Subsystém DirectX Graphics Infrastructure ztratil komunikaci s GPU. Často způsobeno nestabilním továrním přetaktováním nebo nestabilitou časování pamětí.", "en": "The DirectX Graphics Infrastructure subsystem lost communication with the GPU. Often caused by unstable factory overclocks or memory timing instability.", "zh": "The DirectX Graphics Infrastructure subsystem lost communication with the GPU. Often caused by unstable factory overclocks or memory timing instability. (ZH)" } },
+    { "id": "gpu-displayport-pin20", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "DisplayPort Pin 20 Power Issue", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "PC se spouští podivně, nebo GPU se chová nestabilně s připojeným DP kabelem.", "en": "PC turns on weirdly or GPU behaves erratically with DP cable connected.", "zh": "PC turns on weirdly or GPU behaves erratically with DP cable connected. (ZH)" }, "solution": { "cs": "Kupte VESA certifikovaný DisplayPort kabel, který nemá zapojený pin 20 pro napájení (3.3V).", "en": "Buy a VESA-certified DisplayPort cable that lacks the 3.3V pin 20 connection.", "zh": "Buy a VESA-certified DisplayPort cable that lacks the 3.3V pin 20 connection. (ZH)" }, "details": { "cs": "Pin 20 na DP přenáší napájení 3.3V. Nekvalitní kabely tento pin propojují, což způsobuje, že monitor zpětně napájí GPU, což může bránit normálnímu startu.", "en": "Pin 20 on DP carries 3.3V power. Non-compliant cables connect this pin, causing the monitor to back-feed power into the GPU, preventing normal boot.", "zh": "Pin 20 on DP carries 3.3V power. Non-compliant cables connect this pin, causing the monitor to back-feed power into the GPU, preventing normal boot. (ZH)" } },
+    { "id": "gpu-sag", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "GPU Sag / PCB Bending", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Těžké GPU je na pravé straně prověšené, což způsobuje výpadky obrazu.", "en": "Heavy GPU sags on the right side, causing display dropouts.", "zh": "Heavy GPU sags on the right side, causing display dropouts. (ZH)" }, "solution": { "cs": "Nainstalujte podpůrný držák pro GPU (anti-sag stand).", "en": "Install a GPU support bracket or anti-sag stand.", "zh": "Install a GPU support bracket or anti-sag stand. (ZH)" }, "details": { "cs": "Moderní těžké grafické karty vyvíjejí extrémní tlak na PCIe slot a BGA pájené spoje v blízkosti PCIe rozhraní, což vede k mikroprasklinám.", "en": "Modern heavy GPUs place extreme stress on the PCIe slot and the BGA solder joints near the PCIe interface, leading to micro-fractures.", "zh": "Modern heavy GPUs place extreme stress on the PCIe slot and the BGA solder joints near the PCIe interface, leading to micro-fractures. (ZH)" } },
+    { "id": "gpu-coil-whine-psu", "type": "hardware", "subcategory": "gpu", "vendors": ["nvidia", "amd", "intel"], "code": "Coil Whine related to PSU", "category": { "cs": "Grafická karta", "en": "Graphics Card", "zh": "显卡" }, "description": { "cs": "Grafická karta hlasitě píská (coil whine), ale při změně zdroje (PSU) se mění výška tónu.", "en": "GPU whines loudly, but changing the PSU changes the pitch.", "zh": "GPU whines loudly, but changing the PSU changes the pitch. (ZH)" }, "solution": { "cs": "Změňte zdroj za kvalitnější model s lepší filtrací zvlnění (ripple suppression).", "en": "Swap to a higher-tier power supply with better ripple suppression.", "zh": "Swap to a higher-tier power supply with better ripple suppression. (ZH)" }, "details": { "cs": "Coil whine může být zhoršen nečistým napájením (vysoké zvlnění napětí) ze zdroje, což způsobuje hlasitější rezonanci induktorů VRM na GPU.", "en": "Coil whine can be exacerbated by dirty power (high ripple voltage) from the PSU, causing the VRM inductors on the GPU to resonate louder.", "zh": "Coil whine can be exacerbated by dirty power (high ripple voltage) from the PSU, causing the VRM inductors on the GPU to resonate louder. (ZH)" } },
+    { "id": "cpu-cache-hierarchy", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "Cache Hierarchy Error (WHEA 18)", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Systém se restartuje pod zátěží a v Event Vieweru zaznamená chybu WHEA 18.", "en": "System reboots under load with WHEA logger Event ID 18.", "zh": "System reboots under load with WHEA logger Event ID 18. (ZH)" }, "solution": { "cs": "Zvyšte napětí Curve Optimizeru, snižte limity PBO, nebo otestujte systém na továrním nastavení.", "en": "Increase Curve Optimizer voltage, lower PBO limits, or test stock settings.", "zh": "Increase Curve Optimizer voltage, lower PBO limits, or test stock settings. (ZH)" }, "details": { "cs": "Obecná chyba indikující selhání hardwaru uvnitř cache nebo jader procesoru, velmi často spojována s nestabilním podtaktováním AMD Curve Optimizer.", "en": "A generic error indicating a hardware failure inside the CPU cache or cores, heavily associated with unstable AMD Curve Optimizer undervolts.", "zh": "A generic error indicating a hardware failure inside the CPU cache or cores, heavily associated with unstable AMD Curve Optimizer undervolts. (ZH)" } },
+    { "id": "cpu-edc-limit", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "EDC/TDC Limit Reached", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Výkon procesoru ve vícejádrové zátěži je nižší než by měl být.", "en": "CPU multi-core performance is lower than expected.", "zh": "CPU multi-core performance is lower than expected. (ZH)" }, "solution": { "cs": "Zvyšte EDC/TDC limity v nastavení PBO v BIOSu.", "en": "Increase EDC/TDC limits in BIOS under PBO settings.", "zh": "Increase EDC/TDC limits in BIOS under PBO settings. (ZH)" }, "details": { "cs": "Electrical Design Current (EDC) je limit maximálního proudu. Zasahování tohoto limitu znamená, že VRM nebo BIOS omezují špičkový proud k procesoru.", "en": "Electrical Design Current (EDC) is the peak current limit. Throttling here means the VRM or BIOS is restricting peak amperage to the CPU.", "zh": "Electrical Design Current (EDC) is the peak current limit. Throttling here means the VRM or BIOS is restricting peak amperage to the CPU. (ZH)" } },
+    { "id": "cpu-thermal-throttle", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "PROCHOT / Thermal Throttling", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Takt CPU padá na základní hodnotu nebo níže během renderování.", "en": "CPU clock speeds drop to base clock or lower during rendering.", "zh": "CPU clock speeds drop to base clock or lower during rendering. (ZH)" }, "solution": { "cs": "Zkontrolujte otáčky čerpadla, přepastujte CPU, nebo odstraňte plastovou fólii z chladiče.", "en": "Check pump RPM, repaste CPU, or remove plastic peel from cooler.", "zh": "Check pump RPM, repaste CPU, or remove plastic peel from cooler. (ZH)" }, "details": { "cs": "CPU dosáhlo své maximální kritické teploty (TjMax, obvykle 95-100°C) a aktivovalo signál PROCHOT (Processor Hot) ke snížení napětí a frekvence.", "en": "The CPU hit its maximum junction temperature (TjMax, usually 95-100C) and asserted PROCHOT (Processor Hot) to drop voltage and frequency to survive.", "zh": "The CPU hit its maximum junction temperature (TjMax, usually 95-100C) and asserted PROCHOT (Processor Hot) to drop voltage and frequency to survive. (ZH)" } },
+    { "id": "cpu-bent-pin-mem", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "Bent Pin (Memory Channel Loss)", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Systém detekuje pouze polovinu nainstalované paměti RAM.", "en": "Only half of installed RAM is detected.", "zh": "Only half of installed RAM is detected. (ZH)" }, "solution": { "cs": "Zkontrolujte piny na CPU nebo v patici, zda nejsou ohnuté. Namontujte chladič s rovnoměrným přítlakem.", "en": "Check CPU socket or CPU pins for bends, remount cooler with less pressure.", "zh": "Check CPU socket or CPU pins for bends, remount cooler with less pressure. (ZH)" }, "details": { "cs": "Paměťové kanály jsou přímo napojeny na specifické piny. Ohnutý pin nebo nerovnoměrný přítlak chladiče může přerušit kontakt a znefunkčnit celý kanál.", "en": "Memory channels are directly wired to specific pins. A bent pin or uneven cooler mounting pressure can break contact, disabling an entire channel.", "zh": "Memory channels are directly wired to specific pins. A bent pin or uneven cooler mounting pressure can break contact, disabling an entire channel. (ZH)" } },
+    { "id": "cpu-vccsa", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "System Agent / VCCSA Instability", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Blue Screen of Death (BSOD) při zapnutí vysokorychlostních XMP profilů.", "en": "BSODs when enabling high-speed XMP profiles.", "zh": "BSODs when enabling high-speed XMP profiles. (ZH)" }, "solution": { "cs": "Ručně zvyšte napětí VCCSA (System Agent) v BIOSu o malou hodnotu.", "en": "Manually increase VCCSA (System Agent) voltage slightly.", "zh": "Manually increase VCCSA (System Agent) voltage slightly. (ZH)" }, "details": { "cs": "System Agent se stará o řadič paměti. Rychlé RAM vyžadují vyšší SA napětí pro udržení stabilní signalizace mezi CPU a pamětí.", "en": "The System Agent handles the memory controller. High-speed RAM requires higher SA voltage to maintain stable signaling.", "zh": "The System Agent handles the memory controller. High-speed RAM requires higher SA voltage to maintain stable signaling. (ZH)" } },
+    { "id": "cpu-clock-watchdog", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "CLOCK_WATCHDOG_TIMEOUT", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Systém kompletně zamrzne, po čemž následuje modrá obrazovka (BSOD).", "en": "System freezes completely followed by a BSOD.", "zh": "System freezes completely followed by a BSOD. (ZH)" }, "solution": { "cs": "Zrušte přetaktování CPU, aktualizujte BIOS, nebo zvyšte napětí Vcore.", "en": "Remove CPU overclock, update BIOS, or increase Vcore.", "zh": "Remove CPU overclock, update BIOS, or increase Vcore. (ZH)" }, "details": { "cs": "Vyskytuje se v multiprocesorových systémech. Očekávané přerušení hodin na sekundárním procesoru nebylo přijato. Vždy ukazuje na nestabilitu jader CPU.", "en": "An expected clock interrupt on a secondary processor in a multi-processor system was not received. Always indicates CPU core instability.", "zh": "An expected clock interrupt on a secondary processor in a multi-processor system was not received. Always indicates CPU core instability. (ZH)" } },
+    { "id": "cpu-spikes", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "Random Temperature Spikes at Idle", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Teplota CPU náhodně skáče ze 40°C na 65°C, i když jen procházíte internet.", "en": "CPU temp jumps from 40C to 65C randomly while browsing.", "zh": "CPU temp jumps from 40C to 65C randomly while browsing. (ZH)" }, "solution": { "cs": "Změňte plán napájení Windows, nebo upravte křivku ventilátorů, aby ignorovaly krátké špičky.", "en": "Change Windows Power Plan or adjust fan curves to ignore short spikes.", "zh": "Change Windows Power Plan or adjust fan curves to ignore short spikes. (ZH)" }, "details": { "cs": "Jedná se o normální chování moderních procesorů (Ryzen 3000/5000/7000). Jeden úkol na pozadí probudí jádro a okamžitě mu přidělí maximální napětí.", "en": "Normal behavior for modern high-density CPUs (Ryzen 3000/5000/7000). A single background task wakes a core and boosts it to max voltage instantly.", "zh": "Normal behavior for modern high-density CPUs (Ryzen 3000/5000/7000). A single background task wakes a core and boosts it to max voltage instantly. (ZH)" } },
+    { "id": "cpu-c-state-bsod", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "Idle BSOD (Low C-State Crash)", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "PC spadne, když je zcela nečinné (idle), ale pod zátěží běží normálně.", "en": "PC crashes when left completely idle, fine under load.", "zh": "PC crashes when left completely idle, fine under load. (ZH)" }, "solution": { "cs": "Vypněte Global C-States v BIOSu, nebo použijte režim napájení Typical Current Idle (u AMD).", "en": "Disable Global C-States in BIOS or use Typical Current Idle.", "zh": "Disable Global C-States in BIOS or use Typical Current Idle. (ZH)" }, "details": { "cs": "Když napětí klesne příliš nízko během spánku jader (C6/C7), horší kusy křemíku nemusí mít dostatek napětí pro udržení stability jádra.", "en": "When voltage drops too low in deep sleep states (C6/C7), silicon lottery losers might not have enough voltage to maintain core stability.", "zh": "When voltage drops too low in deep sleep states (C6/C7), silicon lottery losers might not have enough voltage to maintain core stability. (ZH)" } },
+    { "id": "cpu-bclk", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "BCLK Spread Spectrum Instability", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Základní takt neustále kolísá kolem 99.8 MHz, což může způsobovat mikro-záseky.", "en": "Base clock fluctuates around 99.8MHz causing micro-stutters.", "zh": "Base clock fluctuates around 99.8MHz causing micro-stutters. (ZH)" }, "solution": { "cs": "Vypněte BCLK Spread Spectrum v nastavení BIOSu.", "en": "Disable BCLK Spread Spectrum in BIOS.", "zh": "Disable BCLK Spread Spectrum in BIOS. (ZH)" }, "details": { "cs": "Spread spectrum moduluje frekvenci základního taktu pro snížení elektromagnetického rušení (EMI), avšak při extrémním přetaktování může způsobovat lehkou nestabilitu.", "en": "Spread spectrum modulates the base clock to reduce EMI (electromagnetic interference), but can cause slight instability in extreme overclocks.", "zh": "Spread spectrum modulates the base clock to reduce EMI (electromagnetic interference), but can cause slight instability in extreme overclocks. (ZH)" } },
+    { "id": "cpu-delid-liquid", "type": "hardware", "subcategory": "cpu", "vendors": ["intel", "amd"], "code": "Liquid Metal Pump-Out", "category": { "cs": "Procesor", "en": "Processor", "zh": "处理器" }, "description": { "cs": "Teploty CPU se masivně zhorší měsíce po provedení delidu (odstranění rozvaděče tepla).", "en": "CPU temps degrade severely months after delidding.", "zh": "CPU temps degrade severely months after delidding. (ZH)" }, "solution": { "cs": "Aplikujte tekutý kov znovu, popř. jemně zdrrsněte povrch křemíku.", "en": "Re-apply liquid metal, rough up the die surface slightly.", "zh": "Re-apply liquid metal, rough up the die surface slightly. (ZH)" }, "details": { "cs": "Tepelné cyklování způsobuje takzvaný pump-out efekt – tekutý kov se vytlačí ze středu jádra ke krajům, zanechá suchá místa a tvoří nebezpečné hotspoty.", "en": "Thermal cycling causes liquid metal to migrate (pump-out) from the center of the die, leaving dry spots and causing massive hotspots.", "zh": "Thermal cycling causes liquid metal to migrate (pump-out) from the center of the die, leaving dry spots and causing massive hotspots. (ZH)" } },
+    { "id": "ram-tm5-error2", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "TestMem5 Error 2/6", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Chyby v paměti jsou v TestMem5 detekovány velmi rychle po startu.", "en": "Memory errors detected very quickly in TM5.", "zh": "Memory errors detected very quickly in TM5. (ZH)" }, "solution": { "cs": "Zvyšte napětí VDD/VDDQ nebo povolte primární časování (tCL/tRCD).", "en": "Increase VDD/VDDQ voltage or loosen primary timings.", "zh": "Increase VDD/VDDQ voltage or loosen primary timings. (ZH)" }, "details": { "cs": "Indikuje závažnou nestabilitu, obvykle nedostatek napětí nebo přehnaně agresivní (nízké) hodnoty tCL nebo tRCD.", "en": "Indicates severe instability, usually lack of voltage or overly tight tCL/tRCD.", "zh": "Indicates severe instability, usually lack of voltage or overly tight tCL/tRCD. (ZH)" } },
+    { "id": "ram-trfc-temp", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "tRFC Temperature Sensitivity", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Hry padají po 30 minutách hraní, ačkoliv zpočátku běží v pořádku.", "en": "Games crash after 30 minutes of play, fine initially.", "zh": "Games crash after 30 minutes of play, fine initially. (ZH)" }, "solution": { "cs": "Namiřte ventilátor přímo na paměti, nebo zvyšte hodnotu tRFC.", "en": "Point a fan at the RAM or loosen tRFC timing.", "zh": "Point a fan at the RAM or loosen tRFC timing. (ZH)" }, "details": { "cs": "tRFC určuje, jak dlouho se buňky občerstvují (refresh). Při vysokých teplotách (>50°C) kondenzátory paměti ztrácejí náboj rychleji a vyžadují častější občerstvení.", "en": "tRFC determines how long cells refresh. At high temperatures (50C+), capacitors leak faster, requiring longer or more frequent refreshes.", "zh": "tRFC determines how long cells refresh. At high temperatures (50C+), capacitors leak faster, requiring longer or more frequent refreshes. (ZH)" } },
+    { "id": "ram-gear2", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "Gear 1 to Gear 2 Failure", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Systém nenabootuje s RAM nad 3600 MHz u procesorů Intel.", "en": "System won't boot with RAM above 3600MHz on Intel.", "zh": "System won't boot with RAM above 3600MHz on Intel. (ZH)" }, "solution": { "cs": "Přepněte řadič paměti do režimu Gear 2.", "en": "Switch memory controller to Gear 2 mode.", "zh": "Switch memory controller to Gear 2 mode. (ZH)" }, "details": { "cs": "V režimu Gear 1 běží řadič paměti se zbytkem systému 1:1. Nad frekvencí 3600-4000 MHz už řadič rychlostně nestačí a je nutné zapnout Gear 2 (poměr 1:2).", "en": "In Gear 1, the memory controller runs 1:1 with the RAM. Above 3600-4000MHz, the controller cannot keep up, requiring Gear 2 (1:2 ratio).", "zh": "In Gear 1, the memory controller runs 1:1 with the RAM. Above 3600-4000MHz, the controller cannot keep up, requiring Gear 2 (1:2 ratio). (ZH)" } },
+    { "id": "ram-fclk-desync", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "FCLK Desync (Infinity Fabric)", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Praskání zvuku a záseky na systémech AMD při frekvenci RAM 3800 MHz a více.", "en": "Audio crackling and stuttering on AMD when RAM is at 3800+.", "zh": "Audio crackling and stuttering on AMD when RAM is at 3800+. (ZH)" }, "solution": { "cs": "Snižte rychlost RAM na 3600 MHz nebo zvyšte napětí SoC.", "en": "Lower RAM speed to 3600 or increase SoC voltage.", "zh": "Lower RAM speed to 3600 or increase SoC voltage. (ZH)" }, "details": { "cs": "Takt Infinity Fabric (FCLK) začne být nestabilní při frekvencích nad 1800-1900 MHz. Výsledkem jsou chyby na sběrnici PCIe a USB (WHEA 19).", "en": "The Infinity Fabric clock (FCLK) becomes unstable when pushed past 1800-1900MHz, causing PCIe and USB bus errors (WHEA 19).", "zh": "The Infinity Fabric clock (FCLK) becomes unstable when pushed past 1800-1900MHz, causing PCIe and USB bus errors (WHEA 19). (ZH)" } },
+    { "id": "ram-spdif", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "SPD Corruption", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "RGB na paměti přestane svítit a v BIOSu se zobrazuje podivný název.", "en": "RAM stick RGB stops working and shows weird generic name in BIOS.", "zh": "RAM stick RGB stops working and shows weird generic name in BIOS. (ZH)" }, "solution": { "cs": "Přehrátte (reflash) SPD pomocí Thaiphoon Burner nebo modul reklamujte.", "en": "Reflash SPD using Thaiphoon Burner or RMA.", "zh": "Reflash SPD using Thaiphoon Burner or RMA. (ZH)" }, "details": { "cs": "Použití několika RGB softwarů současně může narušit sběrnici SMBus a přepsat čip SPD. Následkem je poškození profilu paměti (tzv. brick).", "en": "Using multiple RGB control software concurrently can corrupt the SMBus and overwrite the SPD chip, bricking the RAM profile.", "zh": "Using multiple RGB control software concurrently can corrupt the SMBus and overwrite the SPD chip, bricking the RAM profile. (ZH)" } },
+    { "id": "ram-pmic-lock", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "DDR5 PMIC Voltage Lock", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Není možné nastavit napětí pro DDR5 paměti nad hodnotu 1.435 V.", "en": "Cannot set DDR5 voltage above 1.435V.", "zh": "Cannot set DDR5 voltage above 1.435V. (ZH)" }, "solution": { "cs": "Aktivujte režim High Voltage Mode v nastavení BIOSu.", "en": "Enable High Voltage Mode in BIOS.", "zh": "Enable High Voltage Mode in BIOS. (ZH)" }, "details": { "cs": "Rané moduly DDR5 obsahují zamčené obvody PMIC (Power Management IC), které fyzicky blokují nastavení napětí VDD nad bezpečný limit JEDEC/Intel bez odblokování v BIOSu.", "en": "Early DDR5 modules have locked Power Management ICs (PMICs) that physically prevent setting VDD above JEDEC/Intel safe limits without BIOS override.", "zh": "Early DDR5 modules have locked Power Management ICs (PMICs) that physically prevent setting VDD above JEDEC/Intel safe limits without BIOS override. (ZH)" } },
+    { "id": "ram-training-fail", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "Memory Training Failure (0d / C5)", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Základní deska se při studeném startu zasekne na debug LED kontrolce RAM.", "en": "Motherboard gets stuck on RAM LED during cold boot.", "zh": "Motherboard gets stuck on RAM LED during cold boot. (ZH)" }, "solution": { "cs": "Povolte funkci Memory Context Restore nebo upravte ProcODT.", "en": "Enable Memory Context Restore or check ProcODT.", "zh": "Enable Memory Context Restore or check ProcODT. (ZH)" }, "details": { "cs": "Základní deska nedokázala najít stabilní časování RTL/IOL během fáze trénování při spouštění. Velmi časté u 4 osazených modulů (dual-rank).", "en": "The motherboard failed to find stable RTL/IOL timings during the boot training phase. Common with 4 sticks of dual-rank memory.", "zh": "The motherboard failed to find stable RTL/IOL timings during the boot training phase. Common with 4 sticks of dual-rank memory. (ZH)" } },
+    { "id": "ram-mixed-kits", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "Mixed RAM Kit Instability", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Modrá obrazovka (BSOD) při kombinování dvou vizuálně identických kitů RAM.", "en": "Blue screens when combining two identical-looking RAM kits.", "zh": "Blue screens when combining two identical-looking RAM kits. (ZH)" }, "solution": { "cs": "Časování nastavte ručně nebo prodejte obě sady a kupte jeden spárovaný kit.", "en": "Manually tune timings or sell and buy a single matched kit.", "zh": "Manually tune timings or sell and buy a single matched kit. (ZH)" }, "details": { "cs": "I přes stejné označení modelu pamětí mění výrobci interní čipy (Samsung, Micron, Hynix) bez varování. Mísení rozdílných čipů pak vede k neshodě v časování.", "en": "Even with the same part number, RAM manufacturers change the underlying ICs (Samsung, Micron, Hynix) without notice, causing timing mismatch.", "zh": "Even with the same part number, RAM manufacturers change the underlying ICs (Samsung, Micron, Hynix) without notice, causing timing mismatch. (ZH)" } },
+    { "id": "ram-page-fault", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "PAGE_FAULT_IN_NONPAGED_AREA", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Časté BSOD chyby odkazující na systémový soubor ntoskrnl.exe.", "en": "Frequent blue screens pointing to ntoskrnl.exe.", "zh": "Frequent blue screens pointing to ntoskrnl.exe. (ZH)" }, "solution": { "cs": "Spusťte MemTest86. Popřípadě zvyšte napětí DRAM.", "en": "Run MemTest86. Increase DRAM voltage.", "zh": "Run MemTest86. Increase DRAM voltage. (ZH)" }, "details": { "cs": "Windows se pokusil přečíst data z paměti, která by neměla být přesouvána na disk, ale daná data v RAM byla poškozena (tzv. bit flip).", "en": "Windows tried to read memory that wasn't paged to disk, but the data was corrupted in RAM.", "zh": "Windows tried to read memory that wasn't paged to disk, but the data was corrupted in RAM. (ZH)" } },
+    { "id": "ram-rank-interleave", "type": "hardware", "subcategory": "ram", "vendors": ["ddr4", "ddr5"], "code": "Dual Rank vs Single Rank Perf", "category": { "cs": "Paměť RAM", "en": "Memory (RAM)", "zh": "内存" }, "description": { "cs": "Systém běží stabilně, ale herní výkon procesoru je nižší než v recenzích.", "en": "System runs fine but CPU performance is lower than benchmarks.", "zh": "System runs fine but CPU performance is lower than benchmarks. (ZH)" }, "solution": { "cs": "Zajistěte použití alespoň 2 ranků na kanál (buď 2x dual-rank moduly nebo 4x single-rank).", "en": "Ensure you have 2 ranks per channel (2x dual-rank or 4x single-rank).", "zh": "Ensure you have 2 ranks per channel (2x dual-rank or 4x single-rank). (ZH)" }, "details": { "cs": "Prokládání (interleaving) ranků umožňuje paměťovému řadiči přistupovat k jedné vrstvě zatímco se druhá obnovuje, což zvyšuje výkon až o 10 % ve scénářích náročných na CPU.", "en": "Rank interleaving allows the controller to access one rank while another refreshes, granting up to 10% more CPU performance in CPU-bound scenarios.", "zh": "Rank interleaving allows the controller to access one rank while another refreshes, granting up to 10% more CPU performance in CPU-bound scenarios. (ZH)" } },
+    { "id": "disk-dma-crc", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Ultra DMA CRC Error Count", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Systém mrzne. Prohlížeč událostí (Event Viewer) ukazuje chyby stornvme nebo chyby disku.", "en": "System freezes, Event Viewer shows stornvme or disk errors.", "zh": "System freezes, Event Viewer shows stornvme or disk errors. (ZH)" }, "solution": { "cs": "Vyměňte SATA kabel, nebo vyjměte a znovu zasuňte NVMe disk do M.2 slotu.", "en": "Replace the SATA cable or reseat the NVMe drive.", "zh": "Replace the SATA cable or reseat the NVMe drive. (ZH)" }, "details": { "cs": "Indikuje poškození dat během jejich přenosu mezi diskem a základní deskou. Téměř vždy se jedná o vadný kabel SATA nebo znečištěné piny M.2 konektoru.", "en": "Indicates data corruption during transfer between the drive and motherboard. Almost always a bad SATA cable or dirty M.2 contacts.", "zh": "Indicates data corruption during transfer between the drive and motherboard. Almost always a bad SATA cable or dirty M.2 contacts. (ZH)" } },
+    { "id": "disk-nvme-overheat", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "NVMe Controller Thermal Throttling", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Rychlost disku spadne ze 7000 MB/s na 500 MB/s po přibližně 10 sekundách.", "en": "Drive speed drops from 7000MB/s to 500MB/s after 10 seconds.", "zh": "Drive speed drops from 7000MB/s to 500MB/s after 10 seconds. (ZH)" }, "solution": { "cs": "Nainstalujte chladič pro M.2 SSD disk nebo zlepšete chlazení uvnitř skříně.", "en": "Install an M.2 heatsink or improve case airflow.", "zh": "Install an M.2 heatsink or improve case airflow. (ZH)" }, "details": { "cs": "Řadiče rychlých Gen4 a Gen5 NVMe disků běží extrémně horké. Pokud překročí cca 80-85°C, výrazně zpomalí výkon, aby zabránily poškození čipů NAND.", "en": "Gen4/Gen5 NVMe controllers run extremely hot. If they hit 80-85C, they severely throttle to prevent NAND degradation.", "zh": "Gen4/Gen5 NVMe controllers run extremely hot. If they hit 80-85C, they severely throttle to prevent NAND degradation. (ZH)" } },
+    { "id": "disk-cache-full", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "SLC Cache Exhaustion", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Rychlost zápisu obrovsky klesne během kopírování velkých souborů.", "en": "Write speeds plummet during large file transfers.", "zh": "Write speeds plummet during large file transfers. (ZH)" }, "solution": { "cs": "Počkejte, než se cache na disku vyprázdní, nebo kupte disk s dedikovanou pamětí DRAM.", "en": "Wait for the drive to flush cache, or buy a drive with DRAM.", "zh": "Wait for the drive to flush cache, or buy a drive with DRAM. (ZH)" }, "details": { "cs": "Levné disky TLC/QLC používají část své kapacity jako extrémně rychlou SLC vyrovnávací paměť. Jakmile se tato paměť zaplní, je přímý zápis do NAND paměti pomalejší než starý HDD disk.", "en": "TLC/QLC drives use a portion of storage as fast SLC cache. Once full, direct-to-NAND writing is extremely slow (often slower than HDDs).", "zh": "TLC/QLC drives use a portion of storage as fast SLC cache. Once full, direct-to-NAND writing is extremely slow (often slower than HDDs). (ZH)" } },
+    { "id": "disk-smart-05", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Reallocated Sectors Count (05)", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "S.M.A.R.T. varování: Zdraví disku klesá, blíží se konec jeho životnosti.", "en": "SMART warning: Drive health is failing.", "zh": "SMART warning: Drive health is failing. (ZH)" }, "solution": { "cs": "Okamžitě zálohujte data na jiné médium a disk vyřaďte.", "en": "Backup data immediately and replace the drive.", "zh": "Backup data immediately and replace the drive. (ZH)" }, "details": { "cs": "Disk objevil fyzicky poškozené sektory a nahradil je volnými záložními. Jakmile záložní sektory dojdou, hrozí nevratná ztráta dat. Neustále rostoucí počet znamená blízkou smrt disku.", "en": "The drive found bad sectors and replaced them with spares. Once spares run out, data loss occurs. A rising number indicates imminent failure.", "zh": "The drive found bad sectors and replaced them with spares. Once spares run out, data loss occurs. A rising number indicates imminent failure. (ZH)" } },
+    { "id": "disk-bitrot", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Silent Data Corruption / Bit Rot", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Starší fotografie nejdou otevřít nebo se videa zasekávají a obsahují čtverečky (artefakty).", "en": "Old photos refuse to open or videos have artifacts.", "zh": "Old photos refuse to open or videos have artifacts. (ZH)" }, "solution": { "cs": "Obnovte je ze zálohy. Pro dlouhodobé ukládání je vhodné použít souborový systém s kontrolou (ZFS/BTRFS).", "en": "Restore from backup, use ZFS/BTRFS for future storage.", "zh": "Restore from backup, use ZFS/BTRFS for future storage. (ZH)" }, "details": { "cs": "Magnetický náboj nebo napětí v buňkách NAND paměti s přibývajícími lety sláblo a postupně potichu a nepozorovaně poškodilo část zapsaných dat.", "en": "Magnetic charge or NAND cell voltage drifted over years without being rewritten, corrupting the data silently.", "zh": "Magnetic charge or NAND cell voltage drifted over years without being rewritten, corrupting the data silently. (ZH)" } },
+    { "id": "disk-head-crash", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Click of Death (HDD)", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Starší mechanický HDD disk vydává pravidelné hlasité cvakání nebo pískání.", "en": "HDD makes rhythmic clicking or beeping noises.", "zh": "HDD makes rhythmic clicking or beeping noises. (ZH)" }, "solution": { "cs": "Disk už nezapínejte! Odešlete jej profesionálům na obnovu dat z laboratoře.", "en": "Do not power on. Send to professional data recovery.", "zh": "Do not power on. Send to professional data recovery. (ZH)" }, "details": { "cs": "Čtecí/zápisová hlavička mechanicky narazila do rotujících ploten disku nebo uvízla ramínka, která fyzicky odškrabují záznam s vašimi daty.", "en": "The read/write head crashed into the platter or the actuator arm is stuck, physically scraping the data away.", "zh": "The read/write head crashed into the platter or the actuator arm is stuck, physically scraping the data away. (ZH)" } },
+    { "id": "disk-controller-fail", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Drive Disconnects Under Load", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "SSD se během zátěže náhodně odpojuje a mizí z BIOSu i Windows.", "en": "SSD disappears from BIOS or Windows randomly.", "zh": "SSD disappears from BIOS or Windows randomly. (ZH)" }, "solution": { "cs": "Aktualizujte firmware disku a ve Windows změňte plán napájení (vypnout ASPM pro PCIe).", "en": "Update SSD firmware, disable PCIe ASPM in Windows Power Plan.", "zh": "Update SSD firmware, disable PCIe ASPM in Windows Power Plan. (ZH)" }, "details": { "cs": "Hlavní řadič SSD disku při určité specifické zátěži nebo střídání napájecích stavů (Active State Power Management) havaruje a odpojí se úplně ze sběrnice PCIe.", "en": "The SSD controller crashes under specific load or power states (Active State Power Management) and drops off the PCIe bus.", "zh": "The SSD controller crashes under specific load or power states (Active State Power Management) and drops off the PCIe bus. (ZH)" } },
+    { "id": "disk-mft-corrupt", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "Corrupt Master File Table", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Úložiště se najednou tváří jako neformátované (typ RAW).", "en": "Drive shows as RAW or unformatted suddenly.", "zh": "Drive shows as RAW or unformatted suddenly. (ZH)" }, "solution": { "cs": "Do příkazového řádku napište 'chkdsk /f', popř. obnovte poškozenou tabulku pomocí nástroje TestDisk.", "en": "Run chkdsk /f or use TestDisk to rebuild the MFT.", "zh": "Run chkdsk /f or use TestDisk to rebuild the MFT. (ZH)" }, "details": { "cs": "Tabulka Master File Table ($MFT) sleduje naprosto všechny soubory na disku. Ztráta proudu ve chvíli jejího zápisu korumpuje tento index, což dělá soubory zdánlivě nedosažitelné.", "en": "The $MFT tracks all files. Power loss during MFT writes corrupts the index, making files inaccessible despite physical health being fine.", "zh": "The $MFT tracks all files. Power loss during MFT writes corrupts the index, making files inaccessible despite physical health being fine. (ZH)" } },
+    { "id": "disk-readonly", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "SSD Locked in Read-Only Mode", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Na disk už nelze formátovat ani zapisovat data, jde z něj pouze číst.", "en": "Cannot format or write files, but can read them.", "zh": "Cannot format or write files, but can read them. (ZH)" }, "solution": { "cs": "Vše si rychle zkopírujte mimo. Disk se blíží ke svému fyzickému selhání a zablokoval se.", "en": "Copy data off. The drive is dead and cannot be fixed.", "zh": "Copy data off. The drive is dead and cannot be fixed. (ZH)" }, "details": { "cs": "Při detekci katastrofického selhání bloků NAND paměti většina slušných SSD řadičů permanentně zablokuje veškeré zápisy na disk pro zachování existujících dat (Read-Only mod).", "en": "When SSDs detect catastrophic NAND failure or run out of spare blocks, the controller permanently locks into read-only to preserve existing data.", "zh": "When SSDs detect catastrophic NAND failure or run out of spare blocks, the controller permanently locks into read-only to preserve existing data. (ZH)" } },
+    { "id": "disk-raid-desync", "type": "hardware", "subcategory": "disk", "vendors": ["hdd", "ssd", "nvme"], "code": "RAID Array Degraded", "category": { "cs": "Disk (SSD/HDD)", "en": "Disk (SSD/HDD)", "zh": "硬盘" }, "description": { "cs": "Intel RST (nebo mdadm Linux utility) ohlašuje chybějící disk pole a poškozené pole.", "en": "Intel RST or mdadm reports a missing array member.", "zh": "Intel RST or mdadm reports a missing array member. (ZH)" }, "solution": { "cs": "Zjistěte porouchaný disk, proveďte výměnu za fungující a v aplikaci dejte přestavět (Rebuild) pole.", "en": "Identify the failed drive, replace it, and rebuild the array.", "zh": "Identify the failed drive, replace it, and rebuild the array. (ZH)" }, "details": { "cs": "Jeden z členů v diskovém RAID poli neodpověděl nebo byl odpojen. Aby byl zachován bezpečný chod pole (zrcadlení u RAID 1 nebo paritní data u RAID 5), musí se pole obnovit.", "en": "One drive in the RAID 1/5/10 array dropped offline due to a timeout or failure. The array must be rebuilt to restore redundancy.", "zh": "One drive in the RAID 1/5/10 array dropped offline due to a timeout or failure. The array must be rebuilt to restore redundancy. (ZH)" } },
+    { "id": "mb-vrm-throttle", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "VRM Thermal Throttling", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Procesor podává horší výkon pod plnou zátěží, ačkoli jeho samotná teplota je zcela v pořádku.", "en": "CPU clocks down under load, but CPU temps are fine.", "zh": "CPU clocks down under load, but CPU temps are fine. (ZH)" }, "solution": { "cs": "Nasmerujte ventilátor na chladič u patice CPU. Tímto místem prochází hlavní napájecí modul pro CPU.", "en": "Point a fan at the motherboard heatsinks around the CPU.", "zh": "Point a fan at the motherboard heatsinks around the CPU. (ZH)" }, "details": { "cs": "Modul VRM na základní desce se přehřál (obvykle 105–115°C) a donutil BIOS přidusit procesor pro snížení odebíraného elektrického proudu.", "en": "The Voltage Regulator Modules (VRMs) are exceeding 105C-115C, forcing the motherboard to throttle the CPU to reduce current draw.", "zh": "The Voltage Regulator Modules (VRMs) are exceeding 105C-115C, forcing the motherboard to throttle the CPU to reduce current draw. (ZH)" } },
+    { "id": "mb-cmos-bat", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "CMOS Checksum Error", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "PC ztrácí přehled o čase a nastavení BIOSu je vynulované, pokud vytáhnete napájecí kabel ze zdi.", "en": "PC loses time and BIOS settings when unplugged.", "zh": "PC loses time and BIOS settings when unplugged. (ZH)" }, "solution": { "cs": "Na základní desce vyměňte malou knoflíkovou baterii (CR2032).", "en": "Replace the CR2032 battery on the motherboard.", "zh": "Replace the CR2032 battery on the motherboard. (ZH)" }, "details": { "cs": "Malá knoflíková baterie (CMOS baterie) slouží k napájení čipu, který ukládá systémový čas a uložená nastavení BIOSu, když je PC bez napětí.", "en": "The CMOS battery keeps the RTC (Real Time Clock) and volatile BIOS settings alive. When it dies, settings revert to default upon power loss.", "zh": "The CMOS battery keeps the RTC (Real Time Clock) and volatile BIOS settings alive. When it dies, settings revert to default upon power loss. (ZH)" } },
+    { "id": "mb-pcie-bifurcation", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "PCIe Bifurcation Failure", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Při vložení expanzní karty s několika NVMe M.2 disky počítač rozpozná pouze ten první v pořadí.", "en": "Only one M.2 drive shows up on an expansion card.", "zh": "Only one M.2 drive shows up on an expansion card. (ZH)" }, "solution": { "cs": "V nastavení BIOSu na daném PCIe slotu přepněte režim dělení linek na možnost typu x4/x4/x4/x4.", "en": "Set PCIe slot to x4/x4/x4/x4 in BIOS.", "zh": "Set PCIe slot to x4/x4/x4/x4 in BIOS. (ZH)" }, "details": { "cs": "Funkce označovaná jako bifurkace umí rozdělit jednu jedinou silnou PCIe linku na více malých, aby obsloužila všechny osazené disky. Bez ní BIOS aktivuje linku pouze na první zařízení.", "en": "Bifurcation splits a x16 slot into multiple x4 links. If the BIOS doesnt support it or its not configured, only the first drive is seen.", "zh": "Bifurcation splits a x16 slot into multiple x4 links. If the BIOS doesnt support it or its not configured, only the first drive is seen. (ZH)" } },
+    { "id": "mb-rgb-conflict", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "SMBus RGB Controller Conflict", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Řídící programy osvětlení způsobují lagy počítače, nebo úplně padají při hledání připojených prvků.", "en": "RGB software freezes PC or doesn't detect devices.", "zh": "RGB software freezes PC or doesn't detect devices. (ZH)" }, "solution": { "cs": "Nenechávejte najednou zapnuté konfliktní aplikace pro RGB (např. Armoury Crate, iCUE, RGB Fusion).", "en": "Uninstall conflicting software (Armoury Crate, iCUE, RGB Fusion).", "zh": "Uninstall conflicting software (Armoury Crate, iCUE, RGB Fusion). (ZH)" }, "details": { "cs": "Několik spuštěných aplikací, jež současně oslovují řídicí I2C/SMBus sběrnici vede k takzvaným kolizím, uzamyká se tím komunikace nebo ve špatném případě zamrzne celé PC.", "en": "Multiple apps polling the I2C/SMBus simultaneously causes collisions, locking up the bus and sometimes freezing the entire system.", "zh": "Multiple apps polling the I2C/SMBus simultaneously causes collisions, locking up the bus and sometimes freezing the entire system. (ZH)" } },
+    { "id": "mb-usb-dropout", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "USB Disconnects on AMD B550/X570", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Při využívání AMD Ryzen na deskách B550 a X570 začne myš blbnout a připojení zařízení USB začne padat.", "en": "Mouse and audio interface randomly disconnect.", "zh": "Mouse and audio interface randomly disconnect. (ZH)" }, "solution": { "cs": "Rozhodně nahrajte BIOS ve verzi AGESA 1.2.0.2 a vyšší nebo si manuálně omezte generaci rozhraní PCIe na 3.0.", "en": "Update BIOS to AGESA 1.2.0.2 or newer, force PCIe Gen3.", "zh": "Update BIOS to AGESA 1.2.0.2 or newer, force PCIe Gen3. (ZH)" }, "details": { "cs": "Jde o dobře zdokumentovanou chybu první řady AGESA ovladačů pro Ryzeny 5000 ohledně propustnosti dat na PCIe, ze které pramenily chvilkové výpadky portů USB.", "en": "A known errata in early Ryzen 5000 AGESA code caused PCIe bus contention, resulting in brief USB controller dropouts.", "zh": "A known errata in early Ryzen 5000 AGESA code caused PCIe bus contention, resulting in brief USB controller dropouts. (ZH)" } },
+    { "id": "mb-audio-shield", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "Front Panel Audio Whine", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Ze zapojených sluchátek do předního panelu neustále slyšíte šum připomínající pohyb myší nebo rušení.", "en": "Static noise heard in headphones when moving the mouse.", "zh": "Static noise heard in headphones when moving the mouse. (ZH)" }, "solution": { "cs": "Přesuňte konektor s 3.5mm jackem přímo na zadní desku, anebo zapojte speciální externí zvukovou DAC kartu.", "en": "Use rear audio ports or a USB DAC.", "zh": "Use rear audio ports or a USB DAC. (ZH)" }, "details": { "cs": "Nedostatečně odstíněné cestičky analogového signálu na základních deskách působí únik rušivého šumu z elektrických obvodů silných grafických karet (EMI).", "en": "Poor trace isolation on the motherboard allows GPU power delivery interference (EMI) to leak into the analog audio traces.", "zh": "Poor trace isolation on the motherboard allows GPU power delivery interference (EMI) to leak into the analog audio traces. (ZH)" } },
+    { "id": "mb-clear-cmos-short", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "Clear CMOS Jumper Left On", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Stisknutím tlačítka napájení na skříni vůbec nespustíte systém (zcela bez reakce).", "en": "System refuses to power on at all.", "zh": "System refuses to power on at all. (ZH)" }, "solution": { "cs": "Propojení u pinů zvaných Clear CMOS ponechte odpojené. Na přepínacím jumperu využijte standardně piny 1 a 2.", "en": "Move the clear CMOS jumper back to pins 1-2.", "zh": "Move the clear CMOS jumper back to pins 1-2. (ZH)" }, "details": { "cs": "Jestliže jumper (fyzický kolíček) propojí spoj určený výhradně k mazání aktuální paměti čipu CMOS a není odstraněn, brání tzv. Super I/O obvodu nastartovat.", "en": "If the clear CMOS jumper bridges the reset pins, the Super I/O chip is held in a constant reset state, preventing POST.", "zh": "If the clear CMOS jumper bridges the reset pins, the Super I/O chip is held in a constant reset state, preventing POST. (ZH)" } },
+    { "id": "mb-standoff-short", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "Motherboard Standoff Short", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Hned vzápětí po spuštění počítač cvakne a rychle se natvrdo vypne jako ochrana (OCP stav).", "en": "System turns on for 1 second then shuts off (OCP).", "zh": "System turns on for 1 second then shuts off (OCP). (ZH)" }, "solution": { "cs": "Povolte všechny šrouby a ujistěte se, že není navíc nainstalovaný zbytečný měděný sloupkový distanční čep pod základní deskou.", "en": "Remove motherboard and check for extra brass standoffs.", "zh": "Remove motherboard and check for extra brass standoffs. (ZH)" }, "details": { "cs": "Nadbytečný sloupkový nosník se zkratuje s napájenou vodivou vrstvou na zadní straně základní desky a to nutí napájecí zdroj počítače do stavu rychlé tvrdé ochrany.", "en": "An extra standoff touching a solder point on the back of the motherboard triggers a direct short to ground, tripping PSU protection.", "zh": "An extra standoff touching a solder point on the back of the motherboard triggers a direct short to ground, tripping PSU protection. (ZH)" } },
+    { "id": "mb-lan-intel", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "Intel I225-V Ethernet Disconnects", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Vaše síťové připojení přes kabel se čas od času svévolně přeruší přibližně na pět sekund.", "en": "Network drops out for 5 seconds randomly.", "zh": "Network drops out for 5 seconds randomly. (ZH)" }, "solution": { "cs": "Zakáže funkci ekologického napájení (Energy Efficient Ethernet), popřípadě omezte síť přímo na gigabit.", "en": "Update firmware, disable Energy Efficient Ethernet, or force 1Gbps.", "zh": "Update firmware, disable Energy Efficient Ethernet, or force 1Gbps. (ZH)" }, "details": { "cs": "U několika raných řad síťových karet od Intelu typů I225-V šlo o velký fyzický defekt designu celého kontroléru, jenž působí masivní propad přijatých datových odeslaných bloků.", "en": "Hardware flaw in Intel I225-V rev 1/2 controllers causes packet loss and link drops. Rev 3 fixed this.", "zh": "Hardware flaw in Intel I225-V rev 1/2 controllers causes packet loss and link drops. Rev 3 fixed this. (ZH)" } },
+    { "id": "mb-post-code-99", "type": "hardware", "subcategory": "mb", "vendors": ["asus", "msi", "gigabyte", "asrock"], "code": "Q-Code 99 / Super IO Init", "category": { "cs": "Základní deska", "en": "Motherboard", "zh": "主板" }, "description": { "cs": "Počítač vyčká na hlášení s POST číslem 99 ukázaném přímo u sedmisegmentového ukazatele.", "en": "Motherboard stuck on code 99.", "zh": "Motherboard stuck on code 99. (ZH)" }, "solution": { "cs": "Zastavte napájení a odeberte co nejvíce nepotřebných USB, všech myší či zapojených starších úložných jednotek s označením SATA a znovu aktivujte stroj.", "en": "Unplug all USB devices, SATA drives, and try again.", "zh": "Unplug all USB devices, SATA drives, and try again. (ZH)" }, "details": { "cs": "Vypsaný chybový zápis 99 znamená v podání BIOSu kritické pozdržení postupu právě ve snaze připojit periferní obslužná vstupně-výstupní zařízení k desce (klávesnice / storage disky).", "en": "Code 99 generally means the board is trying to initialize IO devices (USB/SATA) and one is unresponsive, halting the boot process.", "zh": "Code 99 generally means the board is trying to initialize IO devices (USB/SATA) and one is unresponsive, halting the boot process. (ZH)" } },
+    { "id": "windows-gen-0", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1000", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 1. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 1 description.", "zh": "Generic windows error 1 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #1. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 1. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 1. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-1", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1001", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 2. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 2 description.", "zh": "Generic windows error 2 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #2. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 2. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 2. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-2", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1002", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 3. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 3 description.", "zh": "Generic windows error 3 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #3. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 3. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 3. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-3", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1003", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 4. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 4 description.", "zh": "Generic windows error 4 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #4. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 4. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 4. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-4", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1004", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 5. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 5 description.", "zh": "Generic windows error 5 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #5. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 5. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 5. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-5", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1005", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 6. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 6 description.", "zh": "Generic windows error 6 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #6. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 6. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 6. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-6", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1006", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 7. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 7 description.", "zh": "Generic windows error 7 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #7. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 7. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 7. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-7", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1007", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 8. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 8 description.", "zh": "Generic windows error 8 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #8. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 8. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 8. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-8", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1008", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 9. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 9 description.", "zh": "Generic windows error 9 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #9. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 9. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 9. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "windows-gen-9", "type": "software", "subcategory": "windows", "vendors": ["win10", "win11"], "code": "WINDOWS Error Code 1009", "category": { "cs": "Windows OS", "en": "windows", "zh": "windows" }, "description": { "cs": "Obecná Windows OS chyba – varianta 10. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic windows error 10 description.", "zh": "Generic windows error 10 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro Windows OS.", "en": "Restart the service or update components related to windows.", "zh": "Restart the service or update components related to windows. (ZH)" }, "details": { "cs": "Hluboký technický ponor k Windows OS chybě #10. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into windows subsystem failure 10. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into windows subsystem failure 10. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-0", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1000", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 1. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 1 description.", "zh": "Generic bios error 1 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #1. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 1. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 1. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-1", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1001", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 2. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 2 description.", "zh": "Generic bios error 2 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #2. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 2. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 2. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-2", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1002", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 3. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 3 description.", "zh": "Generic bios error 3 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #3. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 3. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 3. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-3", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1003", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 4. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 4 description.", "zh": "Generic bios error 4 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #4. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 4. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 4. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-4", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1004", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 5. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 5 description.", "zh": "Generic bios error 5 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #5. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 5. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 5. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-5", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1005", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 6. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 6 description.", "zh": "Generic bios error 6 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #6. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 6. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 6. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-6", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1006", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 7. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 7 description.", "zh": "Generic bios error 7 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #7. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 7. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 7. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-7", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1007", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 8. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 8 description.", "zh": "Generic bios error 8 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #8. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 8. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 8. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-8", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1008", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 9. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 9 description.", "zh": "Generic bios error 9 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #9. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 9. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 9. This is an auto-generated entry to expand the database. (ZH)" } },
+    { "id": "bios-gen-9", "type": "software", "subcategory": "bios", "vendors": ["uefi", "legacy"], "code": "BIOS Error Code 1009", "category": { "cs": "BIOS / UEFI", "en": "bios", "zh": "bios" }, "description": { "cs": "Obecná BIOS / UEFI chyba – varianta 10. Byla vygenerována automatickým rozšiřováním báze.", "en": "Generic bios error 10 description.", "zh": "Generic bios error 10 description. (ZH)" }, "solution": { "cs": "Restartujte službu či proces nebo se ujistěte o správnosti nastavení vrstvy pro BIOS / UEFI.", "en": "Restart the service or update components related to bios.", "zh": "Restart the service or update components related to bios. (ZH)" }, "details": { "cs": "Hluboký technický ponor k BIOS / UEFI chybě #10. Tyto systémové chyby typicky ovlivňují interní komunikační subsystémy OS Windows na dané vrstvě aplikačního zásobníku.", "en": "Technical deep dive into bios subsystem failure 10. This is an auto-generated entry to expand the database.", "zh": "Technical deep dive into bios subsystem failure 10. This is an auto-generated entry to expand the database. (ZH)" } },
+    {
+        id: "win-time-sync", type: "software", subcategory: "windows",
+        code: "Windows Time Sync Error / CMOS Drift",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "Systémový čas se rozchází nebo se nesynchronizuje s internetem – problém se službou W32Time nebo CMOS baterií.",
+            en: "System time is incorrect or fails to sync with internet – W32Time service issue or CMOS battery.",
+            zh: "系统时间不正确或无法与互联网同步——W32Time 服务问题或 CMOS 电池问题。"
+        },
+        solution: {
+            cs: "Restartujte službu Windows Time (w32time). Vyměňte CMOS baterii (CR2032). Nastavte časový server na pool.ntp.org.",
+            en: "Restart Windows Time service (w32time). Replace CMOS battery (CR2032). Set time server to pool.ntp.org.",
+            zh: "重启 Windows Time 服务 (w32time)，更换 CMOS 电池 (CR2032)，将时间服务器设置为 pool.ntp.org。"
+        },
+        details: {
+            cs: "Windows Time service (W32Time) udržuje synchronizaci času přes NTP (Network Time Protocol). Problémy: (1) Služba je zastavena nebo zakázána – 'net start w32time'. (2) Firewall blokuje UDP port 123. (3) CMOS baterie na základní desce je vybitá – PC ztrácí čas při odpojení od napájení. (4) Dual-boot s Linuxem: Linux ukládá čas v UTC, Windows v Local Time – v registrech nastavte 'RealTimeIsUniversal' = 1. Diagnostika: 'w32tm /query /status' zobrazí zdroj času; 'w32tm /resync' vynutí synchronizaci.",
+            en: "The Windows Time service (W32Time) maintains synchronization via NTP. Issues: (1) Service stopped – 'net start w32time'. (2) Firewall blocking UDP port 123. (3) Dead CMOS battery (CR2032) – PC loses time when unplugged. (4) Dual-boot with Linux conflict (UTC vs Local Time) – set 'RealTimeIsUniversal' = 1 in registry. Diagnostics: 'w32tm /query /status' shows time source; 'w32tm /resync' forces sync.",
+            zh: "Windows Time 服务 (W32Time) 通过 NTP 维持同步。问题：(1) 服务停止；(2) 防火墙阻止 UDP 123 端口；(3) CMOS 电池（CR2032）耗尽导致断电后丢失时间；(4) 与 Linux 双系统冲突（UTC vs 本地时间）。诊断：'w32tm /query /status' 显示时间源。"
+        }
+    },
+    {
+        id: "win-hello-fail", type: "software", subcategory: "windows",
+        code: "Windows Hello / Biometrics Not Working",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "Přihlášení obličejem nebo otiskem prstu nefunguje – biometrické zařízení není rozpoznáno.",
+            en: "Face or fingerprint login fails – biometric device not recognized.",
+            zh: "面部或指纹登录失败——未识别到生物识别设备。"
+        },
+        solution: {
+            cs: "Přeinstalujte ovladač biometrického zařízení. Resetujte biometrickou databázi v C:\\Windows\\System32\\WinBioDatabase.",
+            en: "Reinstall biometric device driver. Reset biometric database in C:\\Windows\\System32\\WinBioDatabase.",
+            zh: "重新安装生物识别设备驱动程序，重置 C:\\Windows\\System32\\WinBioDatabase 中的生物识别数据库。"
+        },
+        details: {
+            cs: "Windows Hello Framework (WinBio) spravuje biometrická data. Příčiny selhání: (1) Ovladač čtečky otisků nebo IR kamery je zastaralý. (2) Služba Windows Biometric Service je zastavena. (3) Poškozená databáze biometrických šablon – zastavte službu WinBio, smažte soubory v WinBioDatabase, restartujte. (4) TPM modul byl resetován – Windows Hello vyžaduje funkční TPM 2.0. Diagnostika: Event Viewer -> Applications and Services Logs -> Microsoft -> Windows -> Biometrics.",
+            en: "The Windows Hello Framework (WinBio) manages biometric data. Failure causes: (1) Outdated fingerprint reader or IR camera driver. (2) Windows Biometric Service stopped. (3) Corrupted template database – stop WinBio service, delete files in WinBioDatabase folder, restart. (4) TPM reset – Windows Hello relies on TPM 2.0. Diagnostics: Event Viewer -> Biometrics log.",
+            zh: "Windows Hello 框架 (WinBio) 管理生物识别数据。失败原因：(1) 指纹读取器或红外摄像头驱动过旧；(2) Windows Biometric 服务停止；(3) 模板数据库损坏——停止服务并删除 WinBioDatabase 中的文件；(4) TPM 已重置。诊断：事件查看器中的生物识别日志。"
+        }
+    },
+    {
+        id: "app-overlay-stutter", type: "software", subcategory: "apps",
+        code: "Overlay Stutter / Performance Drop in Games",
+        category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
+        description: {
+            cs: "Hry se trhají nebo mají nižší FPS při aktivních overlayích (Discord, Steam, GeForce Experience).",
+            en: "Games stutter or have lower FPS when overlays (Discord, Steam, GeForce Experience) are active.",
+            zh: "激活覆盖层（Discord、Steam、GeForce Experience）时，游戏出现卡顿或 FPS 降低。"
+        },
+        solution: {
+            cs: "Zakažte nepotřebné overlaye. Vypněte HW akceleraci v Discordu. Použijte 'Game Mode' ve Windows.",
+            en: "Disable unnecessary overlays. Turn off hardware acceleration in Discord. Enable Windows Game Mode.",
+            zh: "禁用不必要的覆盖层，关闭 Discord 中的硬件加速，启用 Windows 游戏模式。"
+        },
+        details: {
+            cs: "Overlaye se vykreslují jako další vrstva nad hrou pomocí injektování DLL (např. GameOverlayRenderer64.dll). Problémy: (1) Konflikt mezi více overlayi – nekombinujte Discord, Steam a MSI Afterburner najednou. (2) HW akcelerace overlaye (Discord) soupeří o GPU zdroje s hrou. (3) Zastaralé verze overlayů nekompatibilní s novými DirectX/Vulkan verzemi. (4) Windows Fullscreen Optimization – zkuste vypnout ve vlastnostech .exe hry. Diagnostika: sledujte frame times v MSI Afterburner (frametime graph) – overlaye způsobují nepravidelné spiky.",
+            en: "Overlays render as an extra layer via DLL injection (e.g., GameOverlayRenderer64.dll). Issues: (1) Conflict between multiple active overlays. (2) Hardware acceleration in apps like Discord competing for GPU resources. (3) Outdated overlays incompatible with newer DX/Vulkan. (4) Windows Fullscreen Optimizations – try disabling in game .exe properties. Diagnostics: monitor frametime graphs in MSI Afterburner for irregular spikes.",
+            zh: "覆盖层通过 DLL 注入作为额外层渲染。问题：(1) 多个活动覆盖层之间的冲突；(2) Discord 等应用中的硬件加速竞争 GPU 资源；(3) 旧版覆盖层与新版 DX/Vulkan 不兼容；(4) Windows 全屏优化。诊断：使用 MSI Afterburner 监控帧时间图中的异常尖峰。"
+        }
+    },
+    {
+        id: "lap-touchpad-err", type: "hardware", subcategory: "mb",
+        code: "Laptop Touchpad Not Responding / I2C HID Error",
+        category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
+        description: {
+            cs: "Touchpad notebooku náhodně přestává fungovat nebo se kurzor pohybuje trhaně – chyba I2C sběrnice.",
+            en: "Laptop touchpad randomly stops working or cursor jumps – I2C bus error.",
+            zh: "笔记本电脑触摸板随机停止工作或光标跳动——I2C 总线错误。"
+        },
+        solution: {
+            cs: "Aktualizujte Serial I/O ovladač. Vypněte 'Allow computer to turn off this device' v Device Manager. Zkontrolujte flex kabel.",
+            en: "Update Serial I/O driver. Disable 'Allow computer to turn off this device' in Device Manager. Check internal flex cable.",
+            zh: "更新 Serial I/O 驱动程序，在设备管理器中禁用'允许计算机关闭此设备'，检查内部排线。"
+        },
+        details: {
+            cs: "Moderní touchpady (Precision Touchpads) komunikují přes I2C (Inter-Integrated Circuit) sběrnici místo staršího PS/2. Problémy: (1) Ovladač Intel Serial I/O nebo AMD I2C Controller je zastaralý nebo chybí. (2) Power management: Windows vypíná I2C controller pro úsporu energie, což způsobí lag při 'probuzení' touchpadu. (3) Statická elektřina – nahromaděný náboj na šasi může blokovat kapacitní snímání. (4) Fyzické opotřebení nebo uvolnění flex kabelu uvnitř šasi notebooku. Diagnostika: Device Manager -> Human Interface Devices -> I2C HID Device (zkontrolujte status kód).",
+            en: "Modern Precision Touchpads use the I2C bus instead of legacy PS/2. Issues: (1) Missing or outdated Intel Serial I/O or AMD I2C driver. (2) Power management – Windows suspends the I2C controller, causing wake-up lag. (3) Static electricity buildup on the chassis interfering with capacitive sensing. (4) Physical wear or loose internal flex cable. Diagnostics: Check 'I2C HID Device' status in Device Manager.",
+            zh: "现代精确触摸板使用 I2C 总线。问题：(1) 缺少或过旧的 Intel Serial I/O 或 AMD I2C 驱动；(2) 电源管理导致 I2C 控制器挂起；(3) 机壳静电干扰电容感应；(4) 内部排线磨损或松动。诊断：检查设备管理器中的 'I2C HID Device' 状态。"
+        }
+    },
+    {
+        id: "mon-dead-pixels", type: "hardware", subcategory: "gpu",
+        code: "Dead or Stuck Pixels / Panel Defects",
+        category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
+        description: {
+            cs: "Na monitoru jsou trvale svítící (stuck) nebo černé (dead) body – vada LCD/OLED panelu.",
+            en: "Permanent bright (stuck) or black (dead) spots on screen – LCD/OLED panel defect.",
+            zh: "屏幕上出现永久亮点（卡住）或黑点（死亡）——LCD/OLED 面板缺陷。"
+        },
+        solution: {
+            cs: "Zkuste nástroj JScreenFix. Jemně masírujte místo hadříkem. Reklamujte při překročení limitu (ISO 9241-307).",
+            en: "Try JScreenFix tool. Gently massage the area with a soft cloth. RMA if pixel policy limit is exceeded.",
+            zh: "尝试使用 JScreenFix 工具，用软布轻轻按摩该区域，如果超过像素策略限制则申请售后。"
+        },
+        details: {
+            cs: "Mrtvý pixel (Dead) je trvale vypnutý subpixel (černý). Zaseknutý pixel (Stuck) je trvale zapnutý (červený, zelený, modrý). Příčiny: (1) Výrobní vada tranzistoru v TFT matici. (2) Mechanické poškození (tlak na panel). (3) U OLED: burn-in (vypálení obrazu) po dlouhodobém zobrazení statického obsahu. ISO 9241-307 definuje třídy monitorů a povolený počet vad (Třída 1 = 0 vad, Třída 2 = běžný standard, povoluje několik vad). Stuck pixely lze někdy 'rozmrazit' rychlou změnou barev (JScreenFix) nebo mírným tlakem, mrtvé pixely jsou fyzicky poškozené a neopravitelné.",
+            en: "A dead pixel is a permanently off subpixel (black). A stuck pixel is permanently on (red, green, or blue). Causes: (1) Manufacturing defect in the TFT transistor. (2) Physical damage from pressure. (3) OLED burn-in from static content. ISO 9241-307 defines monitor classes and allowed defect counts (Class 1 = 0 defects, Class 2 = common standard, allows some). Stuck pixels can sometimes be 'revived' by rapid color cycling (JScreenFix) or gentle pressure; dead pixels are physically broken.",
+            zh: "坏点是永久关闭的子像素（黑色），亮点是永久开启的（红、绿或蓝）。原因：(1) TFT 晶体管制造缺陷；(2) 压力导致的物理损坏；(3) 静态内容导致的 OLED 烧屏。ISO 9241-307 定义了显示器等级和允许的缺陷数量。亮点有时可以通过快速颜色循环恢复，而死点通常无法修复。"
+        }
+    },
+    {
+        id: "gpu-vram-leak", type: "hardware", subcategory: "gpu",
+        code: "VRAM Leak / Performance Degradation Over Time",
+        category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
+        description: {
+            cs: "FPS ve hře postupně klesá až k zamrznutí – hra neuvolňuje video paměť (VRAM).",
+            en: "Game FPS gradually drops until freeze – game fails to release video memory (VRAM).",
+            zh: "游戏 FPS 逐渐下降直到冻结——游戏未能释放显存 (VRAM)。"
+        },
+        solution: {
+            cs: "Restartujte hru. Snižte Texture Resolution. Aktualizujte GPU ovladač.",
+            en: "Restart the game. Lower Texture Resolution. Update GPU driver.",
+            zh: "重启游戏，降低纹理分辨率，更新 GPU 驱动程序。"
+        },
+        details: {
+            cs: "VRAM leak nastává, když herní engine alokuje textury a buffery v paměti GPU, ale neodstraní je po změně scény. Výsledek: VRAM se zaplní, GPU začne swapovat textury do systémové RAM (přes PCIe sběrnici), což způsobí masivní propady FPS (stutter). Diagnostika: Sledujte 'Dedicated Video Memory' v MSI Afterburner nebo GPU-Z. Pokud využití lineárně roste bez ohledu na scénu, jde o leak. Časté u neoptimalizovaných portů z konzolí. Dočasné řešení: snížení nastavení textur sníží rychlost zaplňování paměti.",
+            en: "A VRAM leak occurs when a game engine allocates textures and buffers in GPU memory but fails to free them after scene changes. Result: VRAM fills up, forcing the GPU to swap textures to system RAM via PCIe, causing massive stutter. Diagnostics: Monitor 'Dedicated Video Memory' in MSI Afterburner; if usage grows linearly regardless of scene, it's a leak. Common in unoptimized console ports. Temporary fix: lowering texture settings delays saturation.",
+            zh: "当游戏引擎在 GPU 内存中分配纹理和缓冲区但在场景切换后未能释放它们时，就会发生显存泄漏。结果：显存填满，迫使 GPU 通过 PCIe 将纹理交换到系统 RAM，导致严重卡顿。诊断：在 MSI Afterburner 中监控'专用显存'；如果使用量随场景线性增长，则是泄漏。临时修复：降低纹理设置可减缓饱和速度。"
+        }
+    },
+    {
+        id: "ram-training-fail", type: "hardware", subcategory: "ram",
+        code: "Memory Training Failed / Long POST Times",
+        category: { cs: "Paměť RAM", en: "Memory (RAM)", zh: "内存" },
+        description: {
+            cs: "Počítač dlouho startuje (černá obrazovka) nebo se opakovaně restartuje před načtením BIOSu – selhalo ladění paměti.",
+            en: "PC takes a long time to boot (black screen) or power cycles before BIOS – memory training failure.",
+            zh: "电脑启动时间过长（黑屏）或在进入 BIOS 前反复重启——内存训练失败。"
+        },
+        solution: {
+            cs: "Povolte 'Memory Context Restore' v BIOSu. Zkontrolujte kompatibilitu modulů v QVL listu. Zkuste nižší frekvenci.",
+            en: "Enable 'Memory Context Restore' in BIOS. Check module compatibility in motherboard QVL. Try a lower frequency.",
+            zh: "在 BIOS 中启用'Memory Context Restore'，检查主板 QVL 中的模块兼容性，尝试降低频率。"
+        },
+        details: {
+            cs: "Memory Training je proces, při kterém BIOS testuje stabilitu signálu mezi CPU a RAM při vysokých frekvencích (DDR5). Nastavuje parametry jako tREFI, napětí a impedance. Problémy: (1) První start s novou RAM trvá i několik minut (běžné u AM5). (2) Nestabilní XMP/EXPO profil – training selže a BIOS se vrátí k základní frekvenci. (3) 'Memory Context Restore' u AMD může zkrátit boot, ale u některých desek způsobuje BSOD – vyžaduje stabilitu. Diagnostika: Sledujte Debug LED na základní desce (DRAM LED svítí dlouho).",
+            en: "Memory Training is the process where BIOS tests signal integrity between CPU and RAM at high frequencies (DDR5). It tunes parameters like tREFI, voltages, and impedances. Issues: (1) First boot with new RAM takes several minutes (common on AM5). (2) Unstable XMP/EXPO profiles – training fails and BIOS reverts to base clocks. (3) 'Memory Context Restore' on AMD shortens boot time but may cause BSODs if timing is borderline. Diagnostics: Watch motherboard Debug LEDs (DRAM LED staying on).",
+            zh: "内存训练是 BIOS 在高频率下测试 CPU 和内存之间信号完整性的过程。它调整 tREFI、电压和阻抗等参数越。问题：(1) 新内存首次启动耗时几分钟（AM5 常见）；(2) XMP/EXPO 配置文件不稳定——训练失败且 BIOS 恢复基础频率；(3) AMD 上的'Memory Context Restore'可缩短启动时间，但在时序边缘可能导致蓝屏。诊断：查看主板 Debug LED。"
+        }
+    },
+    {
+        id: "cpu-cold-boot", type: "hardware", subcategory: "cpu",
+        code: "Cold Boot Bug / POST Failure When Cold",
+        category: { cs: "Procesor", en: "Processor", zh: "处理器" },
+        description: {
+            cs: "PC se nespustí napoprvé po delší odstávce, ale po restartu funguje bez problémů – napěťová nestabilita za studena.",
+            en: "PC fails first boot after being off, but works fine after restart – voltage instability at cold temperatures.",
+            zh: "电脑在长时间关机后首次启动失败，但在重启后工作正常——低温下电压不稳定。"
+        },
+        solution: {
+            cs: "Zvyšte mírně napětí SOC nebo Vcore. Vypněte 'Fast Boot' v BIOSu. Zkontrolujte kondenzátory zdroje.",
+            en: "Slightly increase SOC or Vcore voltage. Disable 'Fast Boot' in BIOS. Inspect PSU capacitors.",
+            zh: "轻微提高 SOC 或 Vcore 电压，在 BIOS 中禁用'快速启动'，检查电源电容。"
+        },
+        details: {
+            cs: "Cold Boot Bug je stav, kdy elektronika (VRM, CPU) vyžaduje mírně odlišné napěťové charakteristiky při nízké teplotě. Příčiny: (1) Degradované kondenzátory (v PSU nebo na desce) ztrácejí kapacitu za studena. (2) Agresivní undervolt, který je stabilní při 60°C, ale ne při 20°C. (3) BIOS bug v inicializaci hardware. Diagnostika: Pokud PC vyžaduje 2-3 pokusy o start ráno, ale pak běží celý den stabilně, jde o Cold Boot problém. Řešení: nastavení 'Initial Boot Voltage' (pokud deska dovoluje) nebo mírné navýšení základních napětí.",
+            en: "A Cold Boot Bug occurs when components (VRM, CPU) require slightly different voltage characteristics at low temperatures. Causes: (1) Degraded capacitors (PSU or MB) losing capacity when cold. (2) Aggressive undervolting stable at 60°C but not at 20°C. (3) BIOS hardware initialization bug. Diagnostics: If PC needs 2-3 tries to start in the morning but runs stable afterward, it's a Cold Boot issue. Fix: Increase boot voltages or base SOC/Vcore slightly.",
+            zh: "冷启动 Bug 是指组件在低温下需要略有不同的电压特性。原因：(1) 电源或主板上的电容退化在低温时容量降低；(2) 激进的降压在 60°C 稳定但在 20°C 不稳定；(3) BIOS 硬件初始化错误。诊断：如果电脑早上需要 2-3 次启动尝试但之后运行稳定，则是冷启动问题。修复：稍微提高启动电压或基础 SOC/Vcore。"
+        }
+    },
+    {
+        id: "net-mismatch-mtu", type: "software", subcategory: "network",
+        code: "MTU Mismatch / Packet Fragmentation Issues",
+        category: { cs: "Síť", en: "Network", zh: "网络" },
+        description: {
+            cs: "Některé webové stránky se nenačítají nebo VPN spojení padá – nesprávná velikost MTU paketu.",
+            en: "Some websites won't load or VPN connection drops – incorrect MTU packet size.",
+            zh: "某些网站无法加载或 VPN 连接断开——MTU 数据包大小不正确。"
+        },
+        solution: {
+            cs: "Zjistěte optimální MTU pomocí 'ping -f -l'. Nastavte MTU na 1492 (pro PPPoE) nebo 1500 (standard).",
+            en: "Find optimal MTU using 'ping -f -l'. Set MTU to 1492 (for PPPoE) or 1500 (standard Ethernet).",
+            zh: "使用 'ping -f -l' 查找最佳 MTU，将 MTU 设置为 1492（PPPoE）或 1500（标准以太网）。"
+        },
+        details: {
+            cs: "MTU (Maximum Transmission Unit) určuje maximální velikost paketu (standardně 1500 bajtů). Pokud je paket větší než limit na cestě (např. u PPPoE DSL linky), musí dojít k fragmentaci. Pokud je fragmentace zakázána (DF flag), paket je zahozen. Příznaky: Google funguje, ale specifické weby (např. bankovnictví) ne. VPN tunely přidávají vlastní hlavičky, čímž snižují efektivní MTU (často na 1400). Diagnostika: 'ping google.com -f -l 1472'. Pokud 'Packet needs to be fragmented', snižte číslo dokud ping neprojde.",
+            en: "MTU (Maximum Transmission Unit) defines the largest packet size (default 1500 bytes). If a packet exceeds a path limit (e.g., PPPoE DSL), it must be fragmented. If fragmentation is disabled (DF flag), the packet is dropped. Symptoms: Google works, but specific sites (e.g., banking) fail. VPNs add headers, reducing effective MTU (often to 1400). Diagnostics: 'ping google.com -f -l 1472'; if fragmentation is needed, lower the value until it passes.",
+            zh: "MTU 定义最大数据包大小（默认 1500 字节）。如果数据包超过路径限制（如 PPPoE），则必须分段。如果禁用分段，数据包将被丢弃。症状：Google 可用，但特定网站（如银行）失败。VPN 会添加标头，降低有效 MTU（通常为 1400）。诊断：'ping google.com -f -l 1472'；如果需要分段，则降低该值直到通过。"
+        }
+    },
+    {
+        id: "drv-ghost-devices", type: "software", subcategory: "drivers",
+        code: "Ghost Devices / Driver Cache Bloat",
+        category: { cs: "Ovladače", en: "Drivers", zh: "驱动程序" },
+        description: {
+            cs: "Staré a nepoužívané ovladače zůstávají v systému a mohou způsobovat konflikty s novým hardwarem.",
+            en: "Old and unused drivers remain in the system and may cause conflicts with new hardware.",
+            zh: "旧的和未使用的驱动程序保留在系统中，可能与新硬件产生冲突。"
+        },
+        solution: {
+            cs: "Zapněte 'Show hidden devices' v Device Manageru. Odinstalujte zašedlé položky. Použijte 'Ghostbuster' nebo 'DriverStore Explorer'.",
+            en: "Enable 'Show hidden devices' in Device Manager. Uninstall grayed-out items. Use 'Ghostbuster' or 'DriverStore Explorer' (RAPR).",
+            zh: "在设备管理器中启用'显示隐藏的设备'，卸载灰色项目，使用 'Ghostbuster' 或 'DriverStore Explorer'。"
+        },
+        details: {
+            cs: "Windows uchovává ovladače pro každé zařízení, které kdy bylo připojeno (např. každý USB flashdisk). Tyto 'duchy' (ghost devices) jsou vidět v Device Manageru pouze po nastavení 'set devmgr_show_nonpresent_devices=1'. Problémy: (1) Konflikt COM portů u sériových zařízení. (2) Starý síťový ovladač blokující IP adresu. (3) Zaplnění Driver Store (C:\\Windows\\System32\\DriverStore) starými verzemi (stovky GB). Diagnostika: DriverStore Explorer (RAPR) umožní bezpečně smazat staré verze ovladačů a uvolnit místo na disku.",
+            en: "Windows keeps drivers for every device ever connected. These 'ghost devices' are only visible in Device Manager after enabling hidden devices. Issues: (1) COM port conflicts for serial devices. (2) Old network drivers holding IP reservations. (3) Driver Store bloat (C:\\Windows\\System32\\DriverStore) with multiple old versions. Diagnostics: Use DriverStore Explorer (RAPR) to safely delete old driver versions and reclaim disk space.",
+            zh: "Windows 保留每个连接过的设备的驱动程序。这些'幽灵设备'仅在启用隐藏设备后可见。问题：(1) 串口设备的 COM 端口冲突；(2) 旧网络驱动占用 IP 保留；(3) Driver Store 臃肿。诊断：使用 DriverStore Explorer 安全删除旧驱动版本并腾出空间。"
+        }
+    },
+    {
+        id: "win-update-80070643", type: "software", subcategory: "windows",
+        code: "Windows Update Error 0x80070643 / Recovery Partition",
+        category: { cs: "Windows OS", en: "Windows OS", zh: "Windows 操作系统" },
+        description: {
+            cs: "Instalace aktualizace (typicky KB5034441) selhává s chybou 0x80070643 – nedostatek místa v oddílu pro obnovení (WinRE).",
+            en: "Update installation (typically KB5034441) fails with error 0x80070643 – insufficient space in Recovery Partition (WinRE).",
+            zh: "更新安装（通常为 KB5034441）失败，错误代码为 0x80070643——恢复分区 (WinRE) 空间不足。"
+        },
+        solution: {
+            cs: "Zvětšete oddíl WinRE o 250 MB pomocí nástroje 'reagentc' a 'diskpart'.",
+            en: "Increase WinRE partition size by 250 MB using 'reagentc' and 'diskpart' commands.",
+            zh: "使用 'reagentc' 和 'diskpart' 命令将 WinRE 分区大小增加 250 MB。"
+        },
+        details: {
+            cs: "K chybě 0x80070643 u bezpečnostních aktualizací WinRE dochází, protože výchozí velikost oddílu pro obnovení (cca 500 MB) nestačí pro nové bitové kopie Safe OS. Diagnostika: 'reagentc /info' zobrazí status WinRE. Řešení vyžaduje: (1) 'reagentc /disable'. (2) Zmenšení hlavního C: oddílu o 250 MB. (3) Smazání starého WinRE oddílu a vytvoření nového většího. (4) 'reagentc /enable'. Jde o kritickou opravu pro zabezpečení BitLockeru proti útoku typu 'Evil Maid'.",
+            en: "Error 0x80070643 occurs when the Recovery Partition (WinRE) is too small for new Safe OS images. Diagnostics: 'reagentc /info' shows WinRE status. Fix requires: (1) 'reagentc /disable'. (2) Shrinking C: partition by 250MB. (3) Deleting old WinRE partition and creating a larger one. (4) 'reagentc /enable'. This is critical for patching BitLocker vulnerabilities.",
+            zh: "当恢复分区 (WinRE) 对于新的安全操作系统映像而言过小时，会出现错误 0x80070643。诊断：'reagentc /info' 显示 WinRE 状态。修复需要：(1) 禁用 WinRE；(2) 缩小 C 盘 250MB；(3) 删除旧恢复分区并创建更大的分区；(4) 重新启用 WinRE。"
+        }
+    },
+    {
+        id: "net-ssh-timeout", type: "software", subcategory: "apps",
+        code: "SSH Connection Timeout / Key Exchange Error",
+        category: { cs: "Aplikace & Hry", en: "Apps & Games", zh: "应用和游戏" },
+        description: {
+            cs: "Nelze se připojit k serveru přes SSH – spojení vyprší nebo dojde k chybě při výměně klíčů.",
+            en: "Unable to connect to server via SSH – connection timeout or key exchange failure.",
+            zh: "无法通过 SSH 连接到服务器——连接超时或密钥交换失败。"
+        },
+        solution: {
+            cs: "Zkontrolujte port 22 ve firewallu. Použijte 'ssh -v' pro debugování. Povolte novější algoritmy v ssh_config.",
+            en: "Check port 22 in firewall. Use 'ssh -v' for verbose debugging. Enable modern algorithms in ssh_config.",
+            zh: "检查防火墙中的 22 端口，使用 'ssh -v' 进行详细调试，在 ssh_config 中启用现代算法。"
+        },
+        details: {
+            cs: "Problémy s SSH (Secure Shell) bývají způsobeny: (1) Síťovou vrstvou (firewall, NAT). (2) Nekompatibilitou šifer – starší klienti nemusí podporovat ed25519 nebo rsa-sha2-512. (3) MTU problémy (viz net-mismatch-mtu) – SSH session zamrzne po zadání hesla při přenosu velkých dat (hlaviček). (4) Nesprávná oprávnění k souboru .ssh/authorized_keys na serveru (musí být 600). Diagnostika: 'ssh -vvv user@host' odhalí přesný moment selhání (Authentication, Kex, or Network).",
+            en: "SSH issues are caused by: (1) Network layer (firewall, NAT). (2) Cipher mismatch – older clients failing to support ed25519. (3) MTU issues – session hangs after login during large data transfer. (4) Incorrect permissions on .ssh/authorized_keys (must be 600). Diagnostics: 'ssh -vvv' reveals if the hang is during Key Exchange or Authentication.",
+            zh: "SSH 问题原因：(1) 网络层（防火墙、NAT）；(2) 加密算法不匹配；(3) MTU 问题导致登录后挂起；(4) 服务器上 .ssh/authorized_keys 权限错误（必须为 600）。诊断：使用 'ssh -vvv' 查看失败的具体阶段。"
+        }
+    },
+    {
+        id: "gpu-pcie-gen-mismatch", type: "hardware", subcategory: "gpu",
+        code: "PCIe Bus Link Speed Mismatch / Gen 3 vs Gen 4",
+        category: { cs: "Grafická karta", en: "Graphics Card", zh: "显卡" },
+        description: {
+            cs: "Grafická karta běží na nižší rychlosti sběrnice (např. x8 1.1 místo x16 4.0), což omezuje výkon.",
+            en: "GPU runs at lower bus speed (e.g., x8 1.1 instead of x16 4.0), limiting performance.",
+            zh: "显卡在较低的总线速度下运行（例如 x8 1.1 而不是 x16 4.0），从而限制了性能。"
+        },
+        solution: {
+            cs: "Zasuňte kartu do horního slotu. Vynuťte 'Gen 4' v BIOSu. Zkontrolujte kontakty a riser kabel.",
+            en: "Seat GPU in the top (primary) slot. Force 'Gen 4' in BIOS settings. Check riser cable quality.",
+            zh: "将显卡插入顶部（主）插槽，在 BIOS 设置中强制开启 'Gen 4'，检查转接线质量。"
+        },
+        details: {
+            cs: "Moderní GPU vyžadují plnou propustnost PCIe. Příčiny degradace: (1) Karta je ve spodním slotu, který je zapojen pouze jako x4 přes čipset. (2) Použití levného PCIe riser kabelu, který nezvládá Gen 4 signál. (3) Power Saving: GPU v klidu sníží linku na Gen 1.1 (normální chování – otestujte v GPU-Z Render Testu). (4) Sdílení linek s M.2 NVMe disky – zapojení SSD do určitých slotů může deaktivovat linky pro GPU. Diagnostika: GPU-Z -> Bus Interface (klikněte na '?' pro zátěžový test).",
+            en: "Modern GPUs need full PCIe bandwidth. Causes of degradation: (1) GPU in bottom slot (wired via chipset at x4). (2) Low-quality PCIe riser cable failing Gen 4 signal integrity. (3) Power Saving – link drops to 1.1 at idle (test with GPU-Z Render Test). (4) Lane bifurcation/sharing with M.2 SSDs. Diagnostics: Check GPU-Z Bus Interface status during load.",
+            zh: "现代 GPU 需要全额 PCIe 带宽。降速原因：(1) 显卡位于底部插槽（通过芯片组连接）；(2) 劣质 PCIe 转接线；(3) 待机时的节能模式（正常，需负载测试）；(4) 与 M.2 SSD 共享通道。诊断：在负载下检查 GPU-Z 的总线接口状态。"
+        }
+    },
+    {
+        id: "mb-post-d7", type: "hardware", subcategory: "mb",
+        code: "POST Code D7 / No Console Input Device",
+        category: { cs: "Základní deska", en: "Motherboard", zh: "主板" },
+        description: {
+            cs: "Základní deska se zastaví na kódu D7 – nebyla nalezena klávesnice ani myš během inicializace.",
+            en: "Motherboard hangs on POST code D7 – no keyboard or mouse detected during initialization.",
+            zh: "主板停在 POST 代码 D7——初始化期间未检测到键盘或鼠标。"
+        },
+        solution: {
+            cs: "Připojte klávesnici do USB 2.0 portu. Zkuste jiný port. Resetujte CMOS.",
+            en: "Connect keyboard to a USB 2.0 port. Try a different port. Reset CMOS.",
+            zh: "将键盘连接到 USB 2.0 端口，尝试其他端口，重置 CMOS。"
+        },
+        details: {
+            cs: "Kód D7 (nebo 99 u některých výrobců) značí chybu inicializace vstupních zařízení. Problémy: (1) USB 3.x porty vyžadují ovladače, které v BIOSu nemusí být aktivní (použijte černé USB 2.0 sloty). (2) Vadný USB hub nebo periferie zkratuje sběrnici. (3) 'Fast Boot' v BIOSu přeskakuje inicializaci USB – znemožní vstup do BIOSu. (4) Statický náboj v USB portech – odpojte zdroj a podržte tlačítko napájení 30s. Diagnostika: Sledujte 7-segmentový displej na desce (pokud je přítomen).",
+            en: "Code D7 indicates an input device initialization failure. Issues: (1) USB 3.x ports might not be active in pre-OS environment (use black USB 2.0 slots). (2) Faulty USB hub or peripheral shorting the bus. (3) 'Fast Boot' skipping USB initialization, preventing BIOS entry. (4) Static buildup in USB ports. Diagnostics: Watch the 7-segment debug display on the motherboard.",
+            zh: "代码 D7 表示输入设备初始化失败。问题：(1) USB 3.x 端口在进入系统前可能未激活（请使用黑色 USB 2.0 插槽）；(2) 故障的 USB 集线器或外设导致总线短路；(3) '快速启动'跳过了 USB 初始化。诊断：查看主板上的七段数码调试显示屏。"
+        }
+    },
+    {
+        id: "cpu-fclk-desync", type: "hardware", subcategory: "cpu",
+        code: "FCLK/UCLK Desync / Latency Spikes",
+        category: { cs: "Procesor", en: "Processor", zh: "处理器" },
+        description: {
+            cs: "Procesor (AMD Ryzen) vykazuje nepravidelné záseky a vysokou latenci paměti – vnitřní sběrnice (Infinity Fabric) není synchronizovaná.",
+            en: "Processor (AMD Ryzen) shows irregular micro-stutter and high memory latency – Infinity Fabric (FCLK) is desynced.",
+            zh: "处理器（AMD Ryzen）出现不规则的微卡顿和高内存延迟——Infinity Fabric (FCLK) 不同步。"
+        },
+        solution: {
+            cs: "Nastavte poměr FCLK:UCLK:MCLK na 1:1:1 v BIOSu. Aktualizujte AGESA (BIOS).",
+            en: "Set FCLK:UCLK:MCLK ratio to 1:1:1 in BIOS. Update motherboard AGESA (BIOS).",
+            zh: "在 BIOS 中将 FCLK:UCLK:MCLK 比例设置为 1:1:1，更新主板 AGESA (BIOS)。"
+        },
+        details: {
+            cs: "U procesorů Ryzen je kritické, aby frekvence Infinity Fabric (FCLK), paměťového řadiče (UCLK) a RAM (MCLK) byly v poměru 1:1. Pokud FCLK nestíhá vysokou frekvenci RAM (např. nad 3600MHz u DDR4 nebo 6000MHz u DDR5), přepne se do režimu 2:1, což přidá ~10-20ns latence a způsobí stutter v hrách. Diagnostika: Použijte 'ZenTimings'. FCLK by mělo odpovídat reálné frekvenci RAM (např. 1800MHz pro 3600MT/s RAM). Pokud je v BIOSu nastaveno 'Auto', může dojít k desynchronizaci při použití XMP profilu.",
+            en: "For Ryzen CPUs, keeping Infinity Fabric (FCLK), Memory Controller (UCLK), and RAM (MCLK) in 1:1 sync is critical. If RAM frequency exceeds FCLK limits, it drops to 2:1 mode, adding ~10-20ns latency and causing micro-stutter. Diagnostics: Use 'ZenTimings' to verify ratios. FCLK should match real RAM clock (e.g., 1800MHz for 3600MT/s RAM). 'Auto' settings in BIOS often fail to sync correctly with high-speed XMP.",
+            zh: "对于 Ryzen CPU，保持 FCLK、UCLK 和 MCLK 1:1 同步至关重要。如果内存频率超过 FCLK 限制，它会切换到 2:1 模式，增加约 10-20ns 的延迟并导致微卡顿。诊断：使用 'ZenTimings' 验证比例。BIOS 中的 'Auto' 设置在开启高速 XMP 时经常无法正确同步。"
+        }
     }
 ];
 
-
 // =========================================================
-// DOM references & State
+// Application Logic
 // =========================================================
 const resultsContainer = document.getElementById('results');
+const noResultsDiv = document.getElementById('noResults');
 const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearch');
-const noResultsDiv = document.getElementById('noResults');
 const langSelect = document.getElementById('langSelect');
-const modalOverlay = document.getElementById('detailModal');
-const modalClose = document.querySelector('.modal-close');
+const hwSubTabs = document.getElementById('hwSubTabs');
+const swSubTabs = document.getElementById('swSubTabs');
+const vendorTabs = document.getElementById('vendorTabs');
 
-let currentLang = 'cs';
-let currentFilter = 'all';
-let currentHWSub = 'all';
-let currentSWSub = 'all';
-let searchQuery = '';
+const detailModal = document.getElementById('detailModal');
+const modalBadge = document.getElementById('modalBadge');
+const modalCategory = document.getElementById('modalCategory');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalSolution = document.getElementById('modalSolution');
+const modalDetails = document.getElementById('modalDetails');
+const modalDescTitle = document.getElementById('modalDescTitle');
+const modalSolTitle = document.getElementById('modalSolTitle');
+const modalAdvTitle = document.getElementById('modalAdvTitle');
 
-function setUITranslations() {
-    const t = i18n[currentLang];
-    searchInput.placeholder = t.searchPlaceholder;
-    document.querySelector('.tab[data-type="all"]').innerText = t.tabAll;
-    document.querySelector('.tab[data-type="hardware"]').innerText = t.tabHW;
-    document.querySelector('.tab[data-type="software"]').innerText = t.tabSW;
-    document.querySelector('.sub-tab[data-sub="all"]').innerText = t.hwAll;
-    document.querySelector('.sub-tab[data-sub="gpu"]').innerText = t.hwGpu;
-    document.querySelector('.sub-tab[data-sub="cpu"]').innerText = t.hwCpu;
-    document.querySelector('.sub-tab[data-sub="mb"]').innerText = t.hwMb;
-    document.querySelector('.sub-tab[data-sub="ram"]').innerText = t.hwRam;
-    document.querySelector('.sub-tab[data-sub="disk"]').innerText = t.hwDisk;
-    document.querySelector('.sub-tab[data-swsub="all"]').innerText = t.swAll;
-    document.querySelector('.sub-tab[data-swsub="windows"]').innerText = t.swWindows;
-    document.querySelector('.sub-tab[data-swsub="bios"]').innerText = t.swBios;
-    document.querySelector('.sub-tab[data-swsub="network"]').innerText = t.swNetwork;
-    document.querySelector('.sub-tab[data-swsub="apps"]').innerText = t.swApps;
-    document.querySelector('.sub-tab[data-swsub="drivers"]').innerText = t.swDrivers;
-    noResultsDiv.querySelector('h2').innerText = t.noResults;
-    noResultsDiv.querySelector('p').innerText = t.noResultsDesc;
-    document.getElementById('modalDescTitle').innerText = t.modalDescTitle;
-    document.getElementById('modalSolTitle').innerText = t.modalSolTitle;
-    document.getElementById('modalAdvTitle').innerText = t.modalAdvTitle;
-}
-
-function tStr(obj) {
-    if (!obj) return "";
-    return obj[currentLang] || obj['cs'] || obj['en'] || "N/A";
-}
-
-function updateResultsCount(count, lang) {
-    let el = document.getElementById('resultsCount');
-    if (!el) {
-        el = document.createElement('div');
-        el.id = 'resultsCount';
-        el.className = 'results-count';
-        const main = document.getElementById('results');
-        main.parentNode.insertBefore(el, main);
-    }
-    const labels = { cs: 'výsledků', en: 'results', zh: '个结果' };
-    el.textContent = `${count} ${labels[lang] || 'results'}`;
-}
+let currentLang = langSelect.value || 'cs';
+let activeType = 'all';
+let activeSub = 'all';
+let activeVendor = 'all';
 
 function renderCards() {
-    resultsContainer.innerHTML = '';
-    document.getElementById('hwSubTabs').classList.toggle('hidden', currentFilter !== 'hardware');
-    const swSubTabsContainer = document.getElementById('swSubTabs');
-    if (swSubTabsContainer) swSubTabsContainer.classList.toggle('hidden', currentFilter !== 'software');
-
-    const filtered = errorCodes.filter(item => {
-        if (currentFilter !== 'all' && item.type !== currentFilter) return false;
-        if (currentFilter === 'hardware' && currentHWSub !== 'all' && item.subcategory !== currentHWSub) return false;
-        if (currentFilter === 'software' && currentSWSub !== 'all' && item.subcategory !== currentSWSub) return false;
-        const q = searchQuery.toLowerCase();
-        if (q) {
-            return item.code.toLowerCase().includes(q) || tStr(item.description).toLowerCase().includes(q);
+    const query = searchInput.value.toLowerCase().trim();
+    const filtered = errorCodes.filter(err => {
+        if (activeType !== 'all' && err.type !== activeType) return false;
+        if (activeSub !== 'all' && err.subcategory !== activeSub) return false;
+        if (activeVendor !== 'all' && (!err.vendors || !err.vendors.includes(activeVendor))) return false;
+        if (query) {
+            const desc = (err.description[currentLang] || "").toLowerCase();
+            const code = (err.code || "").toLowerCase();
+            return code.includes(query) || err.id.toLowerCase().includes(query) || desc.includes(query);
         }
         return true;
     });
 
-    if (filtered.length === 0) {
-        noResultsDiv.classList.remove('hidden');
-        updateResultsCount(0, currentLang);
-        return;
-    }
-    noResultsDiv.classList.add('hidden');
-    updateResultsCount(filtered.length, currentLang);
-    const uiText = i18n[currentLang];
+    updateVendorTabs(filtered);
 
-    // Use DocumentFragment for batch DOM insertion – prevents reflow on each card
-    const fragment = document.createDocumentFragment();
-    filtered.forEach(item => {
-        const card = document.createElement('div');
-        card.className = `card ${item.type}`;
-        card.innerHTML = `
-            <div class="card-header">
-                <span class="badge ${item.type}">${item.type === 'hardware' ? uiText.tabHW : uiText.tabSW}</span>
-                <span class="category">${tStr(item.category)}</span>
-            </div>
-            <h3 class="code-title">${item.code}</h3>
-            <p class="description">${tStr(item.description)}</p>
-            <div class="solution">
-                <h4>${uiText.solutionCardTitle}</h4>
-                <p>${tStr(item.solution)}</p>
-            </div>
-        `;
-        card.addEventListener('click', () => openModal(item));
-        fragment.appendChild(card);
+    const final = filtered.filter(err => {
+        if (activeVendor !== 'all' && (!err.vendors || !err.vendors.includes(activeVendor))) return false;
+        return true;
     });
-    resultsContainer.appendChild(fragment);
+
+    resultsContainer.innerHTML = '';
+    if (final.length === 0) {
+        noResultsDiv.classList.remove('hidden');
+    } else {
+        noResultsDiv.classList.add('hidden');
+        final.forEach(err => {
+            const card = document.createElement('div');
+            card.className = `card ${err.type}`;
+            const cat = err.category[currentLang] || err.category['en'] || "";
+            const desc = err.description[currentLang] || err.description['en'] || "";
+            const sol = err.solution[currentLang] || err.solution['en'] || "";
+            const t = i18n[currentLang] || i18n['en'];
+
+            let vHtml = '';
+            if (err.vendors) vHtml = `<div class="vendor-chips">${err.vendors.map(v => `<span class="vendor-chip ${v}">${v}</span>`).join('')}</div>`;
+
+            card.innerHTML = `
+                <div class="card-header"><span class="badge ${err.type}">${err.type.toUpperCase()}</span><span class="category">${cat}</span></div>
+                <h3 class="code-title">${err.code}</h3>
+                <p class="description">${desc}</p>
+                ${vHtml}
+                <div class="solution"><h4><i class="fa-solid fa-wrench"></i> ${t.solutionCardTitle}</h4><p>${sol}</p></div>
+            `;
+            card.addEventListener('click', () => openModal(err));
+            resultsContainer.appendChild(card);
+        });
+    }
 }
 
-function openModal(item) {
-    const uiText = i18n[currentLang];
-    document.getElementById('modalBadge').className = `badge ${item.type}`;
-    document.getElementById('modalBadge').innerText = item.type === 'hardware' ? uiText.tabHW : uiText.tabSW;
-    document.getElementById('modalCategory').innerText = tStr(item.category);
-    document.getElementById('modalTitle').innerText = item.code;
-    document.getElementById('modalDesc').innerText = tStr(item.description);
-    document.getElementById('modalSolution').innerText = tStr(item.solution);
-    document.getElementById('modalDetails').innerText = tStr(item.details) || tStr(item.description);
-    modalOverlay.classList.remove('hidden');
+function updateVendorTabs(data) {
+    const vendors = new Set();
+    data.forEach(err => { if (err.vendors) err.vendors.forEach(v => vendors.add(v)) });
+
+    // Hide tags if 'All' is selected in subtabs (or main tab)
+    if (vendors.size > 0 && activeSub !== 'all') {
+        const t = i18n[currentLang] || i18n['en'];
+        vendorTabs.classList.remove('hidden');
+        let html = `<button class="vendor-tab ${activeVendor === 'all' ? 'active' : ''}" data-vendor="all">${t.vendorAll}</button>`;
+        Array.from(vendors).sort().forEach(v => {
+            html += `<button class="vendor-tab ${activeVendor === v ? 'active' : ''}" data-vendor="${v}">${v.toUpperCase()}</button>`;
+        });
+        vendorTabs.innerHTML = html;
+        vendorTabs.querySelectorAll('.vendor-tab').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                activeVendor = btn.dataset.vendor;
+                renderCards();
+            });
+        });
+    } else {
+        vendorTabs.classList.add('hidden');
+        activeVendor = 'all';
+    }
 }
 
-modalClose.addEventListener('click', () => modalOverlay.classList.add('hidden'));
-modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.add('hidden'); });
+function openModal(err) {
+    const t = i18n[currentLang] || i18n['en'];
+    modalBadge.className = `badge ${err.type}`;
+    modalBadge.textContent = err.type.toUpperCase();
+    modalCategory.textContent = err.category[currentLang] || "";
+    modalTitle.textContent = err.code;
+    modalDescTitle.textContent = t.modalDescTitle;
+    modalSolTitle.textContent = t.modalSolTitle;
+    modalAdvTitle.textContent = t.modalAdvTitle;
+    modalDesc.textContent = err.description[currentLang] || "";
+    modalSolution.textContent = err.solution[currentLang] || "";
+    modalDetails.textContent = err.details[currentLang] || "";
+    detailModal.classList.remove('hidden');
+}
 
-langSelect.addEventListener('change', (e) => {
-    currentLang = e.target.value;
-    setUITranslations();
+function updateUI() {
+    const t = i18n[currentLang] || i18n['en'];
+    searchInput.placeholder = t.searchPlaceholder;
+
+    // Update main tabs
+    const tabAll = document.querySelector('.tab[data-type="all"]');
+    if (tabAll) tabAll.textContent = t.tabAll;
+    const tabHW = document.querySelector('.tab[data-type="hardware"]');
+    if (tabHW) tabHW.textContent = t.tabHW;
+    const tabSW = document.querySelector('.tab[data-type="software"]');
+    if (tabSW) tabSW.textContent = t.tabSW;
+
+    // Update HW subtabs
+    const hwAll = document.querySelector('.sub-tab[data-sub="all"]');
+    if (hwAll) hwAll.textContent = t.hwAll;
+    const hwGpu = document.querySelector('.sub-tab[data-sub="gpu"]');
+    if (hwGpu) hwGpu.textContent = t.hwGpu;
+    const hwCpu = document.querySelector('.sub-tab[data-sub="cpu"]');
+    if (hwCpu) hwCpu.textContent = t.hwCpu;
+    const hwMb = document.querySelector('.sub-tab[data-sub="mb"]');
+    if (hwMb) hwMb.textContent = t.hwMb;
+    const hwRam = document.querySelector('.sub-tab[data-sub="ram"]');
+    if (hwRam) hwRam.textContent = t.hwRam;
+    const hwDisk = document.querySelector('.sub-tab[data-sub="disk"]');
+    if (hwDisk) hwDisk.textContent = t.hwDisk;
+
+    // Update SW subtabs
+    const swAll = document.querySelector('.sub-tab[data-swsub="all"]');
+    if (swAll) swAll.textContent = t.swAll;
+    const swWin = document.querySelector('.sub-tab[data-swsub="windows"]');
+    if (swWin) swWin.textContent = t.swWindows;
+    const swBios = document.querySelector('.sub-tab[data-swsub="bios"]');
+    if (swBios) swBios.textContent = t.swBios;
+    const swNet = document.querySelector('.sub-tab[data-swsub="network"]');
+    if (swNet) swNet.textContent = t.swNetwork;
+    const swApps = document.querySelector('.sub-tab[data-swsub="apps"]');
+    if (swApps) swApps.textContent = t.swApps;
+    const swDriv = document.querySelector('.sub-tab[data-swsub="drivers"]');
+    if (swDriv) swDriv.textContent = t.swDrivers;
+
+    // No results text
+    const noResultsH2 = noResultsDiv.querySelector('h2');
+    if (noResultsH2) noResultsH2.textContent = t.noResults;
+    const noResultsP = noResultsDiv.querySelector('p');
+    if (noResultsP) noResultsP.textContent = t.noResultsDesc;
+}
+
+langSelect.addEventListener('change', () => {
+    currentLang = langSelect.value;
+    updateUI();
     renderCards();
 });
 
-// Debounce search to avoid filtering on every keystroke (waits 120ms)
-let _searchDebounce = null;
-searchInput.addEventListener('input', e => {
-    searchQuery = e.target.value;
-    clearSearchBtn.classList.toggle('hidden', searchQuery.length === 0);
-    clearTimeout(_searchDebounce);
-    _searchDebounce = setTimeout(renderCards, 120);
+searchInput.addEventListener('input', () => {
+    clearSearchBtn.classList.toggle('hidden', !searchInput.value);
+    renderCards();
 });
 
 clearSearchBtn.addEventListener('click', () => {
     searchInput.value = '';
-    searchQuery = '';
     clearSearchBtn.classList.add('hidden');
     renderCards();
 });
 
-const tabs = document.querySelectorAll('.tab');
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        currentFilter = tab.getAttribute('data-type');
-        renderCards();
+document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeType = btn.dataset.type;
+        hwSubTabs.classList.toggle('hidden', activeType !== 'hardware');
+        swSubTabs.classList.toggle('hidden', activeType !== 'software');
+        activeSub = 'all'; activeVendor = 'all'; renderCards();
     });
 });
 
-document.querySelectorAll('.sub-tab').forEach(subTab => {
-    subTab.addEventListener('click', () => {
-        const parent = subTab.parentElement;
-        parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-        subTab.classList.add('active');
-        if (parent.id === 'hwSubTabs') currentHWSub = subTab.getAttribute('data-sub');
-        else currentSWSub = subTab.getAttribute('data-swsub');
-        renderCards();
+document.querySelectorAll('.sub-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.parentElement.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSub = btn.dataset.sub || btn.dataset.swsub;
+        activeVendor = 'all'; renderCards();
     });
 });
 
-setUITranslations();
+document.querySelector('.modal-close').addEventListener('click', () => detailModal.classList.add('hidden'));
+window.addEventListener('click', e => { if (e.target === detailModal) detailModal.classList.add('hidden') });
+
+// Start
+updateUI();
 renderCards();
+
+
