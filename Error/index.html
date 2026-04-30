@@ -52,7 +52,7 @@
             </div>
 
             <div class="sub-tabs hidden" id="hwSubTabs">
-                <button class="sub-tab active" data-sub="all">Všechny HW</button>
+                <button class="sub-tab active" data-sub="all">Všechny</button>
                 <button class="sub-tab" data-sub="gpu">Grafická karta</button>
                 <button class="sub-tab" data-sub="cpu">Procesor</button>
                 <button class="sub-tab" data-sub="mb">Základní deska</button>
@@ -61,12 +61,17 @@
             </div>
 
             <div class="sub-tabs sw-sub-tabs hidden" id="swSubTabs">
-                <button class="sub-tab sw active" data-swsub="all">Vše SW</button>
+                <button class="sub-tab sw active" data-swsub="all">Vše</button>
                 <button class="sub-tab sw" data-swsub="windows">Windows</button>
                 <button class="sub-tab sw" data-swsub="bios">BIOS / UEFI</button>
                 <button class="sub-tab sw" data-swsub="network">Síť</button>
                 <button class="sub-tab sw" data-swsub="apps">Aplikace &amp; Hry</button>
                 <button class="sub-tab sw" data-swsub="drivers">Ovladače</button>
+            </div>
+
+            <!-- Vendor / Type Sub-Sub-Tabs (dynamically shown) -->
+            <div class="vendor-tabs hidden" id="vendorTabs">
+                <!-- populated by JS -->
             </div>
         </header>
 
