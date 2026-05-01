@@ -17,10 +17,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=optional"
-        as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+        as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=optional" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     </noscript>
     <style id="critical-css">
         /* CSS proměnné – nutné pro všechny ostatní styly */
@@ -80,6 +80,8 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--card-shadow);
+            content-visibility: auto;
+            contain-intrinsic-size: auto 150px;
         }
 
         .dash-tile-code {
@@ -550,32 +552,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3><i class="fa-solid fa-bug-slash"></i> Error Explorer</h3>
-                <p>Tvůj ultimátní průvodce světem chybových kódů. Pomáháme vám porozumět vašemu PC od roku 2024.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Rychlé odkazy</h4>
-                <div class="footer-links">
-                    <a href="#dashboard">Dashboard</a>
-                    <a href="#results">Všechny chyby</a>
-                    <a href="#" id="footerReport">Nahlásit chybu</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>System Status</h4>
-                <div class="status-indicator">
-                    <div class="status-dot"></div>
-                    <span>Všechny systémy běží (324+ kódů)</span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 Error Code Explorer. Vytvořeno s vášní pro hardware.
-        </div>
-    </footer>
+
 
     <footer>
         <div class="footer-content">
