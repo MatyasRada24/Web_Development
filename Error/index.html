@@ -254,6 +254,71 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* ── Button FOUC prevention ─────────────────────────────────────── */
+        /* Resets all buttons before index.css loads – prevents default HTML  */
+        /* button appearance flash on the left side during async CSS loading. */
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Outfit', 'Outfit-fallback', sans-serif;
+            font-size: inherit;
+            color: inherit;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Tab buttons – prevent left-align flash */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .tab {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* Filter toggle – hidden initially via justify-content center */
+        .filter-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1.5rem auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* Modal close – prevent icon showing as button */
+        .modal-close {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            justify-content: center;
+        }
+
+        /* Clear search */
+        #clearSearch {
+            color: var(--text-secondary);
+            padding: 0.2rem;
+        }
     </style>
     <link rel="preload" href="index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
