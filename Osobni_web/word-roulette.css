@@ -1,0 +1,114 @@
+/* =============================================
+   SLOVNÍ RULETA V HERO NADPISU
+   „Moje weby jsou vždycky [responzivní / rychlé / unikátní]"
+
+   Slova sedí na plášti 3D válce (6 pozic po 60°, tři slova dvakrát).
+   Slovo stojí --wr-hold vepředu, pak se válec za --wr-move pootočí.
+   Záporné úhly = text přijíždí shora a odjíždí dolů.
+   ============================================= */
+
+:root {
+  --wr-line: 1.25em;    /* výška jednoho řádku rulety */
+  --wr-radius: 1.08em;  /* poloměr válce = (wr-line / 2) / tan(30°) */
+  --wr-bleed: 0.5em;    /* rezerva proti oříznutí perspektivou */
+  --wr-hold: 3s;        /* jak dlouho slovo stojí */
+  --wr-move: 0.55s;     /* jak dlouho trvá otočení */
+}
+
+.word-roulette {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  height: var(--wr-line);
+  perspective: 900px;
+
+  /* rezerva po stranách: perspektiva přední slovo mírně zvětší */
+  padding: 0 var(--wr-bleed);
+  margin: 0 calc(var(--wr-bleed) * -1);
+
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* neviditelné nejdelší slovo drží šířku, aby nadpis neposkakoval */
+.word-roulette__sizer {
+  visibility: hidden;
+  display: block;
+}
+
+.word-roulette__drum {
+  position: absolute;
+  top: 0;
+  left: var(--wr-bleed);
+  right: var(--wr-bleed);
+  height: var(--wr-line);
+  transform-style: preserve-3d;
+  animation: wordDrumSpin calc((var(--wr-hold) + var(--wr-move)) * 6) infinite;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1);
+}
+
+@keyframes wordDrumSpin {
+  0%,     14.085% { transform: rotateX(0deg) }
+  16.667%,30.752% { transform: rotateX(-60deg) }
+  33.333%,47.418% { transform: rotateX(-120deg) }
+  50%,    64.085% { transform: rotateX(-180deg) }
+  66.667%,80.752% { transform: rotateX(-240deg) }
+  83.333%,97.418% { transform: rotateX(-300deg) }
+  100%            { transform: rotateX(-360deg) }
+}
+
+.word-roulette__word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--wr-line);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  backface-visibility: hidden;
+}
+
+/* rozmístění po plášti válce — 360° / 6 pozic = 60° */
+.word-roulette__word:nth-child(1) { transform: rotateX(0deg)   translateZ(var(--wr-radius)) }
+.word-roulette__word:nth-child(2) { transform: rotateX(60deg)  translateZ(var(--wr-radius)) }
+.word-roulette__word:nth-child(3) { transform: rotateX(120deg) translateZ(var(--wr-radius)) }
+.word-roulette__word:nth-child(4) { transform: rotateX(180deg) translateZ(var(--wr-radius)) }
+.word-roulette__word:nth-child(5) { transform: rotateX(240deg) translateZ(var(--wr-radius)) }
+.word-roulette__word:nth-child(6) { transform: rotateX(300deg) translateZ(var(--wr-radius)) }
+
+/* text jen pro čtečky obrazovky */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-roulette {
+    perspective: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0;
+    margin: 0;
+  }
+  .word-roulette__drum {
+    animation: none;
+    transform: none;
+    left: 0;
+    right: 0;
+  }
+  .word-roulette__word {
+    transform: none !important;
+  }
+  .word-roulette__word:not(:first-child) {
+    display: none;
+  }
+}

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primární SEO Meta Tagy -->
+  <title>Matyáš Rada — Tvorba webů na míru po řádku bez WordPressu</title>
+  <meta name="description"
+    content="Jsem Matyáš Rada, 17letý vývojář. Stavím poctivé a bleskově rychlé weby v čistém HTML/CSS/JS bez těžkopádných šablon a bez WordPressu.">
+  <meta name="author" content="Matyáš Rada">
+  <meta name="theme-color" content="#12100D">
+
+  <!-- Favicon (SVG Data URI pro okamžité zobrazení ikonky s amber </> logem) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231E1B16'/><text x='50' y='64' font-size='48' font-weight='bold' font-family='sans-serif' fill='%23F5A524' text-anchor='middle'>&lt;/&gt;</text></svg>">
+
+  <!-- Open Graph / Facebook, LinkedIn & WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Matyáš Rada — Tvorba webů na míru po řádku">
+  <meta property="og:description"
+    content="Ručně psaný HTML/CSS/JS kód bez šablon a bez WordPressu. Blesková rychlost, poctivá práce a přímá komunikace.">
+  <meta property="og:locale" content="cs_CZ">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Matyáš Rada — Tvorba webů na míru po řádku">
+  <meta name="twitter:description"
+    content="Ručně psaný HTML/CSS/JS kód bez šablon a bez WordPressu. Blesková rychlost, poctivá práce a přímá komunikace.">
+
+  <!-- CSS a Google Fonts -->
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Pronásledující kurzor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav" id="navbar">
+    <a href="#" class="nav-logo"><span>&lt;/&gt;</span> Matyáš Rada</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">O mně</a></li>
+      <li><a href="#fit">Pro koho</a></li>
+      <li><a href="#journey">Jak pracuji</a></li>
+      <li><a href="#pricing">Ceník</a></li>
+      <li><a href="#configurator">Kalkulačka</a></li>
+      <li><a href="#work">Práce &amp; reference</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#contact" class="nav-cta">Napsat zprávu</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Otevřít menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero sekce -->
+  <section class="hero" id="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="video_poster.webp" preload="metadata">
+      <source src="coding_video.webm" type="video/webm">
+      <source src="coding_video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content fade-in">
+      <h1>Stavím weby ručně po řádku.<br><span class="accent-text">Moje weby jsou vždycky <span
+            class="word-roulette"><span class="word-roulette__sizer" aria-hidden="true">responzivní.</span><span
+              class="visually-hidden">responzivní, rychlý a unikátní.</span><span class="word-roulette__drum"
+              aria-hidden="true"><span class="word-roulette__word">responzivní.</span><span
+                class="word-roulette__word">rychlý.</span><span class="word-roulette__word">unikátní.</span><span
+                class="word-roulette__word">responzivní.</span><span class="word-roulette__word">rychlý.</span><span
+                class="word-roulette__word">unikátní.</span></span></span></span></h1>
+      <p class="hero-subtitle">
+        Jsem 17 letý studen, kterého baví kreativní tvorba webů a jejich designů.
+        Pokuď ti nevadí mladý pohled, tak se můžem sejít. 🤑
+      </p>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn-primary">Zobrazit ceník <svg width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg></a>
+        <a href="#contact" class="btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>Napsat zprávu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- O mně & Co dělám -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header fade-in section-header--left">
+        <h2 class="section-title">Kdo pro vás kód píše</h2>
+        <p class="section-desc">Přímočará domluva, poctivý kód a vášeň pro technologie</p>
+      </div>
+      <div class="about-grid fade-in stagger-1">
+        <div class="about-image">
+          <div class="about-image-frame">
+            <img src="avatar.webp" alt="Matyáš Rada — Webový vývojář" width="340" height="425" loading="lazy"
+              style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block;">
+          </div>
+        </div>
+        <div class="about-content">
+          <h3>Od PC hardwaru k čistému webovému kódu</h3>
+          <p>Jmenuji se Matyáš Rada, je mi 17 let a studuji na VOŠ ve Varnsdorfu. Web development pro mě není anonymní
+            agentura — každý web píšu osobně od prvního řádku HTML po finální nasazení.</p>
+          <p>Baví mě PC hardware a přetaktování. Rozumím počítačům až po železo a stejný důraz na efektivitu přenáším i
+            do kódu: nepoužívám těžkopádný WordPress ani nabobtnalé šablony. Místo toho dostanete lehký web na míru,
+            který se načte pod 1 sekundu a funguje bleskově i na mobilu nebo starém notebooku. Výroba trvá obvykle 2 až
+            3 týdny.</p>
+          <p>Být na začátku je moje největší výhoda pro vás. Nemám desítky zakázek na běžícím pásu, takže váš projekt
+            dostane moji maximální péči, rychlou komunikaci a férovou cenu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pro koho jsem / nejsem -->
+  <section id="fit">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Pro koho jsem a pro koho ne</h2>
+        <p class="section-desc">Férové vyložení karet hned na začátku</p>
+      </div>
+      <div class="fit-grid fade-in stagger-1">
+        <div class="fit-card fit-yes">
+          <div class="fit-header">
+            <div class="fit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h3>Jsem pro vás, pokud:</h3>
+          </div>
+          <ul class="fit-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>chcete férovou cenu bez agenturních přirážek;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>chcete mluvit přímo s tím, kdo web skutečně píše;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>potřebujete menší web pro živnost, spolek nebo projekt;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>nevadí vám dát šanci začínajícímu vývojáři.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fit-card fit-no">
+          <div class="fit-header">
+            <div class="fit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </div>
+            <h3>Nejsem pro vás, pokud:</h3>
+          </div>
+          <ul class="fit-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>potřebujete web do tří dnů;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>chcete e-shop pro tisíce položek;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>hledáte agenturu se smlouvami na padesát stran;</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>čekáte, že web sám od sebe přivede zákazníky.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jak pracuji -->
+  <section id="journey">
+    <div class="container">
+      <div class="section-header fade-in section-header--left">
+        <h2 class="section-title">Jak probíhá naše spolupráce</h2>
+        <p class="section-desc">Jasný postup krok za krokem bez zbytečné byrokracie</p>
+      </div>
+
+      <div class="journey fade-in" aria-label="Postup práce">
+        <div class="journey-card journey-start">
+          <span class="journey-label">Zadání</span>
+          <h3>Vaše představa</h3>
+          <p>První kontakt a ujasnění cílů</p>
+        </div>
+
+        <div class="journey-path">
+          <svg class="journey-svg" width="240" height="840" viewBox="0 0 240 840" preserveAspectRatio="none" fill="none"
+            aria-hidden="true">
+            <path class="journey-line" d="M120 0 Q40 105 120 210 Q200 315 120 420 Q40 525 120 630 Q200 735 120 828"
+              stroke="url(#journeyGradient)" stroke-width="2" stroke-dasharray="8 8" stroke-linecap="round"
+              fill="none" />
+            <path d="M110 816 L120 830 L130 816" stroke="#A39B8C" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" />
+            <defs>
+              <linearGradient id="journeyGradient" x1="120" y1="0" x2="120" y2="840" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#A39B8C" />
+                <stop offset="1" stop-color="#F5F3EF" />
+              </linearGradient>
+            </defs>
+            <circle class="journey-dot-outer" cx="80" cy="105" r="11" />
+            <circle class="journey-dot" cx="80" cy="105" r="4" />
+            <circle class="journey-dot-outer" cx="160" cy="315" r="11" />
+            <circle class="journey-dot" cx="160" cy="315" r="4" />
+            <circle class="journey-dot-outer" cx="80" cy="525" r="11" />
+            <circle class="journey-dot" cx="80" cy="525" r="4" />
+            <circle class="journey-dot-outer" cx="160" cy="735" r="11" />
+            <circle class="journey-dot" cx="160" cy="735" r="4" />
+          </svg>
+
+          <div class="journey-milestone journey-m1">
+            <span class="journey-num">01</span>
+            <h4>Konzultace &amp; návrh</h4>
+            <p>Probereme obsah, funkce a vzhled webu.</p>
+          </div>
+          <div class="journey-milestone journey-m2">
+            <span class="journey-num">02</span>
+            <h4>Vývoj na míru</h4>
+            <p>Píši čistý HTML/CSS/JS kód od nuly.</p>
+          </div>
+          <div class="journey-milestone journey-m3">
+            <span class="journey-num">03</span>
+            <h4>Ladění &amp; revize</h4>
+            <p>Zapracuji vaše připomínky do dokonalosti.</p>
+          </div>
+          <div class="journey-milestone journey-m4">
+            <span class="journey-num">04</span>
+            <h4>Spuštění &amp; předání</h4>
+            <p>Web nasadím na hosting a zkontroluji SEO.</p>
+          </div>
+        </div>
+
+        <div class="journey-card journey-end">
+          <span class="journey-label">Cíl</span>
+          <h3>Hotový rychlý web</h3>
+          <p>Funkční prezentace, která funguje</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ceník -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Ceník bez skrytých poplatků</h2>
+        <p class="section-desc">Pevné orientační ceny. Platíte pouze za to, co reálně potřebujete.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card fade-in stagger-1" data-project="Jednostránkový web" data-budget="10 000 - 20 000 Kč">
+          <div class="pricing-name">Jednostránkový web</div>
+          <div class="pricing-desc">Ideální pro živnostníky a prezentaci jedné služby</div>
+          <div class="pricing-price">od 10 000 <span>Kč</span></div>
+          <div class="pricing-period">Jednorázová investice</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Design na míru v HTML/CSS/JS</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Načítání pod 1 sekundu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Responzivita pro mobily a tablety</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Kontaktní formulář</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Základní SEO a nasazení</li>
+          </ul>
+          <button class="pricing-btn btn-secondary">Nezávazně poptat</button>
+        </div>
+
+        <div class="pricing-card fade-in stagger-2" data-project="Vícestránkový web" data-budget="20 000 - 35 000 Kč">
+          <div class="pricing-name">Vícestránkový web</div>
+          <div class="pricing-desc">Ucelená prezentace pro firmy, rodinné podniky a spolky</div>
+          <div class="pricing-price">od 20 000 <span>Kč</span></div>
+          <div class="pricing-period">Jednorázová investice</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Vše z jednostránkového webu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>5–8 podstránek na míru</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Pokročilejší struktura a SEO</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>2 kola revizí v ceně</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Podpora při spuštění</li>
+          </ul>
+          <button class="pricing-btn btn-secondary">Nezávazně poptat</button>
+        </div>
+
+        <div class="pricing-card fade-in stagger-3" data-project="Web na míru / Aplikace"
+          data-budget="35 000 - 50 000 Kč">
+          <div class="pricing-name">Web na míru</div>
+          <div class="pricing-desc">Rozsáhlejší projekt se specifickými požadavky</div>
+          <div class="pricing-price">od 35 000 <span>Kč</span></div>
+          <div class="pricing-period">Individuální dohoda</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Vše z vícestránkového webu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Jednoduchá správa obsahu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Vlastní kalkulačky či moduly</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Prioritní konzultace a podpora</li>
+          </ul>
+          <button class="pricing-btn btn-secondary">Nezávazně poptat</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kalkulačka / Konfigurátor projektu -->
+  <section id="configurator">
+    <div class="container">
+      <div class="section-header fade-in section-header--left">
+        <h2 class="section-title">Spočítejte si cenu na míru</h2>
+        <p class="section-desc">Vyberte si parametry webu a získejte okamžitou orientační kalkulaci</p>
+      </div>
+
+      <div class="configurator-card fade-in stagger-1">
+        <div class="configurator-steps">
+          <!-- Krok 1: Typ webu -->
+          <div class="config-step">
+            <div class="config-step-label"><span class="step-num">1</span> Vyberte typ prezentace</div>
+            <div class="config-options" id="calcType">
+              <button type="button" class="config-opt active" data-price="10000" data-time="2–3 týdny"
+                data-name="Jednostránkový web" data-budget="10 000 - 20 000 Kč">
+                <span class="opt-title">Jednostránkový web</span>
+                <span class="opt-sub">od 10 000 Kč</span>
+              </button>
+              <button type="button" class="config-opt" data-price="20000" data-time="3–4 týdny"
+                data-name="Vícestránkový web" data-budget="20 000 - 35 000 Kč">
+                <span class="opt-title">Vícestránkový web</span>
+                <span class="opt-sub">od 20 000 Kč</span>
+              </button>
+              <button type="button" class="config-opt" data-price="35000" data-time="4+ týdnů"
+                data-name="Web na míru / Aplikace" data-budget="35 000 - 50 000 Kč">
+                <span class="opt-title">Web na míru</span>
+                <span class="opt-sub">od 35 000 Kč</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Krok 2: Podklady -->
+          <div class="config-step">
+            <div class="config-step-label"><span class="step-num">2</span> Stav podkladů</div>
+            <div class="config-options" id="calcDocs">
+              <button type="button" class="config-opt active" data-extra="0" data-name="Mám vlastní texty i podklady">
+                <span class="opt-title">Mám vše připravené</span>
+                <span class="opt-sub">Vlastní texty a fotky</span>
+              </button>
+              <button type="button" class="config-opt" data-extra="2000"
+                data-name="Potřebuji pomoci s texty / podklady">
+                <span class="opt-title">Potřebuji pomoci</span>
+                <span class="opt-sub">+ 2 000 Kč</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Krok 3: Rychlost realizace -->
+          <div class="config-step">
+            <div class="config-step-label"><span class="step-num">3</span> Požadovaný termín</div>
+            <div class="config-options" id="calcSpeed">
+              <button type="button" class="config-opt active" data-extra="0" data-name="Standardní termín">
+                <span class="opt-title">Standardní tempo</span>
+                <span class="opt-sub">Běžný plán výroby</span>
+              </button>
+              <button type="button" class="config-opt" data-extra="4000" data-name="Expresní dodání do 10 dnů">
+                <span class="opt-title">Expresní dodání</span>
+                <span class="opt-sub">+ 4 000 Kč (do 10 dnů)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Souhrn & Tlačítko -->
+        <div class="configurator-summary">
+          <div class="summary-details">
+            <div class="summary-item">
+              <span class="summary-label">Orientační cena</span>
+              <span class="summary-val" id="calcTotalPrice">10 000 Kč</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Odhadovaná doba</span>
+              <span class="summary-val" id="calcTotalTime">2–3 týdny</span>
+            </div>
+          </div>
+          <button type="button" class="btn-primary config-submit-btn" id="configToContactBtn">
+            Poptat s touto konfigurací
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Práce & Reference -->
+  <section id="work">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Moje práce a reference</h2>
+        <p class="section-desc">Upřímné přiznání: jsem na začátku</p>
+      </div>
+      <div class="work-coming fade-in stagger-1">
+        <div class="work-status">Stavím portfolio</div>
+        <h3>První zakázky se právě rodí</h3>
+        <p>Hraji s otevřenými kartami: netvářím se jako zavedené studio s desítkami projektů v zádech. Jsem na začátku a
+          právě proto svým prvním klientům věnuji nadstandardní čas, pečlivost a nasazení. Jakmile dokončím první
+          zakázky, najdete zde ukázky i reálná hodnocení od klientů.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header fade-in section-header--left">
+        <h2 class="section-title">Často kladené otázky</h2>
+        <p class="section-desc">Upřímné odpovědi na to, co vás před spoluprací reálně zajímá</p>
+      </div>
+
+      <div class="faq-accordion fade-in stagger-1">
+        <div class="faq-item active">
+          <button class="faq-question" aria-expanded="true">
+            <span>Proč bych měl dát zakázku začínajícímu vývojáři?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Mladá krev přináší mladý pohled na věc. Váš
+                projekt pro mě není jen jedno z mnoha čísel, je to moje vizitka, na které si stavím jméno, takže na něm
+                odvedu maximum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Kolik to reálně stojí a co je v ceně?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Cena začíná na 10 000 Kč za jednodušší prezentační web. V ceně je konzultace, kompletní vývoj na míru,
+                responzivita
+                pro mobily i počítače a základní SEO optimalizace. Je možný i webhosting na vlastní triko za
+                500kč/ měsíčně, kde nebudete nic řešit.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Jak dlouho trvá web vytvořit?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Záleží na náročnosti a rychlosti naší domluvy. Běžný prezentační web zvládnu nakódovat a odladit za 1 až
+                2 týdny od chvíle, kdy máme ujasněný obsah a podklady. Na větší projekty si vyhrazuji čas až do 3 týdnů.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Co když nebudu spokojený?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Na webu pracujeme postupně. Než začnu kódovat, ujasníme si strukturu a rozvržení. Kdyby se vám moje
+                práce přesto nelíbila, je možné ji kdykoliv upravit k vašemu obrazu. Veškeré úpravy provádím bezplatně
+                dokud nebudete stoprocentně spokojeni.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Jak je to s AI?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Využívám AI jen jako pomocníka pro kontrolu chyb, zrychlení rutinních úkolů nebo vytváření nápadů. Po
+                internetu kolují různé AI slop weby, tomu se snažím vyvarovat. Chci, aby web, který dodám, působyl
+                autenticky a ne generovaně.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Kdo se o web stará potom?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line class="faq-icon-bar" x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <div class="faq-answer-inner">
+                Po dokončení webu vás seznámim s tím, jak funguje a jak ho případně ovládat. Webhosting a nasazení si už
+                řešíte potom sami. Pokud, ale budete chtít ulevit od starostí, tak za 500kč/měsíčně váš web nasadím a
+                postarám se o hosting.
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Napište mi o svém projektu</h2>
+        <p class="section-desc">Odpovím obvykle do 24 hodin. Probereme vaše představy a najdeme nejlepší řešení.</p>
+      </div>
+      <div class="contact-grid fade-in stagger-1">
+        <div class="contact-info">
+          <h3>Přímá komunikace bez prostředníků</h3>
+          <p>Ať už potřebujete nový web, upravit stávající prezentaci nebo se jen poradit — rád si s vámi promluvím.
+            Napíšete přímo člověku, který váš web skutečně píše.</p>
+          <div class="contact-methods">
+            <a href="mailto:matyas.rada08@gmail.com" class="contact-method">
+              <div class="contact-method-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg></div>
+              <div class="contact-method-text">
+                <h4>Email</h4>
+                <p>matyas.rada08@gmail.com</p>
+              </div>
+            </a>
+            <a href="tel:+420774970379" class="contact-method">
+              <div class="contact-method-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg></div>
+              <div class="contact-method-text">
+                <h4>Telefon</h4>
+                <p>+420 774 970 379</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <!-- Honeypot ochrana proti spamu -->
+            <input type="text" name="_honey" id="honeypot" style="display:none !important;" tabindex="-1"
+              autocomplete="off">
+            <div class="form-row">
+              <div class="form-group"><label for="name">Jméno a příjmení <span class="required-star"
+                    title="Povinné pole">*</span></label><input type="text" id="name" placeholder="Jan Novák" required>
+              </div>
+              <div class="form-group"><label for="email">E-mail <span class="required-star"
+                    title="Povinné pole">*</span></label><input type="email" id="email" placeholder="jan.novak@firma.cz"
+                  required></div>
+            </div>
+            <div class="form-group">
+              <label for="project">Typ projektu</label>
+              <select id="project">
+                <option value="">Vyberte typ projektu</option>
+                <option value="Jednostránkový web">Jednostránkový web</option>
+                <option value="Vícestránkový web">Vícestránkový web</option>
+                <option value="Web na míru / Aplikace">Web na míru / Aplikace</option>
+                <option value="Redesign / Úprava">Redesign / Úprava</option>
+                <option value="Jiné">Jiné</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="budget">Orientační rozpočet</label>
+              <select id="budget">
+                <option value="">Vyberte rozpočet</option>
+                <option value="10 000 - 20 000 Kč">10 000 - 20 000 Kč</option>
+                <option value="20 000 - 35 000 Kč">20 000 - 35 000 Kč</option>
+                <option value="35 000 - 50 000 Kč">35 000 - 50 000 Kč</option>
+                <option value="50 000+ Kč">50 000+ Kč</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="message">Popis projektu</label><textarea id="message"
+                placeholder="Napište krátce, co potřebujete vytvořit..."></textarea></div>
+            <button type="submit" class="form-submit btn-primary" id="formSubmitBtn">Odeslat zprávu</button>
+            <div class="form-status" id="formStatus" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <ul class="footer-links">
+      <li><a href="#about">O mně</a></li>
+      <li><a href="#fit">Pro koho</a></li>
+      <li><a href="#journey">Jak pracuji</a></li>
+      <li><a href="#pricing">Ceník</a></li>
+      <li><a href="#work">Práce</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <p>&copy; 2026 Matyáš Rada. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

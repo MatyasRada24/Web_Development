@@ -1,0 +1,1992 @@
+:root {
+  --bg-deep: #12100D;
+  --bg-card: #1E1B16;
+  --bg-elevated: #2A2620;
+  --accent: #F5A524;
+  --accent-light: #FFCB6B;
+  --accent-dark: #3D2800;
+  --text-primary: #F5F3EF;
+  --text-secondary: #A39B8C;
+  --text-muted: #7A7365;
+  --border: rgba(255, 255, 255, 0.10);
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── PRONÁSLEDUJÍCÍ KURZOR ── */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-follower {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(245, 165, 36, 0.55);
+  background: rgba(245, 165, 36, 0.05);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background 0.3s ease,
+    opacity 0.3s ease;
+  will-change: transform, width, height;
+}
+
+.cursor-dot.visible,
+.cursor-follower.visible {
+  opacity: 1;
+}
+
+body.cursor-hover .cursor-follower {
+  width: 54px;
+  height: 54px;
+  border-color: var(--accent);
+  background: rgba(245, 165, 36, 0.12);
+  box-shadow: 0 0 20px rgba(245, 165, 36, 0.2);
+}
+
+@media (hover: none) and (pointer: coarse),
+(prefers-reduced-motion: reduce) {
+
+  .cursor-dot,
+  .cursor-follower {
+    display: none !important;
+  }
+}
+
+/* ── NAVIGACE ── */
+.nav {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1200px;
+  width: calc(100% - 2.5rem);
+  z-index: 1000;
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(30, 27, 22, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav.scrolled {
+  top: 0.65rem;
+  padding: 0.7rem 1.5rem;
+  background: rgba(18, 16, 13, 0.92);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo span {
+  color: var(--text-secondary);
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-logo:hover span {
+  transform: rotate(-12deg) scale(1.18);
+  color: var(--text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--text-primary);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Nav CTA — Vyhradní akcentní tlačítko v hlavičce */
+.nav-cta {
+  background: var(--accent);
+  color: var(--accent-dark);
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 15px rgba(245, 165, 36, 0.2);
+}
+
+.nav-cta:hover {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 165, 36, 0.35);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-toggle.active .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── HERO SEKCE ── */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 5rem;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  filter: brightness(0.6) contrast(1.05);
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(18, 16, 13, 0.45) 0%,
+      rgba(18, 16, 13, 0.65) 50%,
+      rgba(18, 16, 13, 0.9) 85%,
+      #12100D 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 165, 36, 0.06), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.15rem;
+  border-radius: 100px;
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+  font-family: var(--font-mono);
+}
+
+.hero-badge .dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+/* Nadpis bez gradientu — čistý akcentní text */
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.hero h1 .accent-text {
+  color: var(--accent);
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0 auto 2.5rem;
+  max-width: 680px;
+  text-align: center;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── TLAČÍTKA A KONTRAST ── */
+/* Plné akcentní tlačítko (Max. 1 na obrazovku) */
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-dark);
+  /* #3D2800 tmavě hnědý text pro WCAG AA */
+  padding: 0.95rem 2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(245, 165, 36, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 165, 36, 0.35);
+}
+
+/* Obrysové tlačítko (Pro ostatní akci na obrazovce) */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0.95rem 2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-secondary);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* ── OBECNÉ SEKCE ── */
+section {
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ── O MNĚ SEKCE ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-image-frame {
+  position: relative;
+  border-radius: 16px;
+  padding: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.about-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.about-content p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── PRO KOHO JSEM / NEJSEM SEKCE ── */
+.fit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.fit-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.fit-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.fit-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.fit-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.fit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.fit-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.fit-list li svg {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--text-secondary);
+}
+
+/* ── JAK PRACOVAT (JOURNEY) ── */
+.journey {
+  max-width: 640px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journey-card {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 1.6rem 2.75rem;
+  text-align: center;
+  min-width: 280px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+
+.journey-card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-elevated);
+}
+
+.journey-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0.4rem 0 0.2rem;
+  color: var(--text-primary);
+}
+
+.journey-card p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.journey-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.journey-path {
+  position: relative;
+  width: 100%;
+  height: 840px;
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+
+.journey-line {
+  animation: journeyFlow 1.4s linear infinite;
+}
+
+@keyframes journeyFlow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.journey-dot {
+  fill: var(--text-secondary);
+}
+
+.journey-dot-outer {
+  fill: rgba(255, 255, 255, 0.05);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.journey-milestone {
+  position: absolute;
+  width: 230px;
+  padding: 1.1rem 1.35rem;
+  background: rgba(30, 27, 22, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  transform: translateY(-50%);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.journey-milestone:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-elevated);
+}
+
+.journey-milestone h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0.15rem;
+  color: var(--text-primary);
+}
+
+.journey-milestone p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.journey-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.journey-m1 {
+  top: 105px;
+  right: calc(50% + 55px);
+}
+
+.journey-m2 {
+  top: 315px;
+  left: calc(50% + 55px);
+}
+
+.journey-m3 {
+  top: 525px;
+  right: calc(50% + 55px);
+}
+
+.journey-m4 {
+  top: 735px;
+  left: calc(50% + 55px);
+}
+
+/* ── CENÍK SEKCE ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.pricing-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.pricing-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+  min-height: 2.6rem;
+}
+
+.pricing-price {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.pricing-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.pricing-period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Odrážky v ceníku jsou v sekundární barvě, NE v akcentní jantarové */
+.pricing-features li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.pricing-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── KALKULAČKA / KONFIGURÁTOR ── */
+.configurator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.configurator-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.config-step-label {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.config-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.config-opt {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  font-family: inherit;
+}
+
+.config-opt:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-elevated);
+  transform: translateY(-2px);
+}
+
+.config-opt.active {
+  border-color: var(--accent);
+  background: rgba(245, 165, 36, 0.08);
+  box-shadow: 0 4px 20px rgba(245, 165, 36, 0.15);
+}
+
+.config-opt .opt-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.config-opt .opt-sub {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+}
+
+.config-opt.active .opt-sub {
+  color: var(--accent-light);
+}
+
+.configurator-summary {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.summary-details {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.summary-val {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+#calcTotalPrice {
+  color: var(--accent);
+}
+
+.config-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── PRÁCE & REFERENCE (SLOUČENÁ SEKCE) ── */
+.work-coming {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.work-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  margin-bottom: 1.5rem;
+}
+
+.work-coming h3 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.work-coming p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-size: 0.98rem;
+}
+
+/* ── FAQ SEKCE (AKORDEON) ── */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: var(--bg-elevated);
+}
+
+.faq-item.active {
+  border-color: rgba(245, 165, 36, 0.35);
+  background: var(--bg-elevated);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.35rem 1.6rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.faq-item.active .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.faq-answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-answer-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-content {
+  overflow: hidden;
+}
+
+.faq-answer-inner {
+  padding: 0 1.6rem 1.35rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 0.2rem;
+  padding-top: 1rem;
+}
+
+/* ── KONTAKT SEKCE ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.contact-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.contact-info p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s;
+}
+
+.contact-method:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-elevated);
+  transform: translateX(4px);
+}
+
+.contact-method-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-method-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-method-text h4 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.contact-method-text p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.contact-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.required-star {
+  color: var(--accent);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(245, 165, 36, 0.2);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Tlačítko formuláře — Jantarové plné s tmavým textem */
+.form-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.form-status {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  display: none;
+  text-align: center;
+}
+
+.form-status.active {
+  display: block;
+}
+
+.form-status.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.form-status.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+/* ── PATIČKA ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #0d0b09;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ── SCROLL ANIMACE (FADE-IN ONLY) ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s !important;
+}
+
+/* ── INTERAKTIVNÍ HOVER EFEKTY KARET (INSTANTNÍ ODPOVĚĎ BEZ DELAYE) ── */
+.fit-card:hover,
+.pricing-card:hover,
+.faq-card:hover,
+.journey-card:hover {
+  transition-delay: 0s !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+  transform: translateY(-8px) !important;
+  background: var(--bg-elevated) !important;
+  border-color: rgba(245, 165, 36, 0.45) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 165, 36, 0.12) !important;
+}
+
+.pricing-card:hover .pricing-btn {
+  transition-delay: 0s !important;
+  transition: all 0.25s ease !important;
+  background: var(--accent) !important;
+  color: var(--accent-dark) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 4px 15px rgba(245, 165, 36, 0.3) !important;
+}
+
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-badge .dot,
+  .journey-line {
+    animation: none !important;
+  }
+
+  .fade-in {
+    transition: opacity 0.3s !important;
+    transform: none !important;
+  }
+}
+
+/* ── RESPONZIVITA ── */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .fit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    width: calc(100% - 1.5rem);
+    top: 0.75rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    left: 0;
+    right: 0;
+    background: rgba(30, 27, 22, 0.96);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .video-control-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 34px;
+    height: 34px;
+  }
+
+  .journey-svg {
+    display: none;
+  }
+
+  .journey-path {
+    height: auto;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.25rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  .journey-milestone {
+    position: static;
+    width: 100%;
+    transform: none;
+  }
+
+  .journey-card {
+    min-width: 0;
+    width: 100%;
+    padding: 1.35rem 1.5rem;
+  }
+}
+
+/* =============================================
+   SLOVNÍ RULETA V HERO NADPISU
+   „Moje weby jsou vždycky [responzivní / rychlé / unikátní]"
+
+   Slova sedí na plášti 3D válce (6 pozic po 60°, tři slova dvakrát).
+   Slovo stojí --wr-hold vepředu, pak se válec za --wr-move pootočí.
+   Záporné úhly = text přijíždí shora a odjíždí dolů.
+   ============================================= */
+
+:root {
+  --wr-line: 0.8em;
+  /* výška jednoho řádku rulety */
+  --wr-radius: 1.7em;
+  /* poloměr válce — větší než těsný fit, aby sousední slova
+                           spadla mimo viditelnou plochu a nedělala čmouhu */
+  --wr-bleed: 0.5em;
+  /* boční rezerva proti oříznutí perspektivou */
+  --wr-bleed-y: 0.3em;
+  /* svislá rezerva pro dotažnice písmen y, ý, g */
+  --wr-hold: 1s;
+  /* jak dlouho slovo stojí */
+  --wr-move: 0.7s;
+  /* jak dlouho trvá otočení */
+}
+
+.word-roulette {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  height: var(--wr-line);
+  perspective: 1600px;
+
+  /* Web má globálně border-box, ten by rezervu ukrojil z výšky řádku
+     a slovo by se seřízlo shora i zdola. Tady se musí přičítat navíc. */
+  box-sizing: content-box;
+
+  /* rezerva kolem dokola: perspektiva přední slovo mírně zvětší
+     a dolní dotažnice (y, ý) potřebují místo pod účařím */
+  padding: var(--wr-bleed-y) var(--wr-bleed);
+  margin: calc(var(--wr-bleed-y) * -1) calc(var(--wr-bleed) * -1);
+
+  /* Sousední slova jsou díky velkému poloměru mimo záběr, takže stačí
+     tvrdý ořez okrajů. Žádné tmavé doznívání = žádná čmouha. */
+  overflow: hidden;
+}
+
+/* neviditelné nejdelší slovo drží šířku, aby nadpis neposkakoval */
+.word-roulette__sizer {
+  visibility: hidden;
+  display: block;
+}
+
+.word-roulette__drum {
+  position: absolute;
+  top: var(--wr-bleed-y);
+  left: var(--wr-bleed);
+  right: var(--wr-bleed);
+  height: var(--wr-line);
+  transform-style: preserve-3d;
+  animation: wordDrumSpin calc((var(--wr-hold) + var(--wr-move)) * 6) infinite;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1);
+}
+
+@keyframes wordDrumSpin {
+
+  0%,
+  14.085% {
+    transform: rotateX(0deg)
+  }
+
+  16.667%,
+  30.752% {
+    transform: rotateX(-60deg)
+  }
+
+  33.333%,
+  47.418% {
+    transform: rotateX(-120deg)
+  }
+
+  50%,
+  64.085% {
+    transform: rotateX(-180deg)
+  }
+
+  66.667%,
+  80.752% {
+    transform: rotateX(-240deg)
+  }
+
+  83.333%,
+  97.418% {
+    transform: rotateX(-300deg)
+  }
+
+  100% {
+    transform: rotateX(-360deg)
+  }
+}
+
+.word-roulette__word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--wr-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* nadpis je centrovaný, slova taky */
+  white-space: nowrap;
+  backface-visibility: hidden;
+}
+
+/* rozmístění po plášti válce — 360° / 6 pozic = 60° */
+.word-roulette__word:nth-child(1) {
+  transform: rotateX(0deg) translateZ(var(--wr-radius))
+}
+
+.word-roulette__word:nth-child(2) {
+  transform: rotateX(60deg) translateZ(var(--wr-radius))
+}
+
+.word-roulette__word:nth-child(3) {
+  transform: rotateX(120deg) translateZ(var(--wr-radius))
+}
+
+.word-roulette__word:nth-child(4) {
+  transform: rotateX(180deg) translateZ(var(--wr-radius))
+}
+
+.word-roulette__word:nth-child(5) {
+  transform: rotateX(240deg) translateZ(var(--wr-radius))
+}
+
+.word-roulette__word:nth-child(6) {
+  transform: rotateX(300deg) translateZ(var(--wr-radius))
+}
+
+/* text jen pro čtečky obrazovky */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-roulette {
+    perspective: none;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+  }
+
+  .word-roulette__drum {
+    animation: none;
+    transform: none;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .word-roulette__word {
+    transform: none !important;
+  }
+
+  .word-roulette__word:not(:first-child) {
+    display: none;
+  }
+}
+/* =============================================
+   RYTMUS SEKCÍ, MONOSPACE PODPIS A ODDĚLOVAČE
+   Cílem je rozbít opakující se schéma
+   „vycentrovaný nadpis + mřížka karet".
+   ============================================= */
+
+/* ── 2. STŘÍDAVÝ RYTMUS POZADÍ ──
+   Sudé sekce dostanou o odstín světlejší podklad a vlasovou linku.
+   Oko tím dostane přirozený předěl bez další animace. */
+section#fit,
+section#pricing,
+section#work,
+section#contact {
+  background: rgba(255, 255, 255, 0.018);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── 5. RŮZNÉ ŠÍŘKY OBSAHU ──
+   Když se šířka sloupce mění, mění se i rytmus čtení. */
+section#work .container,
+section#faq .container {
+  max-width: 820px;
+}
+
+section#about .container {
+  max-width: 1140px;
+}
+
+/* ── 6. O MNĚ: ASYMETRIE MÍSTO SOUMĚRNÉ MŘÍŽKY ── */
+.about-grid {
+  grid-template-columns: 300px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.about-image {
+  position: sticky;
+  top: 7rem;
+  /* místo pro vykývnutí, aby se rámeček neořízl o okraj sloupce */
+  padding: var(--tilt-room) 0;
+  margin: calc(var(--tilt-room) * -1) 0;
+}
+
+/* ── ARKÁDOVÉ HOUPÁNÍ FOTKY ──
+   Žádné plynulé prolínání: obrázek skáče mezi pevnými pozicemi
+   jako sprite ve staré hře. O to se stará steps(1, end),
+   který vypne dopočítávání mezisnímků.
+
+   --tilt      = maximální úhel náklonu
+   --tilt-time = délka jednoho cyklu (8 snímků)
+   --tilt-room = rezerva, aby naklonění rohy nic neořízlo */
+.about-image-frame {
+  --tilt: 5deg;
+  --tilt-time: 2s;
+  --tilt-room: 1.5rem;
+
+  border-radius: 12px;
+  transform-origin: 50% 50%;
+  animation: photoArcade var(--tilt-time) steps(1, end) infinite;
+  will-change: transform;
+  image-rendering: auto;
+}
+
+/* 8 pevných snímků: náklon vlevo → rovina → náklon vpravo → zpět.
+   Každý drží 1/8 cyklu a pak cvakne na další. */
+@keyframes photoArcade {
+  0%    { transform: rotate(calc(var(--tilt) * -1))    translateY(0)      scale(1) }
+  12.5% { transform: rotate(calc(var(--tilt) * -0.5))  translateY(-2px)   scale(1.012) }
+  25%   { transform: rotate(0deg)                      translateY(0)      scale(1) }
+  37.5% { transform: rotate(calc(var(--tilt) * 0.5))   translateY(-2px)   scale(1.012) }
+  50%   { transform: rotate(var(--tilt))               translateY(0)      scale(1) }
+  62.5% { transform: rotate(calc(var(--tilt) * 0.5))   translateY(-2px)   scale(1.012) }
+  75%   { transform: rotate(0deg)                      translateY(0)      scale(1) }
+  87.5% { transform: rotate(calc(var(--tilt) * -0.5))  translateY(-2px)   scale(1.012) }
+  100%  { transform: rotate(calc(var(--tilt) * -1))    translateY(0)      scale(1) }
+}
+
+/* při najetí myší se cvakání zastaví, ať si člověk fotku prohlédne */
+.about-image-frame:hover {
+  animation-play-state: paused;
+}
+
+/* ── 7. PRO KOHO JSEM: SLEPENÉ SLOUPCE MÍSTO DVOU KARET ──
+   Dvě karty s mezerou vypadají jako každá druhá mřížka.
+   Slepený blok s dělící linkou působí jako záměr. */
+.fit-grid {
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fit-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.fit-card.fit-yes {
+  background: rgba(245, 165, 36, 0.035);
+  border-right: 1px solid var(--border);
+}
+
+.fit-card.fit-no {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.fit-card:hover {
+  transform: none;
+}
+
+/* ── 8. MONOSPACE V DETAILECH ──
+   Čísla, ceny a technické údaje patří do mono fontu. */
+.pricing-price,
+.config-price,
+#calcTotalPrice,
+#calcTotalTime {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+.contact-form .form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── 9. MOBIL ── */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-image {
+    position: static;
+    max-width: 260px;
+  }
+
+  .fit-card.fit-yes {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-image-frame {
+    animation: none;
+    transform: rotate(-1.2deg);
+  }
+
+  .faq-icon-bar,
+  .faq-item {
+    transition: none;
+  }
+}
+
+/* =============================================
+   FAQ — VZHLED PODLE NÁVRHU (oblé buňky s kolečkem)
+   Barvy zůstávají z původní palety, mění se jen tvar.
+   ============================================= */
+
+.faq-accordion {
+  gap: 0.85rem;
+}
+
+/* výrazně oblejší buňky — hlavní rys návrhu */
+.faq-item {
+  /* ══════════════════════════════════════════════
+     ►► RYCHLOST CELÉ BUŇKY ◄◄
+     Jedna hodnota řídí všechno, co se v buňce hýbe:
+     otáčení čáry, rozbalení odpovědi, zaoblení rohů
+     i přebarvení kroužku a pozadí.
+     Menší číslo = rychlejší. Rozumné rozpětí 0.3s–1.2s.
+     ══════════════════════════════════════════════ */
+  --icon-speed: 0.75s;
+
+  border-radius: 999px;
+  overflow: hidden;
+  transition: border-radius var(--icon-speed) cubic-bezier(0.16, 1, 0.3, 1),
+              border-color var(--icon-speed) ease,
+              background var(--icon-speed) ease,
+              box-shadow var(--icon-speed) ease;
+}
+
+/* po otevření se buňka narovná, aby odpověď nevytékala z oblouku */
+.faq-item.active {
+  border-radius: 24px;
+}
+
+.faq-question {
+  padding: 1.15rem 1.15rem 1.15rem 1.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 1.5rem;
+}
+
+/* ikona v kroužku, jak je na návrhu */
+.faq-chevron {
+  /* plynulejší vykreslení čar během otáčení */
+  shape-rendering: geometricPrecision;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition: transform var(--icon-speed) cubic-bezier(0.16, 1, 0.3, 1),
+              color var(--icon-speed) ease,
+              border-color var(--icon-speed) ease,
+              background var(--icon-speed) ease;
+}
+
+.faq-item:hover .faq-chevron {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--text-primary);
+}
+
+/* Kroužek se při otevření vybarví, ale sám se netočí —
+   otáčí se pouze svislá čára uvnitř. */
+.faq-item.active .faq-chevron {
+  color: var(--accent-dark);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+
+
+/* Svislá čára plusu se otočí o 90° a splyne s vodorovnou,
+   takže z plusu vznikne mínus. */
+.faq-icon-bar {
+  /* POZOR: fill-box tady nefunguje. Svislá <line> má nulovou šířku
+     ohraničujícího obdélníku (stroke se do něj nepočítá), takže se střed
+     otáčení počítá ze zdegenerovaného rámečku a vznikají artefakty.
+     view-box počítá souřadnice z viewBox="0 0 24 24", kde je střed 12/12. */
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+
+  /* Svislá čára se sklopí proti směru hodinových ručiček (horní konec jde
+     doleva) a v cíli přesně padne na vodorovnou čáru. Protože mají stejnou
+     tloušťku i barvu, splynou v jedinou — žádné mizení není potřeba. */
+  transition: transform var(--icon-speed) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-icon-bar {
+  transform: rotate(-90deg);
+}
+
+/* rozbalení odpovědi jede stejně dlouho jako zbytek buňky */
+.faq-answer-wrapper {
+  transition: grid-template-rows var(--icon-speed) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-answer-inner {
+  padding: 1rem 1.9rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 600px) {
+  .faq-item {
+    border-radius: 26px;
+  }
+
+  .faq-question {
+    padding: 1.1rem 1rem 1.1rem 1.35rem;
+    gap: 1rem;
+  }
+
+  .faq-answer-inner {
+    padding: 1rem 1.35rem 1.35rem;
+  }
+}
+
+/* =============================================
+   CENÍK — KARTY VE STYLU POLOŽKOVÉHO ROZPOČTU
+   Struktura místo tří shodných obdélníků: číslování,
+   přerušované linky jako na faktuře a jasná hierarchie ceny.
+   ============================================= */
+
+.pricing-grid {
+  counter-reset: tarif;
+}
+
+.pricing-card {
+  padding: 2.25rem 2rem 2rem;
+  overflow: hidden;
+}
+
+/* vlasový světelný přesah u horní hrany — dodá kartě hloubku */
+.pricing-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    transparent);
+  pointer-events: none;
+}
+
+.pricing-name {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  padding-right: 2.5rem;
+}
+
+.pricing-desc {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
+}
+
+/* cena dostane víc prostoru a pevnou pozici v rytmu karty */
+.pricing-price {
+  font-size: 2.5rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-price span {
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.pricing-period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
+}
+
+/* položky jako řádky rozpisu, ne jako volný seznam */
+.pricing-features {
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.pricing-features li {
+  align-items: flex-start;
+  gap: 0.7rem;
+  line-height: 1.5;
+}
+
+.pricing-features li svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 0.18rem;
+  opacity: 0.75;
+}
+
+/* prostřední tarif nese jemný jantarový nádech — hierarchie bez cedulky */
+.pricing-card:nth-child(2) {
+  background: linear-gradient(180deg,
+    rgba(245, 165, 36, 0.045),
+    rgba(245, 165, 36, 0) 55%),
+    var(--bg-card);
+}
+
+@media (max-width: 900px) {
+  .pricing-card {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+
+  .pricing-price {
+    font-size: 2.2rem;
+  }
+}
